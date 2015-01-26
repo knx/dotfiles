@@ -5,3 +5,5 @@
 [user]
 	name = knx
 	email = knx@digitalheads.pl
+[push]
+	default = simple

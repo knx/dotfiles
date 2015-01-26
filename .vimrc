@@ -15,6 +15,7 @@ Plugin 'scrooloose/syntastic'
 Plugin 'tpope/vim-fugitive'
 Plugin 'Yggdroot/indentLine'
 Plugin 'kien/ctrlp.vim'
+Plugin 'msanders/snipmate.vim'
 " languages
 Plugin 'elzr/vim-json'
 Plugin 'groenewege/vim-less'
@@ -28,6 +29,8 @@ Plugin 'tpope/vim-markdown'
 Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'tpope/vim-rails'
 Plugin 'vim-ruby/vim-ruby'
+" snippets
+Plugin 'kaichen/vim-snipmate-ruby-snippets'
 " themes
 Plugin 'chriskempson/vim-tomorrow-theme'
 Plugin 'reedes/vim-thematic'
