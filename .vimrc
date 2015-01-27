@@ -15,7 +15,10 @@ Plugin 'scrooloose/syntastic'
 Plugin 'tpope/vim-fugitive'
 Plugin 'Yggdroot/indentLine'
 Plugin 'kien/ctrlp.vim'
-Plugin 'msanders/snipmate.vim'
+Plugin 'garbas/vim-snipmate'
+Plugin 'MarcWeber/vim-addon-mw-utils'
+Plugin 'tomtom/tlib_vim'
+
 " languages
 Plugin 'elzr/vim-json'
 Plugin 'groenewege/vim-less'
@@ -26,9 +29,12 @@ Plugin 'othree/html5.vim'
 Plugin 'pangloss/vim-javascript'
 Plugin 'tpope/vim-haml'
 Plugin 'tpope/vim-markdown'
-Plugin 'christoomey/vim-tmux-navigator'
+Plugin 'rcyrus/snipmate-snippets-rubymotion'
+Plugin 'tpope/vim-rake'
+"Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'tpope/vim-rails'
 Plugin 'vim-ruby/vim-ruby'
+Plugin 'tpope/vim-projectionist'
 " snippets
 Plugin 'kaichen/vim-snipmate-ruby-snippets'
 " themes
@@ -91,6 +97,8 @@ noremap <C-n> :nohl<CR>
 vnoremap <C-n> :nohl<CR>
 inoremap <C-n> :nohl<CR>
 
+"tags search
+nnoremap <leader>. :CtrlPTag<cr>
 
 " :w!! to write to a file using sudo
 cmap w!! %!sudo tee > /dev/null %
