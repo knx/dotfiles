@@ -18,7 +18,6 @@ Plugin 'kien/ctrlp.vim'
 Plugin 'garbas/vim-snipmate'
 Plugin 'MarcWeber/vim-addon-mw-utils'
 Plugin 'tomtom/tlib_vim'
-
 " languages
 Plugin 'elzr/vim-json'
 Plugin 'groenewege/vim-less'
@@ -36,7 +35,7 @@ Plugin 'tpope/vim-rails'
 Plugin 'vim-ruby/vim-ruby'
 Plugin 'tpope/vim-projectionist'
 " snippets
-Plugin 'kaichen/vim-snipmate-ruby-snippets'
+Plugin 'honza/vim-snippets'
 " themes
 Plugin 'chriskempson/vim-tomorrow-theme'
 Plugin 'reedes/vim-thematic'
