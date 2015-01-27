@@ -8,11 +8,12 @@ Plugin 'gmarik/Vundle.vim'   " let Vundle manage Vundle, required
 " utils
 Plugin 'ap/vim-css-color'
 Plugin 'bling/vim-airline'
-Plugin 'bronson/vim-trailing-whitespace'
+"Plugin 'bronson/vim-trailing-whitespace'
 Plugin 'ervandew/supertab'
 Plugin 'scrooloose/nerdtree'
+Bundle 'jistr/vim-nerdtree-tabs'
 Plugin 'scrooloose/syntastic'
-Plugin 'tpope/vim-fugitive'
+"Plugin 'tpope/vim-fugitive'
 Plugin 'Yggdroot/indentLine'
 Plugin 'kien/ctrlp.vim'
 Plugin 'garbas/vim-snipmate'
@@ -20,12 +21,11 @@ Plugin 'MarcWeber/vim-addon-mw-utils'
 Plugin 'tomtom/tlib_vim'
 Plugin 'tpope/vim-projectionist'
 Plugin 'tomtom/tcomment_vim'
-Plugin 'airblade/vim-gitgutter'
 " languages
 Plugin 'elzr/vim-json'
 Plugin 'groenewege/vim-less'
 Plugin 'hail2u/vim-css3-syntax'
-Plugin 'jnwhiteh/vim-golang'
+"Plugin 'jnwhiteh/vim-golang'
 Plugin 'kchmck/vim-coffee-script'
 Plugin 'othree/html5.vim'
 Plugin 'pangloss/vim-javascript'
@@ -37,12 +37,9 @@ Plugin 'vim-ruby/vim-ruby'
 " snippets
 "Plugin 'kaichen/vim-snipmate-ruby-snippets'
 Plugin 'honza/vim-snippets'
-"Plugin 'rcyrus/snipmate-snippets-rubymotion'
+Plugin 'rcyrus/snipmate-snippets-rubymotion'
 " themes
-Plugin 'chriskempson/vim-tomorrow-theme'
-Plugin 'reedes/vim-thematic'
 Plugin 'tomasr/molokai'
-Plugin 'vim-scripts/ScrollColors'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -69,6 +66,15 @@ set tabstop=2
 set shiftwidth=2
 set softtabstop=2
 set expandtab
+
+fun! <SID>StripTrailingWhitespaces()
+    let l = line(".")
+    let c = col(".")
+    %s/\s\+$//e
+    call cursor(l, c)
+endfun
+
+autocmd FileType c,cpp,java,php,ruby,python autocmd BufWritePre <buffer> :call <SID>StripTrailingWhitespaces()
 
 " Searching
 set hlsearch        " highlight all matches
@@ -109,6 +115,9 @@ autocmd BufWritePost $MYVIMRC source $MYVIMRC
 " Disable syntax highlight for files larger than 50 MB
 autocmd BufWinEnter * if line2byte(line("$") + 1) > 50000000 | syntax clear | endif
 
+" NerdTreeTabs
+map <Leader>n <plug>NERDTreeTabsToggle<CR>
+
 " Airline
 let g:airline#extensions#tabline#left_sep = ' '
 let g:airline#extensions#tabline#left_alt_sep = '|'
@@ -126,12 +135,6 @@ let g:rehash256 = 1
 
 :silent! colorscheme molokai
 syntax on
-
-if $TERM_PROGRAM =~ "iTerm"
-  let &t_SI = "\<Esc>]50;CursorShape=1\x7"  " Vertical bar in insert mode
-  let &t_EI = "\<Esc>]50;CursorShape=0\x7"  " Block in normal mode
-endif
-
 
 " Include other files
 " if filereadable(expand("~/.vimrc.local"))
