@@ -19,6 +19,8 @@ Plugin 'garbas/vim-snipmate'
 Plugin 'MarcWeber/vim-addon-mw-utils'
 Plugin 'tomtom/tlib_vim'
 Plugin 'tpope/vim-projectionist'
+Plugin 'tomtom/tcomment_vim'
+Plugin 'airblade/vim-gitgutter'
 " languages
 Plugin 'elzr/vim-json'
 Plugin 'groenewege/vim-less'

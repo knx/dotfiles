@@ -1,13 +1,13 @@
 #!/bin/bash
 
-SCM_THEME_PROMPT_DIRTY=" ${red}✘"
-SCM_THEME_PROMPT_CLEAN=" ${green}✔"
+SCM_THEME_PROMPT_DIRTY=" ${bold_red}✘"
+SCM_THEME_PROMPT_CLEAN=" ${bold_green}✔"
 SCM_THEME_PROMPT_PREFIX=" "
 SCM_THEME_PROMPT_SUFFIX=" "
 SCM_NONE_CHAR=""
-RVM_THEME_PROMPT_PREFIX="${red}✦ "
+RVM_THEME_PROMPT_PREFIX="${bold_red}✦ "
 RVM_THEME_PROMPT_SUFFIX=" ${reset_color}"
-ERROR="${red}🚫  Error \n${normal}"
+ERROR="${bold_red}🚫 Error \n${normal}"
 EXIT_STATUS="if [ \$? = 0 ]; then echo \"\"; else echo \"${ERROR}\"; fi"
 
 rvmrc_version_prompt () {
@@ -27,12 +27,11 @@ prompt_right () {
 }
 
 prompt_left () {
-  LEFT_PROMPT="\[\033[G\]\`${EXIT_STATUS}\`\[${yellow}\]\w \[\$(rvmrc_version_prompt)\]\[${blue}\]\[\$(scm_char)\]\[\$(scm_prompt_info)\]\[${normal}\]\[${reset_color}\]"
+  LEFT_PROMPT="\[\033[G\]\`${EXIT_STATUS}\`\[${yellow}\]\w \[\$(rvmrc_version_prompt)\]\[${bold_blue}\]\[\$(scm_char)\]\[\$(scm_prompt_info)\]\[${normal}\]\[${reset_color}\]"
   echo -e "${LEFT_PROMPT}"
 }
 
 prompt () {
-  __iterm_tab_title
   # left, right
   # compensate=4
   # PS1=$(printf "%*s\r%s\n${PS2}" "$(($(tput cols)+${compensate}))" "$(prompt_right)" "$(prompt_left)")

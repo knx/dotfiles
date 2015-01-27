@@ -1,40 +1,53 @@
 #!/bin/bash
 
-# bin/rails Commands
-alias r='bin/rails'
-alias rg='bin/rails g'
-alias rs='bin/rails s'
-alias rc='bin/rails c'
-alias rn='bin/rails new'
-alias rd='bin/rails dbconsole'
-alias rp='bin/rails plugin'
-alias ra='bin/rails application'
-alias rd='bin/rails destroy'
+# Rails Commands
+alias r='rails'
+alias rg='rails g'
+alias rs='rails s'
+alias rc='rails c'
+alias rn='rails new'
+alias rd='rails dbconsole'
+alias rp='rails plugin'
+alias ra='rails application'
+alias rd='rails destroy'
 
+alias ss='script/server'
+alias sc='script/console'
+alias ts="thin start"                  # thin server
 alias restart='touch tmp/restart.txt'  # restart passenger
 alias devlog='tail -f log/development.log'
 
-# bin/rake
-alias rt='bin/rake test'
-alias rtu='bin/rake test:units'
-alias rtf='bin/rake test:functionals'
-alias rti='bin/rake test:integration'
-alias rr='bin/rake routes'
-alias rdbm='bin/rake db:migrate'
-alias rdbr='bin/rake db:rollback'
+# rake
+alias rt='rake test'
+alias rtu='rake test:units'
+alias rtf='rake test:functionals'
+alias rti='rake test:integration'
+alias rr='rake routes'
+alias rdbm='rake db:migrate'
+alias rdbr='rake db:rollback'
+
+# rubygems
+alias gemo='gem outdated'
+
+# open last migration
+alias rlm='vi `ls db/migrate/*.rb | tail -n 1`'
+
+#start postgres
+alias pg_start='pg_ctl start -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log'
 
 rails-help () {
-  echo "bin/rails Aliases Usage"
+  echo "Rails Aliases Usage"
   echo
-  echo "  r           = bin/rails"
-  echo "  rg          = bin/rails generate"
-  echo "  rs/ss       = bin/rails server"
-  echo "  rc/sc       = bin/rails console"
-  echo "  rn          = bin/rails new"
-  echo "  rd          = bin/rails dbconsole"
-  echo "  rp          = bin/rails plugin"
-  echo "  ra          = bin/rails application"
-  echo "  rd          = bin/rails destroy"
+  echo "  r           = rails"
+  echo "  rg          = rails generate"
+  echo "  rs/ss       = rails server"
+  echo "  ts          = thin server"
+  echo "  rc/sc       = rails console"
+  echo "  rn          = rails new"
+  echo "  rd          = rails dbconsole"
+  echo "  rp          = rails plugin"
+  echo "  ra          = rails application"
+  echo "  rd          = rails destroy"
   echo "  restartapp  = touch tmp/restart.txt"
   echo "  restart     = touch tmp/restart.txt"
   echo "  devlog      = tail -f log/development.log"
