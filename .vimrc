@@ -21,7 +21,7 @@ Plugin 'MarcWeber/vim-addon-mw-utils'
 Plugin 'tomtom/tlib_vim'
 Plugin 'tpope/vim-projectionist'
 Plugin 'tomtom/tcomment_vim'
-Bundle 'christoomey/vim-tmux-navigator'
+"Bundle 'christoomey/vim-tmux-navigator'
 " languages
 Plugin 'elzr/vim-json'
 Plugin 'groenewege/vim-less'
@@ -104,6 +104,9 @@ inoremap jj <Esc>hh
 noremap <C-n> :nohl<CR>
 vnoremap <C-n> :nohl<CR>
 inoremap <C-n> :nohl<CR>
+
+"rails shortcuts
+nnoremap <leader>, :A
 
 "tags search
 nnoremap <leader>. :CtrlPTag<cr>
