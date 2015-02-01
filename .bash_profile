@@ -40,7 +40,7 @@ export BASH_IT=$HOME/.bash_it
 
 # Lock and Load a custom theme file
 # location /.bash_it/themes/
-export BASH_IT_THEME='bobby'
+export BASH_IT_THEME='mine'
 
 # Your place for hosting Git repos. I use this for private repos.
 export GIT_HOSTING='git@gitlab.digitalheads.pl'

@@ -21,6 +21,7 @@ Plugin 'MarcWeber/vim-addon-mw-utils'
 Plugin 'tomtom/tlib_vim'
 Plugin 'tpope/vim-projectionist'
 Plugin 'tomtom/tcomment_vim'
+Bundle 'christoomey/vim-tmux-navigator'
 " languages
 Plugin 'elzr/vim-json'
 Plugin 'groenewege/vim-less'
