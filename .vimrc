@@ -6,7 +6,7 @@ call vundle#begin()
 
 Plugin 'gmarik/Vundle.vim'   " let Vundle manage Vundle, required
 " utils
-Plugin 'ap/vim-css-color'
+" Plugin 'ap/vim-css-color'
 Plugin 'bling/vim-airline'
 "Plugin 'bronson/vim-trailing-whitespace'
 Plugin 'ervandew/supertab'
@@ -68,14 +68,14 @@ set shiftwidth=2
 set softtabstop=2
 set expandtab
 
-fun! <SID>StripTrailingWhitespaces()
-    let l = line(".")
-    let c = col(".")
-    %s/\s\+$//e
-    call cursor(l, c)
-endfun
-
-autocmd FileType c,cpp,java,php,ruby,python autocmd BufWritePre <buffer> :call <SID>StripTrailingWhitespaces()
+" fun! <SID>StripTrailingWhitespaces()
+"     let l = line(".")
+"     let c = col(".")
+"     %s/\s\+$//e
+"     call cursor(l, c)
+" endfun
+"
+" autocmd FileType c,cpp,java,php,ruby,python autocmd BufWritePre <buffer> :call <SID>StripTrailingWhitespaces()
 
 " Searching
 set hlsearch        " highlight all matches
@@ -91,7 +91,7 @@ vnoremap / /\v
 set foldmethod=indent   " fold based on indent level
 set foldnestmax=10      " max 10 depth
 set foldenable          " don't fold files by default on open
-nnoremap <space> za     " use space to toggle folds
+"nnoremap <space> za     " use space to toggle folds
 set foldlevelstart=10   " start with fold level of 1
 
 
@@ -105,8 +105,22 @@ noremap <C-n> :nohl<CR>
 vnoremap <C-n> :nohl<CR>
 inoremap <C-n> :nohl<CR>
 
+" ctrl-s to save
+inoremap <c-s> <Esc>hh:w!<CR>
+vnoremap <c-s> v:w!<CR>
+noremap <c-s> :w!<CR>
+
+" ctrl + [] to switch buffers
+noremap <C-{> :w!<CR>:bp<CR>
+inoremap <C-{> :w!<CR>:bp<CR>
+vnoremap <C-{> :w!<CR>:bp<CR>
+
+noremap <C-}> :w!<CR>:bn<CR>
+inoremap <C-}> :w!<CR>:bn<CR>
+vnoremap <C-}> :w!<CR>:bn<CR>
+
 "rails shortcuts
-nnoremap <leader>, :A
+nnoremap <leader>, :A<CR>
 
 "tags search
 nnoremap <leader>. :CtrlPTag<cr>
@@ -131,6 +145,15 @@ let g:airline_right_sep = ''
 let g:airline_right_alt_sep = ''
 let g:airline_theme='powerlineish'
 set laststatus=2
+
+" Syntastic
+" set statusline+=%#warningmsg#
+" set statusline+=%{SyntasticStatuslineFlag()}
+" set statusline+=%*
+" let g:syntastic_always_populate_loc_list = 1
+" let g:syntastic_auto_loc_list = 1
+" let g:syntastic_check_on_open = 1
+" let g:syntastic_check_on_wq = 0
 
 set background=dark
 set t_Co=256

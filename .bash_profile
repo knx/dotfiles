@@ -4,9 +4,11 @@
 ### Added by the Heroku Toolbelt                                                                                                                                                                                                                                           
 export PATH="$PATH:/usr/local/heroku/bin"                                                                                                                                                                                                                                  
                                                                                                                                                                                                                                                                            
-if [ -f $(brew --prefix)/etc/bash_completion ]; then                                                                                                                                                                                                                       
-  . $(brew --prefix)/etc/bash_completion                                                                                                                                                                                                                                   
-fi                                                                                                                                                                                                                                                                         
+# if [ -f $(brew --prefix)/etc/bash_completion ]; then                                                                                                                                                                                                                       
+#   . $(brew --prefix)/etc/bash_completion                                                                                                                                                                                                                                   
+# fi 
+
+stty -ixon
                                                                                                                                                                                                                                                                            
 # Setting for the new UTF-8 terminal support in Lion                                                                                                                                                                                                                       
 export LANG="en_US.UTF-8"                                                                                                                                                                                                                                                  
@@ -46,9 +48,9 @@ export BASH_IT_THEME='mine'
 export GIT_HOSTING='git@gitlab.digitalheads.pl'
 
 # Set my editor and git editor
-export EDITOR="vi"
-export GIT_EDITOR='vi'
-export BUNDLER_EDITOR='vi'
+export EDITOR="vim"
+export GIT_EDITOR='vim'
+export BUNDLER_EDITOR='vim'
 
 # Set the path nginx
 # export NGINX_PATH='/opt/nginx'
