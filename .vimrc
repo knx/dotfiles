@@ -6,14 +6,9 @@ call vundle#begin()
 
 Plugin 'gmarik/Vundle.vim'   " let Vundle manage Vundle, required
 " utils
-" Plugin 'ap/vim-css-color'
 Plugin 'bling/vim-airline'
-"Plugin 'bronson/vim-trailing-whitespace'
 Plugin 'ervandew/supertab'
-Plugin 'scrooloose/nerdtree'
-Bundle 'jistr/vim-nerdtree-tabs'
 Plugin 'scrooloose/syntastic'
-"Plugin 'tpope/vim-fugitive'
 Plugin 'Yggdroot/indentLine'
 Plugin 'kien/ctrlp.vim'
 Plugin 'garbas/vim-snipmate'
@@ -21,12 +16,10 @@ Plugin 'MarcWeber/vim-addon-mw-utils'
 Plugin 'tomtom/tlib_vim'
 Plugin 'tpope/vim-projectionist'
 Plugin 'tomtom/tcomment_vim'
-"Bundle 'christoomey/vim-tmux-navigator'
 " languages
 Plugin 'elzr/vim-json'
 Plugin 'groenewege/vim-less'
 Plugin 'hail2u/vim-css3-syntax'
-"Plugin 'jnwhiteh/vim-golang'
 Plugin 'kchmck/vim-coffee-script'
 Plugin 'othree/html5.vim'
 Plugin 'pangloss/vim-javascript'
@@ -36,7 +29,6 @@ Plugin 'tpope/vim-rake'
 Plugin 'tpope/vim-rails'
 Plugin 'vim-ruby/vim-ruby'
 " snippets
-"Plugin 'kaichen/vim-snipmate-ruby-snippets'
 Plugin 'honza/vim-snippets'
 Plugin 'rcyrus/snipmate-snippets-rubymotion'
 " themes
@@ -68,14 +60,14 @@ set shiftwidth=2
 set softtabstop=2
 set expandtab
 
-" fun! <SID>StripTrailingWhitespaces()
-"     let l = line(".")
-"     let c = col(".")
-"     %s/\s\+$//e
-"     call cursor(l, c)
-" endfun
-"
-" autocmd FileType c,cpp,java,php,ruby,python autocmd BufWritePre <buffer> :call <SID>StripTrailingWhitespaces()
+fun! <SID>StripTrailingWhitespaces()
+    let l = line(".")
+    let c = col(".")
+    %s/\s\+$//e
+    call cursor(l, c)
+endfun
+
+autocmd FileType c,cpp,java,php,ruby,python autocmd BufWritePre <buffer> :call <SID>StripTrailingWhitespaces()
 
 " Searching
 set hlsearch        " highlight all matches
@@ -106,18 +98,9 @@ vnoremap <C-n> :nohl<CR>
 inoremap <C-n> :nohl<CR>
 
 " ctrl-s to save
-inoremap <c-s> <Esc>hh:w!<CR>
-vnoremap <c-s> v:w!<CR>
-noremap <c-s> :w!<CR>
-
-" ctrl + [] to switch buffers
-noremap <C-{> :w!<CR>:bp<CR>
-inoremap <C-{> :w!<CR>:bp<CR>
-vnoremap <C-{> :w!<CR>:bp<CR>
-
-noremap <C-}> :w!<CR>:bn<CR>
-inoremap <C-}> :w!<CR>:bn<CR>
-vnoremap <C-}> :w!<CR>:bn<CR>
+inoremap <c-s> <Esc>hh:wa!<CR>
+vnoremap <c-s> v:wa!<CR>
+noremap <c-s> :wa!<CR>
 
 "rails shortcuts
 nnoremap <leader>, :A<CR>
@@ -132,9 +115,6 @@ cmap w!! %!sudo tee > /dev/null %
 autocmd BufWritePost $MYVIMRC source $MYVIMRC
 " Disable syntax highlight for files larger than 50 MB
 autocmd BufWinEnter * if line2byte(line("$") + 1) > 50000000 | syntax clear | endif
-
-" NerdTreeTabs
-map <Leader>n <plug>NERDTreeTabsToggle<CR>
 
 " Airline
 let g:airline#extensions#tabline#left_sep = ' '
@@ -160,10 +140,5 @@ set t_Co=256
 set fillchars+=stl:\ ,stlnc:\
 let g:rehash256 = 1
 
-:silent! colorscheme molokai
+:silent! colorscheme atom-dark-256
 syntax on
-
-" Include other files
-" if filereadable(expand("~/.vimrc.local"))
-"   source ~/.vimrc.local
-" endif

@@ -4,10 +4,6 @@
 ### Added by the Heroku Toolbelt                                                                                                                                                                                                                                           
 export PATH="$PATH:/usr/local/heroku/bin"                                                                                                                                                                                                                                  
                                                                                                                                                                                                                                                                            
-# if [ -f $(brew --prefix)/etc/bash_completion ]; then                                                                                                                                                                                                                       
-#   . $(brew --prefix)/etc/bash_completion                                                                                                                                                                                                                                   
-# fi 
-
 stty -ixon
                                                                                                                                                                                                                                                                            
 # Setting for the new UTF-8 terminal support in Lion                                                                                                                                                                                                                       
@@ -52,24 +48,14 @@ export EDITOR="vim"
 export GIT_EDITOR='vim'
 export BUNDLER_EDITOR='vim'
 
-# Set the path nginx
-# export NGINX_PATH='/opt/nginx'
-
 # Don't check mail when opening terminal.
 unset MAILCHECK
-
-# # Change this to your console based IRC client of choice.
-# export IRC_CLIENT='irssi'
 
 # Set this to the command you use for todo.txt-cli
 export TODO="t"
 
 # Set this to false to turn off version control status checking within the prompt for all themes
 export SCM_CHECK=true
-
-# Set vcprompt executable path for scm advance info in prompt (demula theme)
-# https://github.com/xvzf/vcprompt
-#export VCPROMPT_EXECUTABLE=~/.vcprompt/bin/vcprompt
 
 # Load Bash It
 source $BASH_IT/bash_it.sh
