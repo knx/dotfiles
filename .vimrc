@@ -16,6 +16,11 @@ Plugin 'MarcWeber/vim-addon-mw-utils'
 Plugin 'tomtom/tlib_vim'
 Plugin 'tpope/vim-projectionist'
 Plugin 'tomtom/tcomment_vim'
+Plugin 'tpope/vim-surround'
+Plugin 'rizzatti/dash.vim'
+"Plugin 'edkolev/tmuxline.vim'
+Plugin 'majutsushi/tagbar'
+
 " languages
 Plugin 'elzr/vim-json'
 Plugin 'groenewege/vim-less'
@@ -125,6 +130,13 @@ let g:airline_right_sep = ''
 let g:airline_right_alt_sep = ''
 let g:airline_theme='powerlineish'
 set laststatus=2
+
+" Netrw
+" hide files
+let g:netrw_list_hide= '^\..*$'
+
+" CtrlP
+let g:ctrlp_custom_ignore = 'DS_Store\|git\|tmp\|log'
 
 " Syntastic
 " set statusline+=%#warningmsg#
