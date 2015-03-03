@@ -12,7 +12,7 @@ alias rp='r plugin'
 alias ra='r application'
 alias rd='r destroy'
 alias dbm='bin/rake db:migrate'
-alias dbm='bin/rake db:rollback'
+alias dbr='bin/rake db:rollback'
 alias dbt='bin/rake db:test:prepare'
 
 alias restartapp='touch tmp/restart.txt'
