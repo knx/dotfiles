@@ -136,7 +136,7 @@ set laststatus=2
 let g:netrw_list_hide= '^\..*$'
 
 " CtrlP
-let g:ctrlp_custom_ignore = 'DS_Store\|git\|tmp\|log'
+let g:ctrlp_custom_ignore = 'DS_Store\|git\|tmp\|log\|public\|vendor\|.bundle\|.git'
 
 " Syntastic
 " set statusline+=%#warningmsg#

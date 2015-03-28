@@ -14,6 +14,7 @@ alias rd='r destroy'
 alias dbm='bin/rake db:migrate'
 alias dbr='bin/rake db:rollback'
 alias dbt='bin/rake db:test:prepare'
+alias dbmrm='dbm; dbr; dbm; dbt'
 
 alias restartapp='touch tmp/restart.txt'
 alias restart='touch tmp/restart.txt'  # restart passenger
