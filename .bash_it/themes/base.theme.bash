@@ -202,9 +202,9 @@ function hg_prompt_vars {
 function rvm_version_prompt {
   if which rvm &> /dev/null; then
     rvm=$(rvm tools identifier) || return
-    if [ $rvm != "system" ]; then
+#    if [ $rvm != "system" ]; then
       echo -e "$RVM_THEME_PROMPT_PREFIX$rvm$RVM_THEME_PROMPT_SUFFIX"
-    fi
+#   fi
   fi
 }
 

@@ -3,32 +3,32 @@
 
 ### Added by the Heroku Toolbelt                                                                                                                                                                                                                                           
 export PATH="$PATH:/usr/local/heroku/bin"                                                                                                                                                                                                                                  
-                                                                                                                                                                                                                                                                           
+
 stty -ixon
-                                                                                                                                                                                                                                                                           
+
 # Setting for the new UTF-8 terminal support in Lion                                                                                                                                                                                                                       
 export LANG="en_US.UTF-8"                                                                                                                                                                                                                                                  
 export LANGUAGE="en_US"                                                                                                                                                                                                                                                    
 export LC_CTYPE=en_US.UTF-8                                                                                                                                                                                                                                                
 export LC_ALL=en_US.UTF-8                                                                                                                                                                                                                                                  
-                                                                                                                                                                                                                                                                           
+
 # Identify OS and Machine                                                                                                                                                                                                                                                  
 export OS=`uname -s | sed -e 's/ *//g;y/ABCDEFGHIJKLMNOPQRSTUVWXYZ/abcdefghijklmnopqrstuvwxyz/'`                                                                                                                                                                           
 export OSVERSION=`uname -r`; OSVERSION=`expr "$OSVERSION" : '[^0-9]*\([0-9]*\.[0-9]*\)'`                                                                                                                                                                                   
 export MACHINE=`uname -m | sed -e 's/ *//g;y/ABCDEFGHIJKLMNOPQRSTUVWXYZ/abcdefghijklmnopqrstuvwxyz/'`                                                                                                                                                                      
 export PLATFORM="$MACHINE-$OS-$OSVERSION"                                                                                                                                                                                                                                  
-                                                                                                                                                                                                                                                                           
+
 shopt -s checkwinsize                                                                                                                                                                                                                                                      
-                                                                                                                                                                                                                                                                           
+
 # Case-insensitive globbing (used in pathname expansion)                                                                                                                                                                                                                   
 shopt -s nocaseglob;                                                                                                                                                                                                                                                       
-                                                                                                                                                                                                                                                                           
+
 # Append to the Bash history file, rather than overwriting it                                                                                                                                                                                                              
 shopt -s histappend;                                                                                                                                                                                                                                                       
-                                                                                                                                                                                                                                                                           
+
 # Autocorrect typos in path names when using `cd`                                                                                                                                                                                                                          
 shopt -s cdspell;                                                                                                                                                                                                                                                          
-                                                                                                                                                                                                                                                                           
+
 # Stuff I never really use but cannot delete either because of http://xkcd.com/530/                                                                                                                                                                                        
 alias stfu="osascript -e 'set volume output muted true'"                                                                                                                                                                                                                   
 alias pumpitup="osascript -e 'set volume 7'"                                                                                                                                                                                                                                                                              
