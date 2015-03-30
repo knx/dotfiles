@@ -101,13 +101,17 @@ set backspace=indent,eol,start
 inoremap jj <Esc>hh
 " Removes highlight of your last search
 noremap <C-n> :nohl<CR>
-vnoremap <C-n> :nohl<CR>
-inoremap <C-n> :nohl<CR>
+vnoremap <C-n> v:nohl<CR>
+inoremap <C-n> <Esc>:nohl<CR>
 
 " ctrl-s to save
 inoremap <c-s> <Esc>hh:wa!<CR>
 vnoremap <c-s> v:wa!<CR>
 noremap <c-s> :wa!<CR>
+
+noremap <C-e> :Explore<CR>
+inoremap <C-e> <Esc>:Explore<CR>
+vnoremap <C-e> v:Explore<CR>
 
 "rails shortcuts
 nnoremap <leader>, :A<CR>
