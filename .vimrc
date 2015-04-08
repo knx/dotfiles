@@ -93,6 +93,21 @@ set foldenable          " don't fold files by default on open
 nnoremap <space> za     " use space to toggle folds
 set foldlevelstart=10   " start with fold level of 1
 
+" persistent undo
+if exists("&undodir")
+  set undofile          "Persistent undo! Pure money.
+  let &undodir=&directory
+  set undolevels=500
+  set undoreload=500
+endif
+
+" "Indentation like textmate/sublime
+" nnoremap <D-[> <<
+" nnoremap <D-]> >>
+" inoremap <D-[> <esc><<A
+" inoremap <D-]> <esc>>>A
+" xnoremap <D-[> <gv
+" xnoremap <D-]> >gv
 
 " allow backspacing over everything in insert mode
 set backspace=indent,eol,start
