@@ -16,7 +16,7 @@ Plugin 'kien/ctrlp.vim'
 Plugin 'garbas/vim-snipmate'
 Plugin 'MarcWeber/vim-addon-mw-utils'
 Plugin 'tomtom/tlib_vim'
-Plugin 'tpope/vim-projectionist'
+"Plugin 'tpope/vim-projectionist'
 Plugin 'tomtom/tcomment_vim'
 "Plugin 'tpope/vim-surround'
 "Plugin 'rizzatti/dash.vim'
@@ -24,13 +24,13 @@ Plugin 'tomtom/tcomment_vim'
 
 " languages
 Plugin 'elzr/vim-json'
-Plugin 'groenewege/vim-less'
+"Plugin 'groenewege/vim-less'
 Plugin 'hail2u/vim-css3-syntax'
 Plugin 'kchmck/vim-coffee-script'
 Plugin 'othree/html5.vim'
 Plugin 'pangloss/vim-javascript'
 Plugin 'tpope/vim-haml'
-Plugin 'tpope/vim-markdown'
+"Plugin 'tpope/vim-markdown'
 "Plugin 'tpope/vim-rake'
 Plugin 'tpope/vim-rails'
 Plugin 'vim-ruby/vim-ruby'
@@ -132,7 +132,7 @@ vnoremap <C-e> v:Explore<CR>
 nnoremap <leader>, :A<CR>
 
 "tags search
-nnoremap <leader>. :CtrlPTag<cr>
+"nnoremap <leader>. :CtrlPTag<cr>
 
 " :w!! to write to a file using sudo
 cmap w!! %!sudo tee > /dev/null %
@@ -157,7 +157,7 @@ set laststatus=2
 let g:netrw_list_hide= '^\..*$'
 
 " CtrlP
-let g:ctrlp_custom_ignore = 'DS_Store\|git\|tmp\|log\|bundle\|.git\|uploads\|vendor\|public'
+let g:ctrlp_custom_ignore = 'DS_Store\|git\|tmp\|^log\|bundle\|.git\|uploads\|vendor\|public'
 
 " Syntastic
 set statusline+=%#warningmsg#
