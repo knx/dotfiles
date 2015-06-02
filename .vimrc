@@ -7,7 +7,6 @@ call vundle#begin()
 Plugin 'gmarik/Vundle.vim'   " let Vundle manage Vundle, required
 " utils
 Plugin 'bling/vim-airline'
-"Plugin 'itchyny/lightline.vim'
 Plugin 'ervandew/supertab'
 Plugin 'Raimondi/delimitMate'
 Plugin 'scrooloose/syntastic'
@@ -20,25 +19,24 @@ Plugin 'tomtom/tlib_vim'
 Plugin 'tomtom/tcomment_vim'
 "Plugin 'tpope/vim-surround'
 "Plugin 'rizzatti/dash.vim'
-"Plugin 'edkolev/tmuxline.vim'
+"Plugin 'terryma/vim-multiple-cursors'
+Plugin 'tpope/vim-vinegar'
 
 " languages
 Plugin 'elzr/vim-json'
-"Plugin 'groenewege/vim-less'
+Plugin 'groenewege/vim-less'
 Plugin 'hail2u/vim-css3-syntax'
 Plugin 'kchmck/vim-coffee-script'
 Plugin 'othree/html5.vim'
 Plugin 'pangloss/vim-javascript'
 Plugin 'tpope/vim-haml'
 "Plugin 'tpope/vim-markdown'
-"Plugin 'tpope/vim-rake'
+Plugin 'tpope/vim-rake'
 Plugin 'tpope/vim-rails'
 Plugin 'vim-ruby/vim-ruby'
 " snippets
 Plugin 'honza/vim-snippets'
 "Plugin 'rcyrus/snipmate-snippets-rubymotion'
-" themes
-"Plugin 'tomasr/molokai'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -75,7 +73,7 @@ fun! <SID>StripTrailingWhitespaces()
 endfun
 
 autocmd FileType c,cpp,java,php,ruby,python autocmd BufWritePre <buffer> :call <SID>StripTrailingWhitespaces()
-
+"
 " Searching
 set hlsearch        " highlight all matches
 set incsearch       " do incremental searching
@@ -101,14 +99,6 @@ if exists("&undodir")
   set undoreload=500
 endif
 
-" "Indentation like textmate/sublime
-" nnoremap <D-[> <<
-" nnoremap <D-]> >>
-" inoremap <D-[> <esc><<A
-" inoremap <D-]> <esc>>>A
-" xnoremap <D-[> <gv
-" xnoremap <D-]> >gv
-
 " allow backspacing over everything in insert mode
 set backspace=indent,eol,start
 
@@ -131,8 +121,10 @@ vnoremap <C-e> v:Explore<CR>
 "rails shortcuts
 nnoremap <leader>, :A<CR>
 
-"tags search
-"nnoremap <leader>. :CtrlPTag<cr>
+" exit reminal with esc
+if has('nvim')
+  tnoremap <Esc> <C-\><C-n>
+endif
 
 " :w!! to write to a file using sudo
 cmap w!! %!sudo tee > /dev/null %
@@ -158,6 +150,7 @@ let g:netrw_list_hide= '^\..*$'
 
 " CtrlP
 let g:ctrlp_custom_ignore = 'DS_Store\|git\|tmp\|^log\|bundle\|.git\|uploads\|vendor\|public'
+let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
 
 " Syntastic
 set statusline+=%#warningmsg#
@@ -167,11 +160,14 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
+"let g:syntastic_ruby_checkers = ['rubocop', 'mri'] "disabled - rubocop is slow
+
 
 set background=dark
 set t_Co=256
 set fillchars+=stl:\ ,stlnc:\
 let g:rehash256 = 1
+set mouse=a
 
 :silent! colorscheme atom-dark-256
 syntax on
