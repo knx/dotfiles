@@ -146,7 +146,7 @@ set laststatus=2
 
 " Netrw
 " hide files
-let g:netrw_list_hide= '^\..*$'
+"let g:netrw_list_hide= '^\..*$'
 
 " CtrlP
 let g:ctrlp_custom_ignore = 'DS_Store\|git\|tmp\|^log\|bundle\|.git\|uploads\|vendor\|public'
