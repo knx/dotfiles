@@ -31,7 +31,7 @@ brew install bash-completion
 brew install wget --with-iri
 
 # Install more recent versions of some OS X tools.
-brew install vim --override-system-vi
+#brew install vim --override-system-vi
 #brew install homebrew/dupes/grep
 #brew install homebrew/dupes/openssh
 #brew install homebrew/dupes/screen
@@ -109,11 +109,8 @@ brew install redis
 brew install rmtrash
 brew install terminal-notifier
 brew install tmux
-brew install vim
 brew install wget
 brew install xz
-
-
 
 # Remove outdated versions from the cellar.
 brew cleanup

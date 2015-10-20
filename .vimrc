@@ -27,11 +27,11 @@ Plugin 'elzr/vim-json'
 Plugin 'groenewege/vim-less'
 Plugin 'hail2u/vim-css3-syntax'
 Plugin 'kchmck/vim-coffee-script'
-Plugin 'othree/html5.vim'
+"Plugin 'othree/html5.vim'
 Plugin 'pangloss/vim-javascript'
 Plugin 'tpope/vim-haml'
 "Plugin 'tpope/vim-markdown'
-Plugin 'tpope/vim-rake'
+"Plugin 'tpope/vim-rake'
 Plugin 'tpope/vim-rails'
 Plugin 'vim-ruby/vim-ruby'
 " snippets
@@ -43,7 +43,7 @@ filetype plugin indent on    " required
 
 " UI
 set encoding=utf-8
-set number          " show line number
+"set number          " show line number
 set autoread        " watch for file changes
 set autoindent
 set noswapfile      " disable swapfiles
@@ -65,14 +65,14 @@ set shiftwidth=2
 set softtabstop=2
 set expandtab
 
-fun! <SID>StripTrailingWhitespaces()
-    let l = line(".")
-    let c = col(".")
-    %s/\s\+$//e
-    call cursor(l, c)
-endfun
-
-autocmd FileType c,cpp,java,php,ruby,python autocmd BufWritePre <buffer> :call <SID>StripTrailingWhitespaces()
+" fun! <SID>StripTrailingWhitespaces()
+"     let l = line(".")
+"     let c = col(".")
+"     %s/\s\+$//e
+"     call cursor(l, c)
+" endfun
+"
+" autocmd FileType c,cpp,java,php,ruby,python autocmd BufWritePre <buffer> :call <SID>StripTrailingWhitespaces()
 "
 " Searching
 set hlsearch        " highlight all matches
@@ -114,17 +114,8 @@ inoremap <c-s> <Esc>hh:wa!<CR>
 vnoremap <c-s> v:wa!<CR>
 noremap <c-s> :wa!<CR>
 
-noremap <C-e> :Explore<CR>
-inoremap <C-e> <Esc>:Explore<CR>
-vnoremap <C-e> v:Explore<CR>
-
-"rails shortcuts
-nnoremap <leader>, :A<CR>
-
-" exit reminal with esc
-if has('nvim')
-  tnoremap <Esc> <C-\><C-n>
-endif
+" "rails shortcuts
+" nnoremap <leader>, :A<CR>
 
 " :w!! to write to a file using sudo
 cmap w!! %!sudo tee > /dev/null %
@@ -149,7 +140,7 @@ set laststatus=2
 "let g:netrw_list_hide= '^\..*$'
 
 " CtrlP
-let g:ctrlp_custom_ignore = 'DS_Store\|git\|tmp\|^log\|bundle\|.git\|uploads\|vendor\|public'
+let g:ctrlp_custom_ignore = 'DS_Store\|git\|tmp\|^log\|bundle\|.git\|uploads\|vendor\|public\|.un~'
 let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
 
 " Syntastic
@@ -158,7 +149,7 @@ set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_open = 0
 let g:syntastic_check_on_wq = 0
 "let g:syntastic_ruby_checkers = ['rubocop', 'mri'] "disabled - rubocop is slow
 
