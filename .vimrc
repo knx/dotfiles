@@ -8,6 +8,7 @@ Plugin 'gmarik/Vundle.vim'   " let Vundle manage Vundle, required
 " utils
 Plugin 'bling/vim-airline'
 Plugin 'ervandew/supertab'
+"Plugin 'Valloric/YouCompleteMe' "requires vim with python 2 support?
 Plugin 'Raimondi/delimitMate'
 Plugin 'scrooloose/syntastic'
 Plugin 'Yggdroot/indentLine'
@@ -33,7 +34,7 @@ Plugin 'tpope/vim-haml'
 "Plugin 'tpope/vim-markdown'
 "Plugin 'tpope/vim-rake'
 Plugin 'tpope/vim-rails'
-Plugin 'vim-ruby/vim-ruby'
+"Plugin 'vim-ruby/vim-ruby'
 " snippets
 Plugin 'honza/vim-snippets'
 "Plugin 'rcyrus/snipmate-snippets-rubymotion'
