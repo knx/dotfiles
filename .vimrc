@@ -1,45 +1,44 @@
 set nocompatible              " required
 filetype off                  " required
 
-set rtp+=$HOME/.vim/bundle/Vundle.vim " set the runtime path to include Vundle and initialize
-call vundle#begin()
+call plug#begin('~/.vim/plugged')
 
-Plugin 'gmarik/Vundle.vim'   " let Vundle manage Vundle, required
+Plug 'gmarik/Vundle.vim'   " let Vundle manage Vundle, required
 " utils
-Plugin 'bling/vim-airline'
-Plugin 'ervandew/supertab'
+Plug 'bling/vim-airline'
+Plug 'ervandew/supertab'
 "Plugin 'Valloric/YouCompleteMe' "requires vim with python 2 support?
-Plugin 'Raimondi/delimitMate'
-Plugin 'scrooloose/syntastic'
-Plugin 'Yggdroot/indentLine'
-Plugin 'kien/ctrlp.vim'
-Plugin 'garbas/vim-snipmate'
-Plugin 'MarcWeber/vim-addon-mw-utils'
-Plugin 'tomtom/tlib_vim'
+"Plugin 'Raimondi/delimitMate'
+Plug 'scrooloose/syntastic'
+"Plugin 'Yggdroot/indentLine'
+Plug 'kien/ctrlp.vim'
+Plug 'garbas/vim-snipmate'
+Plug 'MarcWeber/vim-addon-mw-utils'
+Plug 'tomtom/tlib_vim'
 "Plugin 'tpope/vim-projectionist'
-Plugin 'tomtom/tcomment_vim'
+Plug 'tomtom/tcomment_vim'
 "Plugin 'tpope/vim-surround'
 "Plugin 'rizzatti/dash.vim'
 "Plugin 'terryma/vim-multiple-cursors'
-Plugin 'tpope/vim-vinegar'
+Plug 'tpope/vim-vinegar'
 
 " languages
-Plugin 'elzr/vim-json'
-Plugin 'groenewege/vim-less'
-Plugin 'hail2u/vim-css3-syntax'
-Plugin 'kchmck/vim-coffee-script'
+"Plugin 'elzr/vim-json'
+"Plugin 'groenewege/vim-less'
+Plug 'hail2u/vim-css3-syntax'
+Plug 'kchmck/vim-coffee-script'
 "Plugin 'othree/html5.vim'
-Plugin 'pangloss/vim-javascript'
-Plugin 'tpope/vim-haml'
+Plug 'pangloss/vim-javascript'
+Plug 'tpope/vim-haml'
 "Plugin 'tpope/vim-markdown'
 "Plugin 'tpope/vim-rake'
-Plugin 'tpope/vim-rails'
-"Plugin 'vim-ruby/vim-ruby'
+Plug 'tpope/vim-rails'
+Plug 'vim-ruby/vim-ruby'
 " snippets
-Plugin 'honza/vim-snippets'
+Plug 'honza/vim-snippets'
 "Plugin 'rcyrus/snipmate-snippets-rubymotion'
 
-call vundle#end()            " required
+call plug#end()            " required
 filetype plugin indent on    " required
 
 " UI
