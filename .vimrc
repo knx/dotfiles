@@ -1,6 +1,3 @@
-set nocompatible              " required
-filetype off                  " required
-
 call plug#begin('~/.vim/plugged')
 
 Plug 'bling/vim-airline'
@@ -21,7 +18,6 @@ Plug 'vim-ruby/vim-ruby'
 Plug 'honza/vim-snippets'
 
 call plug#end()            " required
-filetype plugin indent on    " required
 
 " UI
 set encoding=utf-8
@@ -33,7 +29,6 @@ set backupdir=$HOME/.vim/backup " Directories for swp files
 set showmatch       " show matching brackets.
 set showcmd         " shows what you're typing as a command
 set wildmenu
-set ttyfast         " faster redraw
 set timeoutlen=1000 ttimeoutlen=0 " eliminating esc delays
 set shortmess+=I    " no welcome message
 set lazyredraw
@@ -117,10 +112,8 @@ let g:syntastic_check_on_open = 0
 let g:syntastic_check_on_wq = 0
 
 set background=dark
-set t_Co=256
 set fillchars+=stl:\ ,stlnc:\
 let g:rehash256 = 1
 set mouse=a
 
 :silent! colorscheme atom-dark-256
-syntax on
