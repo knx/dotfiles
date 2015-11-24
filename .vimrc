@@ -25,7 +25,6 @@ filetype plugin indent on    " required
 
 " UI
 set encoding=utf-8
-"set number          " show line number
 set autoread        " watch for file changes
 set autoindent
 set noswapfile      " disable swapfiles
@@ -75,10 +74,8 @@ endif
 " allow backspacing over everything in insert mode
 set backspace=indent,eol,start
 
-" remap jj to escape in insert mode.  You'll never type jj anyway!
-inoremap jj <Esc>hh
-noremap <C-n> :nohl<CR>
 " Removes highlight of your last search
+noremap <C-n> :nohl<CR>
 vnoremap <C-n> v:nohl<CR>
 inoremap <C-n> <Esc>:nohl<CR>
 
@@ -102,6 +99,9 @@ let g:airline_right_sep = ''
 let g:airline_right_alt_sep = ''
 let g:airline_theme='powerlineish'
 set laststatus=2
+
+" Netrw
+let g:netrw_list_hide = '\(^\|\s\s\)\zs\.\S\+'
 
 " CtrlP
 let g:ctrlp_custom_ignore = 'DS_Store\|git\|tmp\|^log\|bundle\|.git\|uploads\|vendor\|public\|.un~'
