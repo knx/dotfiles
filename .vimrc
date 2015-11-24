@@ -12,15 +12,10 @@ Plug 'garbas/vim-snipmate'
 Plug 'MarcWeber/vim-addon-mw-utils'
 Plug 'tomtom/tlib_vim'
 Plug 'tpope/vim-vinegar'
-"Plug 'elzr/vim-json'
-"Plug 'groenewege/vim-less'
 Plug 'hail2u/vim-css3-syntax'
 Plug 'kchmck/vim-coffee-script'
-"Plug 'othree/html5.vim'
 Plug 'pangloss/vim-javascript'
 Plug 'tpope/vim-haml'
-"Plug 'tpope/vim-markdown'
-"Plug 'tpope/vim-rake'
 Plug 'tpope/vim-rails'
 Plug 'vim-ruby/vim-ruby'
 Plug 'honza/vim-snippets'
@@ -43,7 +38,6 @@ set ttyfast         " faster redraw
 set timeoutlen=1000 ttimeoutlen=0 " eliminating esc delays
 set shortmess+=I    " no welcome message
 set lazyredraw
-"set ruler
 
 " Whitespace stuff
 set nowrap
