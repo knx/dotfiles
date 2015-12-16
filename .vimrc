@@ -2,6 +2,7 @@ call plug#begin('~/.vim/plugged')
 
 Plug 'MarcWeber/vim-addon-mw-utils'
 Plug 'tomtom/tlib_vim'
+Plug 'tpope/vim-fugitive'
 Plug 'bling/vim-airline'
 Plug 'ervandew/supertab'
 Plug 'Raimondi/delimitMate'
@@ -13,17 +14,15 @@ Plug 'hail2u/vim-css3-syntax'
 Plug 'kchmck/vim-coffee-script'
 Plug 'pangloss/vim-javascript'
 Plug 'tpope/vim-vinegar'
-Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-haml'
 Plug 'tpope/vim-rails'
 Plug 'vim-ruby/vim-ruby'
-Plug 'tpope/vim-fugitive'
-Plug 'mhinz/vim-startify'
+Plug 'honza/vim-snippets'
+Plug 'tpope/vim-commentary'
 
 call plug#end()            " required
 
 " UI
-set encoding=utf-8
 set autoread        " watch for file changes
 set autoindent
 set noswapfile      " disable swapfiles
@@ -57,7 +56,7 @@ vnoremap / /\v
 set foldmethod=indent   " fold based on indent level
 set foldnestmax=10      " max 10 depth
 set foldenable          " don't fold files by default on open
-nnoremap <space> za     
+nnoremap <space> za
 " use space to toggle folds
 set foldlevelstart=10   " start with fold level of 1
 
@@ -89,12 +88,16 @@ cmap w!! %!sudo tee > /dev/null %
 autocmd BufWinEnter * if line2byte(line("$") + 1) > 50000000 | syntax clear | endif
 
 " Airline
+let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#left_sep = ' '
 let g:airline#extensions#tabline#left_alt_sep = '|'
+let g:airline#extensions#tabline#show_buffers = 1
+let g:airline#extensions#tabline#buffer_min_count = 2
 let g:airline_left_sep = ''
 let g:airline_left_alt_sep = ''
 let g:airline_right_sep = ''
 let g:airline_right_alt_sep = ''
+let g:airline#extensions#branch#enabled = 1
 let g:airline_theme='powerlineish'
 set laststatus=2
 
@@ -104,13 +107,10 @@ let g:netrw_list_hide = '\(^\|\s\s\)\zs\.\S\+'
 " CtrlP
 let g:ctrlp_custom_ignore = 'DS_Store\|git\|tmp\|^log\|bundle\|.git\|uploads\|vendor\|public\|.un~'
 let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
-
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-"set statusline+=%{fugitive#statusline()}
-set statusline+=%*
+"let g:ctrlp_cmd = 'CtrlPMixed'
 
 " Syntastic
+let g:syntastic_enable_signs=1
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 0
