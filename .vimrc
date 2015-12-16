@@ -19,6 +19,7 @@ Plug 'tpope/vim-rails'
 Plug 'vim-ruby/vim-ruby'
 Plug 'honza/vim-snippets'
 Plug 'tpope/vim-commentary'
+Plug 'airblade/vim-gitgutter'
 
 call plug#end()            " required
 
@@ -81,6 +82,28 @@ inoremap <c-s> <Esc>hh:wa!<CR>
 vnoremap <c-s> v:wa!<CR>
 noremap <c-s> :wa!<CR>
 
+"tab/buffers switching
+function! Tabbufn()
+    let s:tab_count = tabpagenr('$')
+    if s:tab_count <= 1
+        :bn
+    else
+        :tabnext
+    endif
+endfunction
+
+function! Tabbufp()
+    let s:tab_count = tabpagenr('$')
+    if s:tab_count <= 1
+        :bp
+    else
+        :tabprev
+    endif
+endfunction
+
+noremap <c-[> :call Tabbufp()<CR>
+noremap <c-]> :call Tabbufn()<CR>
+
 " :w!! to write to a file using sudo
 cmap w!! %!sudo tee > /dev/null %
 
@@ -89,28 +112,28 @@ autocmd BufWinEnter * if line2byte(line("$") + 1) > 50000000 | syntax clear | en
 
 " Airline
 let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#left_sep = ' '
-let g:airline#extensions#tabline#left_alt_sep = '|'
 let g:airline#extensions#tabline#show_buffers = 1
 let g:airline#extensions#tabline#buffer_min_count = 2
-let g:airline_left_sep = ''
-let g:airline_left_alt_sep = ''
-let g:airline_right_sep = ''
-let g:airline_right_alt_sep = ''
 let g:airline#extensions#branch#enabled = 1
+let g:airline#extensions#hunks#enabled = 1
+let g:airline_powerline_fonts = 1
 let g:airline_theme='powerlineish'
 set laststatus=2
 
 " Netrw
 let g:netrw_list_hide = '\(^\|\s\s\)\zs\.\S\+'
+let g:netrw_fastbrowse = 2
 
 " CtrlP
 let g:ctrlp_custom_ignore = 'DS_Store\|git\|tmp\|^log\|bundle\|.git\|uploads\|vendor\|public\|.un~'
-let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
-"let g:ctrlp_cmd = 'CtrlPMixed'
+let g:ctrlp_user_command = 'ag %s -l --nocolor --depth 5 -g ""'
+let g:ctrlp_clear_cache_on_exit = 0
+let g:ctrlp_lazy_update = 1
+let g:ctrlp_mruf_max = 20
+let g:ctrlp_mruf_default_order = 1
+let g:ctrlp_cmd = 'CtrlPMRU'
 
 " Syntastic
-let g:syntastic_enable_signs=1
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 0
@@ -120,5 +143,5 @@ set background=dark
 set fillchars+=stl:\ ,stlnc:\
 let g:rehash256 = 1
 set mouse=a
-
+set clipboard=unnamed
 :silent! colorscheme atom-dark-256
