@@ -1,21 +1,24 @@
 call plug#begin('~/.vim/plugged')
 
+Plug 'MarcWeber/vim-addon-mw-utils'
+Plug 'tomtom/tlib_vim'
 Plug 'bling/vim-airline'
 Plug 'ervandew/supertab'
 Plug 'Raimondi/delimitMate'
 Plug 'scrooloose/syntastic'
 Plug 'kien/ctrlp.vim'
 Plug 'garbas/vim-snipmate'
-Plug 'MarcWeber/vim-addon-mw-utils'
-Plug 'tomtom/tlib_vim'
-Plug 'tpope/vim-vinegar'
+Plug 'honza/vim-snippets'
 Plug 'hail2u/vim-css3-syntax'
 Plug 'kchmck/vim-coffee-script'
 Plug 'pangloss/vim-javascript'
+Plug 'tpope/vim-vinegar'
+Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-haml'
 Plug 'tpope/vim-rails'
 Plug 'vim-ruby/vim-ruby'
-Plug 'honza/vim-snippets'
+Plug 'tpope/vim-fugitive'
+Plug 'mhinz/vim-startify'
 
 call plug#end()            " required
 
@@ -102,10 +105,12 @@ let g:netrw_list_hide = '\(^\|\s\s\)\zs\.\S\+'
 let g:ctrlp_custom_ignore = 'DS_Store\|git\|tmp\|^log\|bundle\|.git\|uploads\|vendor\|public\|.un~'
 let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
 
-" Syntastic
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
+"set statusline+=%{fugitive#statusline()}
 set statusline+=%*
+
+" Syntastic
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 0
