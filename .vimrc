@@ -6,7 +6,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'bling/vim-airline'
 Plug 'ervandew/supertab'
 Plug 'Raimondi/delimitMate'
-Plug 'scrooloose/syntastic'
+Plug 'benekastah/neomake'
 Plug 'kien/ctrlp.vim'
 Plug 'garbas/vim-snipmate'
 Plug 'honza/vim-snippets'
@@ -117,6 +117,7 @@ let g:airline#extensions#tabline#buffer_min_count = 2
 let g:airline#extensions#branch#enabled = 1
 let g:airline#extensions#hunks#enabled = 1
 let g:airline_powerline_fonts = 1
+let g:airline#extensions#tabline#fnamemod = ':t'
 let g:airline_theme='powerlineish'
 set laststatus=2
 
@@ -129,15 +130,13 @@ let g:ctrlp_custom_ignore = 'DS_Store\|git\|tmp\|^log\|bundle\|.git\|uploads\|ve
 let g:ctrlp_user_command = 'ag %s -l --nocolor --depth 5 -g ""'
 let g:ctrlp_clear_cache_on_exit = 0
 let g:ctrlp_lazy_update = 1
-let g:ctrlp_mruf_max = 20
+let g:ctrlp_mruf_max = 50
 let g:ctrlp_mruf_default_order = 1
 let g:ctrlp_cmd = 'CtrlPMRU'
 
-" Syntastic
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 0
-let g:syntastic_check_on_wq = 0
+"NeoMake
+autocmd! BufWritePost * Neomake
+let g:neomake_open_list = 2
 
 set background=dark
 set fillchars+=stl:\ ,stlnc:\
