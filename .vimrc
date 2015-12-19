@@ -97,17 +97,18 @@ let g:airline_left_alt_sep = ''
 let g:airline_right_sep = ''
 let g:airline_right_alt_sep = ''
 let g:airline#extensions#branch#enabled = 1
-
 let g:airline_theme='powerlineish'
 set laststatus=2
 
-" Netrw
+" SuperTab
+let g:SuperTabDefaultCompletionType = "context"
+
 let g:netrw_list_hide = '\(^\|\s\s\)\zs\.\S\+'
 
 " CtrlP
 let g:ctrlp_custom_ignore = 'DS_Store\|git\|tmp\|^log\|bundle\|.git\|uploads\|vendor\|public\|.un~'
 let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
-let g:ctrlp_cmd = 'CtrlPMixed'
+"let g:ctrlp_cmd = 'CtrlPMixed'
 
 " Syntastic
 let g:syntastic_enable_signs=1
