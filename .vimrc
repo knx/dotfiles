@@ -99,7 +99,9 @@ let g:airline#extensions#tabline#fnamemod = ':t'
 let g:airline_theme='powerlineish'
 set laststatus=2
 
-" Netrw
+" SuperTab
+let g:SuperTabDefaultCompletionType = "context"
+
 let g:netrw_list_hide = '\(^\|\s\s\)\zs\.\S\+'
 let g:netrw_fastbrowse = 2
 
