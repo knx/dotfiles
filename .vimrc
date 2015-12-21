@@ -82,28 +82,6 @@ inoremap <c-s> <Esc>hh:wa!<CR>
 vnoremap <c-s> v:wa!<CR>
 noremap <c-s> :wa!<CR>
 
-"tab/buffers switching
-function! Tabbufn()
-    let s:tab_count = tabpagenr('$')
-    if s:tab_count <= 1
-        :bn
-    else
-        :tabnext
-    endif
-endfunction
-
-function! Tabbufp()
-    let s:tab_count = tabpagenr('$')
-    if s:tab_count <= 1
-        :bp
-    else
-        :tabprev
-    endif
-endfunction
-
-noremap <c-[> :call Tabbufp()<CR>
-noremap <c-]> :call Tabbufn()<CR>
-
 " :w!! to write to a file using sudo
 cmap w!! %!sudo tee > /dev/null %
 
@@ -136,7 +114,7 @@ let g:ctrlp_cmd = 'CtrlPMRU'
 
 "NeoMake
 autocmd! BufWritePost * Neomake
-let g:neomake_open_list = 2
+"let g:neomake_open_list = 2
 
 set background=dark
 set fillchars+=stl:\ ,stlnc:\
