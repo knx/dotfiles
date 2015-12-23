@@ -10,16 +10,16 @@ Plug 'benekastah/neomake'
 Plug 'kien/ctrlp.vim'
 Plug 'garbas/vim-snipmate'
 Plug 'honza/vim-snippets'
-Plug 'hail2u/vim-css3-syntax'
-Plug 'kchmck/vim-coffee-script'
-Plug 'pangloss/vim-javascript'
 Plug 'tpope/vim-vinegar'
-Plug 'tpope/vim-haml'
-Plug 'tpope/vim-rails'
-Plug 'vim-ruby/vim-ruby'
-Plug 'honza/vim-snippets'
-Plug 'tpope/vim-commentary'
 Plug 'airblade/vim-gitgutter'
+Plug 'tpope/vim-commentary'
+Plug 'mhinz/vim-startify'
+Plug 'hail2u/vim-css3-syntax', {'autoload':{'filetypes':['scss']}}
+Plug 'kchmck/vim-coffee-script', {'autoload':{'filetypes':['coffee']}}
+Plug 'pangloss/vim-javascript', {'autoload':{'filetypes':['javascript']}}
+Plug 'tpope/vim-haml', {'autoload':{'filetypes':['haml']}}
+Plug 'tpope/vim-rails', {'autoload':{'filetypes':['ruby']}}
+Plug 'vim-ruby/vim-ruby', {'autoload':{'filetypes':['ruby']}}
 
 call plug#end()            " required
 
@@ -116,7 +116,37 @@ let g:ctrlp_cmd = 'CtrlPMRU'
 
 "NeoMake
 autocmd! BufWritePost * Neomake
-"let g:neomake_open_list = 2
+let g:neomake_open_list = 2
+
+"startify
+let g:startify_list_order = [
+      \ ['   MRU '],       'files' ,
+      \ ['   MRU DIR '],   'dir',
+      \ ['   Sessions '],  'sessions',
+      \ ['   Bookmarks '], 'bookmarks',
+      \ ]
+
+let g:startify_skiplist = [
+      \ 'COMMIT_EDITMSG',
+      \ 'bundle/.*/doc',
+      \ ]
+
+let g:startify_bookmarks              = [ {'c': '~/.vim/vimrc'} ]
+let g:startify_change_to_dir          = 0
+let g:startify_enable_special         = 0
+let g:startify_files_number           = 8
+let g:startify_session_autoload       = 1
+let g:startify_session_delete_buffers = 1
+let g:startify_session_persistence    = 1
+
+function! s:center_header(lines) abort
+  let longest_line   = max(map(copy(a:lines), 'len(v:val)'))
+  let centered_lines = map(copy(a:lines), 'repeat(" ", (&columns / 2) - (longest_line / 2)) . v:val')
+  return centered_lines
+endfunction
+
+let g:startify_custom_header = s:center_header(split(system('fortune | cowsay'), '\n'))
+"let g:startify_custom_header = s:center_header(split(system('fortune | cowsay -f $(ls /usr/local/Cellar/cowsay/3.03/share/cows/ | shuf -n1)'), '\n'))
 
 set background=dark
 set fillchars+=stl:\ ,stlnc:\
