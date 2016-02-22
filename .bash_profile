@@ -60,6 +60,6 @@ export SCM_CHECK=true
 # Load Bash It
 source $BASH_IT/bash_it.sh
 
-#source /Users/knx/.iterm2_shell_integration.bash
+source /Users/knx/.iterm2_shell_integration.bash
 
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*

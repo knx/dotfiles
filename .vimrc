@@ -13,7 +13,6 @@ Plug 'honza/vim-snippets'
 Plug 'tpope/vim-vinegar'
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-commentary'
-Plug 'mhinz/vim-startify'
 Plug 'hail2u/vim-css3-syntax', {'autoload':{'filetypes':['scss']}}
 Plug 'kchmck/vim-coffee-script', {'autoload':{'filetypes':['coffee']}}
 Plug 'pangloss/vim-javascript', {'autoload':{'filetypes':['javascript']}}
@@ -57,8 +56,6 @@ vnoremap / /\v
 set foldmethod=indent   " fold based on indent level
 set foldnestmax=10      " max 10 depth
 set foldenable          " don't fold files by default on open
-nnoremap <space> za
-" use space to toggle folds
 set foldlevelstart=10   " start with fold level of 1
 
 " persistent undo
@@ -85,6 +82,14 @@ noremap <c-s> :wa!<CR>
 " :w!! to write to a file using sudo
 cmap w!! %!sudo tee > /dev/null %
 
+" Auto remove whitespace on save
+autocmd BufWritePre *.rb :%s/\s\+$//e
+autocmd BufWritePre *.js :%s/\s\+$//e
+autocmd BufWritePre *.coffee :%s/\s\+$//e
+autocmd BufWritePre *.haml :%s/\s\+$//e
+autocmd BufWritePre *.scss :%s/\s\+$//e
+
+
 " Disable syntax highlight for files larger than 50 MB
 autocmd BufWinEnter * if line2byte(line("$") + 1) > 50000000 | syntax clear | endif
 
@@ -102,6 +107,7 @@ set laststatus=2
 " SuperTab
 let g:SuperTabDefaultCompletionType = "context"
 
+" Netrw
 let g:netrw_list_hide = '\(^\|\s\s\)\zs\.\S\+'
 let g:netrw_fastbrowse = 2
 
@@ -116,37 +122,11 @@ let g:ctrlp_cmd = 'CtrlPMRU'
 
 "NeoMake
 autocmd! BufWritePost * Neomake
-let g:neomake_open_list = 2
-
-"startify
-let g:startify_list_order = [
-      \ ['   MRU '],       'files' ,
-      \ ['   MRU DIR '],   'dir',
-      \ ['   Sessions '],  'sessions',
-      \ ['   Bookmarks '], 'bookmarks',
-      \ ]
-
-let g:startify_skiplist = [
-      \ 'COMMIT_EDITMSG',
-      \ 'bundle/.*/doc',
-      \ ]
-
-let g:startify_bookmarks              = [ {'c': '~/.vim/vimrc'} ]
-let g:startify_change_to_dir          = 0
-let g:startify_enable_special         = 0
-let g:startify_files_number           = 8
-let g:startify_session_autoload       = 1
-let g:startify_session_delete_buffers = 1
-let g:startify_session_persistence    = 1
-
-function! s:center_header(lines) abort
-  let longest_line   = max(map(copy(a:lines), 'len(v:val)'))
-  let centered_lines = map(copy(a:lines), 'repeat(" ", (&columns / 2) - (longest_line / 2)) . v:val')
-  return centered_lines
-endfunction
-
-let g:startify_custom_header = s:center_header(split(system('fortune | cowsay'), '\n'))
-"let g:startify_custom_header = s:center_header(split(system('fortune | cowsay -f $(ls /usr/local/Cellar/cowsay/3.03/share/cows/ | shuf -n1)'), '\n'))
+let g:neomake_javascript_enabled_makers = ['eslint']
+let g:neomake_coffeescript_enabled_makers = ['coffeelint']
+let g:neomake_css_enabled_makers = ['csslint']
+let g:neomake_scss_enabled_makers = ['scsslint']
+"let g:neomake_open_list = 2
 
 set background=dark
 set fillchars+=stl:\ ,stlnc:\
