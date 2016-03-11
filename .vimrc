@@ -3,22 +3,27 @@ call plug#begin('~/.vim/plugged')
 Plug 'MarcWeber/vim-addon-mw-utils'
 Plug 'tomtom/tlib_vim'
 Plug 'tpope/vim-fugitive'
-Plug 'bling/vim-airline'
-Plug 'ervandew/supertab'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+"Plug 'itchyny/lightline.vim'
+"Plug 'ervandew/supertab'
+Plug 'Shougo/deoplete.nvim'
 Plug 'Raimondi/delimitMate'
 Plug 'benekastah/neomake'
 Plug 'kien/ctrlp.vim'
 Plug 'garbas/vim-snipmate'
+"Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'tpope/vim-vinegar'
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-commentary'
-Plug 'hail2u/vim-css3-syntax', {'autoload':{'filetypes':['scss']}}
-Plug 'kchmck/vim-coffee-script', {'autoload':{'filetypes':['coffee']}}
-Plug 'pangloss/vim-javascript', {'autoload':{'filetypes':['javascript']}}
-Plug 'tpope/vim-haml', {'autoload':{'filetypes':['haml']}}
-Plug 'tpope/vim-rails', {'autoload':{'filetypes':['ruby']}}
-Plug 'vim-ruby/vim-ruby', {'autoload':{'filetypes':['ruby']}}
+Plug 'hail2u/vim-css3-syntax', {'for':['scss']}
+Plug 'kchmck/vim-coffee-script', {'for':['coffee']}
+Plug 'pangloss/vim-javascript', {'for':['javascript']}
+Plug 'othree/javascript-libraries-syntax.vim', {'for':['javascript', 'coffee']}
+Plug 'tpope/vim-haml', {'for':['haml']}
+Plug 'tpope/vim-rails', {'for':['ruby', 'haml']}
+Plug 'vim-ruby/vim-ruby', {'for':['ruby']}
 
 call plug#end()            " required
 
@@ -70,14 +75,18 @@ endif
 set backspace=indent,eol,start
 
 " Removes highlight of your last search
-noremap <C-n> :nohl<CR>
-vnoremap <C-n> v:nohl<CR>
-inoremap <C-n> <Esc>:nohl<CR>
+noremap <C-c> :nohl<CR>
+vnoremap <C-c> v:nohl<CR>
+inoremap <C-c> <Esc>:nohl<CR>
 
 " ctrl-s to save
-inoremap <c-s> <Esc>hh:wa!<CR>
+inoremap <c-s> <Esc>:wa!<CR>
 vnoremap <c-s> v:wa!<CR>
 noremap <c-s> :wa!<CR>
+
+" Open new split panes to right and bottom, which feels more natural
+set splitbelow
+set splitright
 
 " :w!! to write to a file using sudo
 cmap w!! %!sudo tee > /dev/null %
@@ -88,7 +97,6 @@ autocmd BufWritePre *.js :%s/\s\+$//e
 autocmd BufWritePre *.coffee :%s/\s\+$//e
 autocmd BufWritePre *.haml :%s/\s\+$//e
 autocmd BufWritePre *.scss :%s/\s\+$//e
-
 
 " Disable syntax highlight for files larger than 50 MB
 autocmd BufWinEnter * if line2byte(line("$") + 1) > 50000000 | syntax clear | endif
@@ -102,10 +110,102 @@ let g:airline#extensions#hunks#enabled = 1
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#fnamemod = ':t'
 let g:airline_theme='powerlineish'
-set laststatus=2
+
+"let g:lightline = {
+"       \ 'active': {
+"       \   'left': [ [ 'mode', 'paste' ], [ 'fugitive', 'filename' ], ['ctrlpmark'] ]
+"       \ },
+"       \ 'component_function': {
+"       \   'fugitive': 'LightLineFugitive',
+"       \   'readonly': 'LightLineReadonly',
+"       \   'modified': 'LightLineModified',
+"       \   'filename': 'LightLineFilename',
+"       \   'ctrlpmark': 'CtrlPMark'
+"       \ },
+"       \ 'separator': { 'left': "\ue0b0", 'right': "\ue0b2" },
+"       \ 'subseparator': { 'left': "\ue0b1", 'right': "\ue0b3" }
+"       \ }
+
+" function! LightLineModified()
+"   if &filetype == "help"
+"     return ""
+"   elseif &modified
+"     return "+"
+"   elseif &modifiable
+"     return ""
+"   else
+"     return ""
+"   endif
+" endfunction
+
+" function! LightLineReadonly()
+"   if &filetype == "help"
+"     return ""
+"   elseif &readonly
+"     return "\ue0a2"
+"   else
+"     return ""
+"   endif
+" endfunction
+
+" function! LightLineFugitive()
+"   if exists("*fugitive#head")
+"     let _ = fugitive#head()
+"     let hunks = gitgutter#hunk#summary()
+"     let hunk_symbols = ["+", "~", "-"]
+"     let status = ''
+"     if !empty(hunks)
+"       for i in [0, 1, 2]
+"         if hunks[i] > 0
+"           let status .= printf('%s%s ', hunk_symbols[i], hunks[i])
+"         endif
+"       endfor
+"     endif
+"     return strlen(_) ? "\ue0a0 "._." ".status : ''
+"   endif
+"   return ''
+" endfunction
+
+" function! LightLineFilename()
+"   return ('' != LightLineReadonly() ? LightLineReadonly() . ' ' : '') .
+"        \ ('' != expand('%:t') ? expand('%:t') : '[No Name]') .
+"        \ ('' != LightLineModified() ? ' ' . LightLineModified() : '')
+" endfunction
+
+" function! CtrlPMark()
+"   if expand('%:t') =~ 'ControlP'
+"     call lightline#link('iR'[g:lightline.ctrlp_regex])
+"     return lightline#concatenate([g:lightline.ctrlp_prev, g:lightline.ctrlp_item
+"           \ , g:lightline.ctrlp_next], 0)
+"   else
+"     return ''
+"   endif
+" endfunction
+
+" let g:ctrlp_status_func = {
+"   \ 'main': 'CtrlPStatusFunc_1',
+"   \ 'prog': 'CtrlPStatusFunc_2',
+"   \ }
+
+" function! CtrlPStatusFunc_1(focus, byfname, regex, prev, item, next, marked)
+"   let g:lightline.ctrlp_regex = a:regex
+"   let g:lightline.ctrlp_prev = a:prev
+"   let g:lightline.ctrlp_item = a:item
+"   let g:lightline.ctrlp_next = a:next
+"   return lightline#statusline(0)
+" endfunction
+
+" function! CtrlPStatusFunc_2(str)
+"   return lightline#statusline(0)
+" endfunction
+
+" set noshowmode
 
 " SuperTab
-let g:SuperTabDefaultCompletionType = "context"
+"let g:SuperTabDefaultCompletionType = "context"
+"
+" Deoplete
+let g:deoplete#enable_at_startup = 1
 
 " Netrw
 let g:netrw_list_hide = '\(^\|\s\s\)\zs\.\S\+'
@@ -128,6 +228,11 @@ let g:neomake_css_enabled_makers = ['csslint']
 let g:neomake_scss_enabled_makers = ['scsslint']
 "let g:neomake_open_list = 2
 
+" convert vim buffer to haml/html
+nmap <leader>h :%!html2haml --erb 2> /dev/null<CR>:set ft=haml<CR>
+vmap <leader>h :!html2haml --erb 2> /dev/null<CR>
+
+set laststatus=2
 set background=dark
 set fillchars+=stl:\ ,stlnc:\
 let g:rehash256 = 1
