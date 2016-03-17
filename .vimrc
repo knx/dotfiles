@@ -5,12 +5,13 @@ Plug 'tomtom/tlib_vim'
 Plug 'tpope/vim-fugitive'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+Plug 'tpope/vim-endwise'
 "Plug 'itchyny/lightline.vim'
-"Plug 'ervandew/supertab'
-Plug 'Shougo/deoplete.nvim'
+Plug 'ervandew/supertab'
+"Plug 'Shougo/deoplete.nvim'
 Plug 'Raimondi/delimitMate'
 Plug 'benekastah/neomake'
-Plug 'kien/ctrlp.vim'
+Plug 'ctrlpvim/ctrlp.vim'
 Plug 'garbas/vim-snipmate'
 "Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
@@ -83,6 +84,15 @@ inoremap <C-c> <Esc>:nohl<CR>
 inoremap <c-s> <Esc>:wa!<CR>
 vnoremap <c-s> v:wa!<CR>
 noremap <c-s> :wa!<CR>
+
+" fix double quotes
+noremap <leader>' :%s/"/'/<CR>:nohl<CR>
+vnoremap <leader>' v:%s/"/'/<CR>:nohl<CR>
+inoremap <leader>' <Esc>:%s/"/'/<CR>:nohl<CR>
+
+" convert vim buffer to haml/html
+nmap <leader>h :%!html2haml --erb 2> /dev/null<CR>:set ft=haml<CR>
+vmap <leader>h :!html2haml --erb 2> /dev/null<CR>
 
 " Open new split panes to right and bottom, which feels more natural
 set splitbelow
@@ -203,9 +213,7 @@ let g:airline_theme='powerlineish'
 
 " SuperTab
 "let g:SuperTabDefaultCompletionType = "context"
-"
-" Deoplete
-let g:deoplete#enable_at_startup = 1
+
 
 " Netrw
 let g:netrw_list_hide = '\(^\|\s\s\)\zs\.\S\+'
@@ -228,9 +236,6 @@ let g:neomake_css_enabled_makers = ['csslint']
 let g:neomake_scss_enabled_makers = ['scsslint']
 "let g:neomake_open_list = 2
 
-" convert vim buffer to haml/html
-nmap <leader>h :%!html2haml --erb 2> /dev/null<CR>:set ft=haml<CR>
-vmap <leader>h :!html2haml --erb 2> /dev/null<CR>
 
 set laststatus=2
 set background=dark
