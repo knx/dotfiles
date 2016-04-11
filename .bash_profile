@@ -16,7 +16,10 @@ export LC_ALL=en_US.UTF-8
 export OS=`uname -s | sed -e 's/ *//g;y/ABCDEFGHIJKLMNOPQRSTUVWXYZ/abcdefghijklmnopqrstuvwxyz/'`                                                                                                                                                                           
 export OSVERSION=`uname -r`; OSVERSION=`expr "$OSVERSION" : '[^0-9]*\([0-9]*\.[0-9]*\)'`                                                                                                                                                                                   
 export MACHINE=`uname -m | sed -e 's/ *//g;y/ABCDEFGHIJKLMNOPQRSTUVWXYZ/abcdefghijklmnopqrstuvwxyz/'`                                                                                                                                                                      
-export PLATFORM="$MACHINE-$OS-$OSVERSION"                                                                                                                                                                                                                                  
+export PLATFORM="$MACHINE-$OS-$OSVERSION"              
+
+# Set Homebrew github token, for search rate limiting prevention
+export HOMEBREW_GITHUB_API_TOKEN="58b26c5606282e0da86e1798c7a475a6c13d0a43"
 
 shopt -s checkwinsize                                                                                                                                                                                                                                                      
 
@@ -57,9 +60,14 @@ export TODO="t"
 # Set this to false to turn off version control status checking within the prompt for all themes
 export SCM_CHECK=true
 
+source /Users/knx/.iterm2_shell_integration.bash
+
 # Load Bash It
 source $BASH_IT/bash_it.sh
 
-source /Users/knx/.iterm2_shell_integration.bash
 
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+# The next line updates PATH for the Google Cloud SDK.
+source '/usr/local/google-cloud-sdk/path.bash.inc'
+
+# The next line enables shell command completion for gcloud.
+source '/usr/local/google-cloud-sdk/completion.bash.inc'

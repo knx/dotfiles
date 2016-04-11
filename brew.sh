@@ -111,6 +111,8 @@ brew install terminal-notifier
 brew install tmux
 brew install wget
 brew install xz
+brew install ag
+brew install wireshark
 
 # Remove outdated versions from the cellar.
 brew cleanup
