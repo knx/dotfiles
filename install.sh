@@ -2,7 +2,6 @@ cd
 
 # clone
 git clone --depth=1 https://github.com/Bash-it/bash-it.git ~/.bash_it
-git clone ssh://github.com/knx/dotfiles.git ~/.dotfiles
 
 # install
 ~/.bash_it/install.sh --interactive
