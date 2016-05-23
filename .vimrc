@@ -5,27 +5,23 @@ Plug 'tomtom/tlib_vim'
 Plug 'tpope/vim-fugitive'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'tpope/vim-endwise'
-"Plug 'itchyny/lightline.vim'
-Plug 'ervandew/supertab'
-"Plug 'Shougo/deoplete.nvim'
 Plug 'Raimondi/delimitMate'
+Plug 'tpope/vim-endwise'
+Plug 'ervandew/supertab'
 Plug 'benekastah/neomake'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'garbas/vim-snipmate'
-"Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'tpope/vim-vinegar'
-Plug 'airblade/vim-gitgutter'
+"Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-commentary'
 Plug 'hail2u/vim-css3-syntax', {'for':['scss']}
 Plug 'kchmck/vim-coffee-script', {'for':['coffee']}
 Plug 'pangloss/vim-javascript', {'for':['javascript']}
-Plug 'othree/javascript-libraries-syntax.vim', {'for':['javascript', 'coffee']}
+"Plug 'othree/javascript-libraries-syntax.vim', {'for':['javascript', 'coffee']}
 Plug 'tpope/vim-haml', {'for':['haml']}
 Plug 'tpope/vim-rails', {'for':['ruby', 'haml']}
 Plug 'vim-ruby/vim-ruby', {'for':['ruby']}
-Plug 'othree/xml.vim', {'for':['xml']}
 
 call plug#end()            " required
 
@@ -41,6 +37,14 @@ set wildmenu
 set timeoutlen=1000 ttimeoutlen=0 " eliminating esc delays
 set shortmess+=I    " no welcome message
 set lazyredraw
+set laststatus=2
+set background=dark
+set fillchars+=stl:\ ,stlnc:\
+let g:rehash256 = 1
+set mouse=a
+set clipboard=unnamed
+set guifont=Source\ Code\ Pro\ for\ Powerline 
+
 
 " Whitespace stuff
 set nowrap
@@ -76,10 +80,14 @@ endif
 " allow backspacing over everything in insert mode
 set backspace=indent,eol,start
 
+" Open new split panes to right and bottom, which feels more natural
+set splitbelow
+set splitright
+
 " Removes highlight of your last search
-noremap <C-c> :nohl<CR>
-vnoremap <C-c> v:nohl<CR>
-inoremap <C-c> <Esc>:nohl<CR>
+nmap <C-c> :nohl<CR>
+vmap <C-c> v:nohl<CR>
+imap <C-c> <Esc>:nohl<CR>
 
 " ctrl-s to save all
 inoremap <c-s> <Esc>:wa!<CR>
@@ -97,10 +105,6 @@ vmap <leader>h :!html2haml --erb 2> /dev/null<CR>
 
 " input newline without entering insert
 nmap <CR> i<CR><Esc>
-
-" Open new split panes to right and bottom, which feels more natural
-set splitbelow
-set splitright
 
 " :w!! to write to a file using sudo
 cmap w!! %!sudo tee > /dev/null %
@@ -125,10 +129,11 @@ let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#fnamemod = ':t'
 let g:airline_theme='powerlineish'
 
-set noshowmode
-
-" SuperTab
-let g:SuperTabDefaultCompletionType = "context"
+" DelimitMate
+let g:delimitMate_expand_space = 1
+let g:delimitMate_expand_cr = 1
+let g:delimitMate_expand_inside_quotes = 1
+let delimitMate_jump_expansion = 1
 
 " Netrw
 let g:netrw_list_hide = '\(^\|\s\s\)\zs\.\S\+'
@@ -143,18 +148,18 @@ let g:ctrlp_mruf_max = 50
 let g:ctrlp_mruf_default_order = 1
 let g:ctrlp_cmd = 'CtrlPMRU'
 
-"NeoMake
+" NeoMake
 autocmd! BufWritePost * Neomake
 let g:neomake_javascript_enabled_makers = ['eslint']
+let g:neomake_coffeescript_coffeelint_maker = {
+    \ 'args': ['--file ~/.coffelintrc'],
+    \ }
 let g:neomake_coffeescript_enabled_makers = ['coffeelint']
 let g:neomake_css_enabled_makers = ['csslint']
 let g:neomake_scss_enabled_makers = ['scsslint']
-"let g:neomake_open_list = 2
+" let g:neomake_open_list = 2
 
-set laststatus=2
-set background=dark
-set fillchars+=stl:\ ,stlnc:\
-let g:rehash256 = 1
-set mouse=a
-set clipboard=unnamed
+" set SuperTab to use omni
+" let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
+
 :silent! colorscheme atom-dark-256

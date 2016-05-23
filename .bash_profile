@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-[[ -s "$HOME/.profile" ]] && source "$HOME/.profile" # Load the default .profile
+#[[ -s "$HOME/.profile" ]] && source "$HOME/.profile" # Load the default .profile
 
 ### Added by the Heroku Toolbelt                                                                                                                                                                                                                                           
 export PATH="$PATH:/usr/local/heroku/bin"                                                                                                                                                                                                                                  
@@ -32,10 +32,6 @@ shopt -s histappend;
 # Autocorrect typos in path names when using `cd`                                                                                                                                                                                                                          
 shopt -s cdspell;                                                                                                                                                                                                                                                          
 
-# Stuff I never really use but cannot delete either because of http://xkcd.com/530/                                                                                                                                                                                        
-alias stfu="osascript -e 'set volume output muted true'"                                                                                                                                                                                                                   
-alias pumpitup="osascript -e 'set volume 7'"                                                                                                                                                                                                                                                                              
-
 # Path to the bash it configuration
 export BASH_IT=$HOME/.bash_it
 
@@ -47,9 +43,9 @@ export BASH_IT_THEME='mine'
 export GIT_HOSTING='git@gitlab.digitalheads.pl'
 
 # Set my editor and git editor
-export EDITOR="vim"
-export GIT_EDITOR='vim'
-export BUNDLER_EDITOR='vim'
+export EDITOR="nvim"
+export GIT_EDITOR='nvim'
+export BUNDLER_EDITOR='nvim'
 
 # Don't check mail when opening terminal.
 unset MAILCHECK
@@ -65,9 +61,10 @@ source /Users/knx/.iterm2_shell_integration.bash
 # Load Bash It
 source $BASH_IT/bash_it.sh
 
+# # The next line updates PATH for the Google Cloud SDK.
+# source '/usr/local/google-cloud-sdk/path.bash.inc'
 
-# The next line updates PATH for the Google Cloud SDK.
-source '/usr/local/google-cloud-sdk/path.bash.inc'
+# # The next line enables shell command completion for gcloud.
+# source '/usr/local/google-cloud-sdk/completion.bash.inc'
 
-# The next line enables shell command completion for gcloud.
-source '/usr/local/google-cloud-sdk/completion.bash.inc'
+export DOKKU_PORT=272
