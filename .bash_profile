@@ -43,9 +43,9 @@ export BASH_IT_THEME='mine'
 export GIT_HOSTING='git@gitlab.digitalheads.pl'
 
 # Set my editor and git editor
-export EDITOR="nvim"
-export GIT_EDITOR='nvim'
-export BUNDLER_EDITOR='nvim'
+export EDITOR="vim"
+export GIT_EDITOR='vim'
+export BUNDLER_EDITOR='vim'
 
 # Don't check mail when opening terminal.
 unset MAILCHECK
@@ -55,8 +55,6 @@ export TODO="t"
 
 # Set this to false to turn off version control status checking within the prompt for all themes
 export SCM_CHECK=true
-
-source /Users/knx/.iterm2_shell_integration.bash
 
 # Load Bash It
 source $BASH_IT/bash_it.sh

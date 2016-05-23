@@ -28,7 +28,7 @@ function set_scm_prompt() {
 }
 
 function prompt_command() {
-  PS1="\n${yellow}❐ \w$(set_rvm_prompt)$(set_scm_prompt)\n\[\033[G\]${yellow}𝌆${reset_color} "
+  PS1="\n${yellow}❐ ${USER}@${HOSTNAME} \w$(set_rvm_prompt)$(set_scm_prompt)\n\[\033[G\]${yellow}𝌆${reset_color} "
 }
 
 PROMPT_COMMAND=prompt_command;
