@@ -43,9 +43,9 @@ export BASH_IT_THEME='mine'
 export GIT_HOSTING='git@gitlab.digitalheads.pl'
 
 # Set my editor and git editor
-export EDITOR="vim"
-export GIT_EDITOR='vim'
-export BUNDLER_EDITOR='vim'
+export EDITOR="nvim"
+export GIT_EDITOR='nvim'
+export BUNDLER_EDITOR='nvim'
 
 # Don't check mail when opening terminal.
 unset MAILCHECK

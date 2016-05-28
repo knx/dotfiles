@@ -27,8 +27,16 @@ function set_scm_prompt() {
   fi
 }
 
+function set_host_prompt() {
+  host=${HOSTNAME}
+  if [ ${host} != "mbp.local" ]
+  then
+    echo "${USER}@${host}\n"
+  fi
+}
+
 function prompt_command() {
-  PS1="\n${yellow}❐ ${USER}@${HOSTNAME} \w$(set_rvm_prompt)$(set_scm_prompt)\n\[\033[G\]${yellow}𝌆${reset_color} "
+  PS1="\n${yellow}❐ $(set_host_prompt)\w$(set_rvm_prompt)$(set_scm_prompt)\n\[\033[G\]${yellow}𝌆${reset_color} "
 }
 
 PROMPT_COMMAND=prompt_command;

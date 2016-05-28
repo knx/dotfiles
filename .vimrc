@@ -8,7 +8,8 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'Raimondi/delimitMate'
 Plug 'tpope/vim-endwise'
 Plug 'ervandew/supertab'
-Plug 'benekastah/neomake'
+Plug 'neomake/neomake'
+" Plug 'scrooloose/syntastic'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'garbas/vim-snipmate'
 Plug 'honza/vim-snippets'
@@ -17,7 +18,7 @@ Plug 'tpope/vim-vinegar'
 Plug 'tpope/vim-commentary'
 Plug 'hail2u/vim-css3-syntax', {'for':['scss']}
 Plug 'kchmck/vim-coffee-script', {'for':['coffee']}
-Plug 'pangloss/vim-javascript', {'for':['javascript']}
+" Plug 'pangloss/vim-javascript', {'for':['javascript']}
 "Plug 'othree/javascript-libraries-syntax.vim', {'for':['javascript', 'coffee']}
 Plug 'tpope/vim-haml', {'for':['haml']}
 Plug 'tpope/vim-rails', {'for':['ruby', 'haml']}
@@ -43,7 +44,6 @@ set fillchars+=stl:\ ,stlnc:\
 let g:rehash256 = 1
 set mouse=a
 set clipboard=unnamed
-set guifont=Source\ Code\ Pro\ for\ Powerline 
 
 
 " Whitespace stuff
@@ -157,9 +157,21 @@ let g:neomake_coffeescript_coffeelint_maker = {
 let g:neomake_coffeescript_enabled_makers = ['coffeelint']
 let g:neomake_css_enabled_makers = ['csslint']
 let g:neomake_scss_enabled_makers = ['scsslint']
-" let g:neomake_open_list = 2
+let g:neomake_open_list = 2
 
 " set SuperTab to use omni
 " let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
+"
+" " Syntastic
+
+" set statusline+=%#warningmsg#
+" set statusline+=%{SyntasticStatuslineFlag()}
+" set statusline+=%*
+
+" let g:syntastic_always_populate_loc_list = 1
+" let g:syntastic_auto_loc_list = 1
+" let g:syntastic_check_on_open = 0
+" let g:syntastic_check_on_wq = 0
+" let g:syntastic_ruby_checkers = ['mri', 'rubocop', 'reek']
 
 :silent! colorscheme atom-dark-256
