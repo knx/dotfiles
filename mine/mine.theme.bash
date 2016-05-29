@@ -31,7 +31,7 @@ function set_host_prompt() {
   host=${HOSTNAME}
   if [ ${host} != "mbp.local" ]
   then
-    echo "${USER}@${host}\n"
+    echo "${USER}@${host}\w"
   fi
 }
 
