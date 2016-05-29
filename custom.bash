@@ -5,8 +5,8 @@ alias ms="mux start"
 alias rr="bin/rake routes"
 
 alias v="vi"
-alias vi="nvim"
-alias vim="nvim"
+alias vi="vim"
+alias vim="vim"
 
 #git
 alias gaa='git add --all'
