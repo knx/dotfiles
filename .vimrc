@@ -157,12 +157,9 @@ let g:neomake_coffeescript_coffeelint_maker = {
 let g:neomake_coffeescript_enabled_makers = ['coffeelint']
 let g:neomake_css_enabled_makers = ['csslint']
 let g:neomake_scss_enabled_makers = ['scsslint']
-let g:neomake_open_list = 2
+let g:neomake_open_list = 0
 
-" set SuperTab to use omni
-" let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
-"
-" " Syntastic
+" Syntastic
 
 " set statusline+=%#warningmsg#
 " set statusline+=%{SyntasticStatuslineFlag()}
