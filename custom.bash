@@ -5,8 +5,8 @@ alias ms="mux start"
 alias rr="bin/rake routes"
 
 alias v="vi"
-alias vi="vim"
-alias vim="vim"
+alias vi="nvim"
+alias vim="nvim"
 
 #git
 alias gaa='git add --all'
@@ -46,7 +46,7 @@ alias pgs="postgres_start"
 
 #ctags
 #alias tags="ctags -R --languages=Ruby,HTML,JavaScript --exclude=.git --exclude=log --exclude=lib/tracker/node_modules --exclude=vendor/assets/bower_components ."
-alias tags="ctags --recurse --languages=Ruby,HTML,JavaScript --exclude=.git --exclude=log --exclude=lib/tracker/node_modules --exclude=vendor/assets/bower_components \`bundle show --paths\` ."
+alias tags="ctags --recurse --languages=Ruby,HTML,JavaScript --exclude=.git --exclude=log --exclude=lib/tracker/node_modules --exclude=lib/storage/node_modules --exclude=vendor/assets/bower_components \`bundle show --paths\` ."
 
 #rake to binstubs
 alias rake="bin/rake"
@@ -58,6 +58,14 @@ alias dbtp="rake db:test:prepare"
 alias dbm="rake db:migrate"
 alias dbmm="dbm && dbr && dbm && dbtp"
 
-#dokku 
-alias dokku='$HOME/.dokku/contrib/dokku_client.sh'
-alias d='dokku'
+#reinstall neovim
+alias nvr=' brew reinstall --HEAD --with-release neovim'
+
+#google search function
+function google() {
+  about "google search"
+  param "query"
+  example "google something"
+  group 'base'
+  open https://google.com/search?q=$1
+}

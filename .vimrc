@@ -23,6 +23,8 @@ Plug 'kchmck/vim-coffee-script', {'for':['coffee']}
 Plug 'tpope/vim-haml', {'for':['haml']}
 Plug 'tpope/vim-rails', {'for':['ruby', 'haml']}
 Plug 'vim-ruby/vim-ruby', {'for':['ruby']}
+Plug 'kassio/neoterm'
+Plug 'janko-m/vim-test'
 
 call plug#end()            " required
 
@@ -44,7 +46,10 @@ set fillchars+=stl:\ ,stlnc:\
 let g:rehash256 = 1
 set mouse=a
 set clipboard=unnamed
-
+"set relativenumber
+" if has('gui_macvim')
+"   set guifont=Roboto Mono Light for Powerline:h14
+" endif
 
 " Whitespace stuff
 set nowrap
@@ -136,8 +141,8 @@ let g:delimitMate_expand_inside_quotes = 1
 let delimitMate_jump_expansion = 1
 
 " Netrw
-let g:netrw_list_hide = '\(^\|\s\s\)\zs\.\S\+'
-let g:netrw_fastbrowse = 2
+" let g:netrw_list_hide = '\(^\|\s\s\)\zs\.\S\+'
+" let g:netrw_fastbrowse = 2
 
 " CtrlP
 let g:ctrlp_custom_ignore = 'DS_Store\|git\|tmp\|^log\|bundle\|.git\|uploads\|vendor\|public\|.un~'
@@ -158,6 +163,28 @@ let g:neomake_coffeescript_enabled_makers = ['coffeelint']
 let g:neomake_css_enabled_makers = ['csslint']
 let g:neomake_scss_enabled_makers = ['scsslint']
 let g:neomake_open_list = 0
+
+" neovim configs
+if has("nvim")
+  " vim-test maps
+  map <silent> <leader>t :TestNearest<CR>
+  map <silent> <leader>f :TestFile<CR>
+  map <silent> <leader>T :TestSuite<CR>
+  map <silent> <leader>r :TestLast<CR>
+  map <silent> <leader>g :TestVisit<CR>
+
+  " run tests with :T
+  let test#strategy = "neoterm"
+
+  " vertical split instead of the default horizontal
+  let g:neoterm_position = "vertical"
+  let g:neoterm_close_when_tests_succeed = 0
+
+  " pretty much essential: by default in terminal mode, you have to press ctrl-\-n to get into normal mode
+  " ain't nobody got time for that
+  tnoremap <Esc> <C-\><C-n>
+endif
+
 
 " Syntastic
 
