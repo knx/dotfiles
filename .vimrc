@@ -20,11 +20,11 @@ Plug 'hail2u/vim-css3-syntax', {'for':['scss']}
 Plug 'kchmck/vim-coffee-script', {'for':['coffee']}
 " Plug 'pangloss/vim-javascript', {'for':['javascript']}
 "Plug 'othree/javascript-libraries-syntax.vim', {'for':['javascript', 'coffee']}
-Plug 'tpope/vim-haml', {'for':['haml']}
+Plug 'tpope/vim-haml', {'for':['haml','scss','sass']}
 Plug 'tpope/vim-rails', {'for':['ruby', 'haml']}
 Plug 'vim-ruby/vim-ruby', {'for':['ruby']}
-Plug 'kassio/neoterm'
-Plug 'janko-m/vim-test'
+" Plug 'kassio/neoterm'
+" Plug 'janko-m/vim-test'
 
 call plug#end()            " required
 
@@ -93,6 +93,9 @@ set splitright
 nmap <C-c> :nohl<CR>
 vmap <C-c> v:nohl<CR>
 imap <C-c> <Esc>:nohl<CR>
+
+" ctrl-x to close window
+nmap <C-x> :close<CR>
 
 " ctrl-s to save all
 inoremap <c-s> <Esc>:wa!<CR>

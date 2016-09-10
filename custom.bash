@@ -1,6 +1,7 @@
 #!/bin/bash
 
 alias j="z"
+alias mux="tmuxinator"
 alias ms="mux start"
 alias rr="bin/rake routes"
 
@@ -68,4 +69,14 @@ function google() {
   example "google something"
   group 'base'
   open https://google.com/search?q=$1
+}
+
+function ssh() {
+    if [ "$(ps -p $(ps -p $$ -o ppid=) -o comm=)" = "tmux" ]; then
+        tmux rename-window "ssh://$(echo $* | cut -d . -f 1)"
+        command ssh "$@"
+        tmux set-window-option automatic-rename "on" 1>/dev/null
+    else
+        command ssh "$@"
+    fi
 }
