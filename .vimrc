@@ -167,28 +167,6 @@ let g:neomake_css_enabled_makers = ['csslint']
 let g:neomake_scss_enabled_makers = ['scsslint']
 let g:neomake_open_list = 0
 
-" neovim configs
-if has("nvim")
-  " vim-test maps
-  map <silent> <leader>t :TestNearest<CR>
-  map <silent> <leader>f :TestFile<CR>
-  map <silent> <leader>T :TestSuite<CR>
-  map <silent> <leader>r :TestLast<CR>
-  map <silent> <leader>g :TestVisit<CR>
-
-  " run tests with :T
-  let test#strategy = "neoterm"
-
-  " vertical split instead of the default horizontal
-  let g:neoterm_position = "vertical"
-  let g:neoterm_close_when_tests_succeed = 0
-
-  " pretty much essential: by default in terminal mode, you have to press ctrl-\-n to get into normal mode
-  " ain't nobody got time for that
-  tnoremap <Esc> <C-\><C-n>
-endif
-
-
 " Syntastic
 
 " set statusline+=%#warningmsg#

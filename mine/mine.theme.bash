@@ -36,7 +36,7 @@ function set_host_prompt() {
 }
 
 function prompt_command() {
-  PS1="\n${yellow}❐ $(set_host_prompt)\w$(set_rvm_prompt)$(set_scm_prompt)\n\[\033[G\]${yellow}𝌆${reset_color} "
+  PS1="${yellow}❐ $(set_host_prompt)\w$(set_rvm_prompt)$(set_scm_prompt)\n\[\033[G\]${yellow}𝌆${reset_color} "
 }
 
 PROMPT_COMMAND=prompt_command;

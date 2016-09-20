@@ -68,14 +68,17 @@ function google() {
   param "query"
   example "google something"
   group 'base'
-  open https://google.com/search?q=$1
+  open https://google.com/search?q=$@
 }
 
 function ssh() {
     if [ "$(ps -p $(ps -p $$ -o ppid=) -o comm=)" = "tmux" ]; then
-        tmux rename-window "ssh://$(echo $* | cut -d . -f 1)"
+        #tmux rename-window "ssh://$(echo $* | cut -d . -f 1)"
+        current_hostname="$(echo $* | cut -d . -f 1)"
+        #tmux rename-session $hostname
         command ssh "$@"
-        tmux set-window-option automatic-rename "on" 1>/dev/null
+        current_hostname=`hostname`
+        #tmux set-window-option automatic-rename "on" 1>/dev/null
     else
         command ssh "$@"
     fi
