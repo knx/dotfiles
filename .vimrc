@@ -9,36 +9,30 @@ Plug 'Raimondi/delimitMate'
 Plug 'tpope/vim-endwise'
 Plug 'ervandew/supertab'
 Plug 'neomake/neomake'
-" Plug 'scrooloose/syntastic'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'garbas/vim-snipmate'
 Plug 'honza/vim-snippets'
 Plug 'tpope/vim-vinegar'
 "Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-commentary'
-Plug 'hail2u/vim-css3-syntax', {'for':['scss']}
-Plug 'kchmck/vim-coffee-script', {'for':['coffee']}
-" Plug 'pangloss/vim-javascript', {'for':['javascript']}
-"Plug 'othree/javascript-libraries-syntax.vim', {'for':['javascript', 'coffee']}
-Plug 'tpope/vim-haml', {'for':['haml','scss','sass']}
+Plug 'sheerun/vim-polyglot'
+" Plug 'tpope/vim-haml', {'for':['haml','scss','sass']}
 Plug 'tpope/vim-rails', {'for':['ruby', 'haml']}
-Plug 'vim-ruby/vim-ruby', {'for':['ruby']}
-" Plug 'kassio/neoterm'
-" Plug 'janko-m/vim-test'
+" Plug 'vim-ruby/vim-ruby', {'for':['ruby']}
 
-call plug#end()            " required
+call plug#end()                   " required
 
 " UI
-set autoread        " watch for file changes
+set autoread                      " watch for file changes
 set autoindent
-set noswapfile      " disable swapfiles
-set nobackup        " disable backups
-set backupdir=$HOME/.vim/backup " Directories for swp files
-set showmatch       " show matching brackets.
-set showcmd         " shows what you're typing as a command
+set noswapfile                    " disable swapfiles
+set nobackup                      " disable backups
+set backupdir=$HOME/.vim/backup   " Directories for swp files
+set showmatch                     " show matching brackets.
+set showcmd                       " shows what you're typing as a command
 set wildmenu
 set timeoutlen=1000 ttimeoutlen=0 " eliminating esc delays
-set shortmess+=I    " no welcome message
+set shortmess+=I                  " no welcome message
 set lazyredraw
 set laststatus=2
 set background=dark
@@ -47,10 +41,7 @@ let g:rehash256 = 1
 set mouse=a
 set clipboard=unnamed
 "set relativenumber
-" if has('gui_macvim')
-"   set guifont=Roboto Mono Light for Powerline:h14
-" endif
-
+"
 " Whitespace stuff
 set nowrap
 set tabstop=2
@@ -166,17 +157,5 @@ let g:neomake_coffeescript_enabled_makers = ['coffeelint']
 let g:neomake_css_enabled_makers = ['csslint']
 let g:neomake_scss_enabled_makers = ['scsslint']
 let g:neomake_open_list = 0
-
-" Syntastic
-
-" set statusline+=%#warningmsg#
-" set statusline+=%{SyntasticStatuslineFlag()}
-" set statusline+=%*
-
-" let g:syntastic_always_populate_loc_list = 1
-" let g:syntastic_auto_loc_list = 1
-" let g:syntastic_check_on_open = 0
-" let g:syntastic_check_on_wq = 0
-" let g:syntastic_ruby_checkers = ['mri', 'rubocop', 'reek']
 
 :silent! colorscheme atom-dark-256

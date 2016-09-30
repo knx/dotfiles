@@ -1,15 +1,14 @@
 #!/usr/bin/env bash
 
-### Added by the Heroku Toolbelt                                                                                                                                                                                                                                           
-export PATH="$PATH:/usr/local/heroku/bin"                                                                                                                                                                                                                                  
-
 stty -ixon
+
+export PATH="/usr/local/sbin:$PATH"
 
 # Setting for the new UTF-8 terminal support in Lion                                                                                                                                                                                                                       
 export LANG="en_US.UTF-8"                                                                                                                                                                                                                                                  
 export LANGUAGE="en_US"                                                                                                                                                                                                                                                    
-export LC_CTYPE=en_US.UTF-8                                                                                                                                                                                                                                                
-export LC_ALL=en_US.UTF-8                                                                                                                                                                                                                                                  
+export LC_CTYPE="en_US.UTF-8"                                                                                                                                                                                                                                                
+export LC_ALL="en_US.UTF-8"                                                                                                                                                                                                                                                  
 
 # Identify OS and Machine                                                                                                                                                                                                                                                  
 export OS=`uname -s | sed -e 's/ *//g;y/ABCDEFGHIJKLMNOPQRSTUVWXYZ/abcdefghijklmnopqrstuvwxyz/'`                                                                                                                                                                           
@@ -23,13 +22,13 @@ export HOMEBREW_GITHUB_API_TOKEN="58b26c5606282e0da86e1798c7a475a6c13d0a43"
 #shopt -s checkwinsize                                                                                                                                                                                                                                                      
 
 # Case-insensitive globbing (used in pathname expansion)                                                                                                                                                                                                                   
-shopt -s nocaseglob;                                                                                                                                                                                                                                                       
+shopt -s nocaseglob                                                                                                                                                                                                                                                       
 
 # Append to the Bash history file, rather than overwriting it                                                                                                                                                                                                              
-#shopt -s histappend;                                                                                                                                                                                                                                                       
+# shopt -s histappend # its enabled in bash-it                                                                                                                                                                                                                                                 
 
 # Autocorrect typos in path names when using `cd`                                                                                                                                                                                                                          
-shopt -s cdspell;                                                                                                                                                                                                                                                          
+shopt -s cdspell                                                                                                                                                                                                                                                        
 
 # Path to the bash it configuration
 export BASH_IT=$HOME/.bash_it
@@ -55,5 +54,12 @@ export SCM_CHECK=true
 # Load Bash It
 source $BASH_IT/bash_it.sh
 
-# make title setting work hack
-preexec_xterm_title_install
+# # load powerline
+# powerline-daemon -q
+# POWERLINE_BASH_CONTINUATION=1
+# POWERLINE_BASH_SELECT=1
+# . /usr/local/lib/python2.7/site-packages/powerline/bindings/shell/powerline.sh
+
+
+# # make title setting work hack
+# preexec_xterm_title_install
