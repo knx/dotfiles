@@ -24,11 +24,16 @@ export HOMEBREW_GITHUB_API_TOKEN="58b26c5606282e0da86e1798c7a475a6c13d0a43"
 # Case-insensitive globbing (used in pathname expansion)                                                                                                                                                                                                                   
 shopt -s nocaseglob                                                                                                                                                                                                                                                       
 
+# do not autocomplete on empty line
+shopt -s no_empty_cmd_completion
+
 # Append to the Bash history file, rather than overwriting it                                                                                                                                                                                                              
-# shopt -s histappend # its enabled in bash-it                                                                                                                                                                                                                                                 
+shopt -s histappend 
 
 # Autocorrect typos in path names when using `cd`                                                                                                                                                                                                                          
-shopt -s cdspell                                                                                                                                                                                                                                                        
+shopt -s cdspell
+
+shopt -s hostcomplete
 
 # Path to the bash it configuration
 export BASH_IT=$HOME/.bash_it

@@ -1,24 +1,32 @@
 call plug#begin('~/.vim/plugged')
 
-Plug 'MarcWeber/vim-addon-mw-utils'
-Plug 'tomtom/tlib_vim'
-Plug 'tpope/vim-fugitive'
+" Plug 'MarcWeber/vim-addon-mw-utils'
+" Plug 'tomtom/tlib_vim'
+" Plug 'tpope/vim-fugitive'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'Raimondi/delimitMate'
-Plug 'tpope/vim-endwise'
-Plug 'ervandew/supertab'
+" Plug 'Raimondi/delimitMate'
+" Plug 'tpope/vim-endwise'
+"Plug 'ervandew/supertab'
 Plug 'neomake/neomake'
 Plug 'ctrlpvim/ctrlp.vim'
-Plug 'garbas/vim-snipmate'
+"Plug 'garbas/vim-snipmate'
+Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'tpope/vim-vinegar'
-"Plug 'airblade/vim-gitgutter'
+" Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-commentary'
 Plug 'sheerun/vim-polyglot'
-" Plug 'tpope/vim-haml', {'for':['haml','scss','sass']}
+Plug 'vim-ruby/vim-ruby', {'for':['ruby']}
 Plug 'tpope/vim-rails', {'for':['ruby', 'haml']}
-" Plug 'vim-ruby/vim-ruby', {'for':['ruby']}
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+" Plug 'fishbullet/deoplete-ruby'
+" Plug 'hail2u/vim-css3-syntax', {'for':['scss']}
+" Plug 'kchmck/vim-coffee-script', {'for':['coffee']}
+" Plug 'pangloss/vim-javascript', {'for':['javascript']}
+"Plug 'othree/javascript-libraries-syntax.vim', {'for':['javascript', 'coffee']}
+" Plug 'tpope/vim-haml', {'for':['haml','scss','sass']}
+
 
 call plug#end()                   " required
 
@@ -80,6 +88,9 @@ set backspace=indent,eol,start
 set splitbelow
 set splitright
 
+" Set tags directory  
+set tags=./tags; 
+
 " Removes highlight of your last search
 nmap <C-c> :nohl<CR>
 vmap <C-c> v:nohl<CR>
@@ -117,6 +128,9 @@ autocmd BufWritePre *.scss :%s/\s\+$//e
 
 " Disable syntax highlight for files larger than 50 MB
 autocmd BufWinEnter * if line2byte(line("$") + 1) > 50000000 | syntax clear | endif
+" Enable python
+let g:python_host_prog = '/usr/local/bin/python'
+let g:python3_host_prog = '/usr/local/bin/python3'
 
 " Airline
 " let g:airline#extensions#tabline#enabled = 1
@@ -137,6 +151,23 @@ let delimitMate_jump_expansion = 1
 " Netrw
 " let g:netrw_list_hide = '\(^\|\s\s\)\zs\.\S\+'
 " let g:netrw_fastbrowse = 2
+
+" Deoplete
+let g:deoplete#enable_at_startup = 1
+" use tab to forward cycle
+"inoremap <silent><expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
+" use shift-tab to reverse cycle
+"inoremap <silent><expr><s-tab> pumvisible() ? "\<c-p>" : "\<s-tab>"
+" set omnifunc=syntaxcomplete#Complete
+" autocmd FileType ruby,eruby let g:rubycomplete_buffer_loading = 1
+" autocmd FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
+" autocmd FileType ruby,eruby let g:rubycomplete_rails = 1
+
+" UltiSnips config
+" inoremap <silent><expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<tab>"
+let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 
 " CtrlP
 let g:ctrlp_custom_ignore = 'DS_Store\|git\|tmp\|^log\|bundle\|.git\|uploads\|vendor\|public\|.un~'
