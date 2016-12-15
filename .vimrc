@@ -1,32 +1,28 @@
 call plug#begin('~/.vim/plugged')
 
-" Plug 'MarcWeber/vim-addon-mw-utils'
-" Plug 'tomtom/tlib_vim'
-" Plug 'tpope/vim-fugitive'
+" UI
+Plug 'tpope/vim-fugitive'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-" Plug 'Raimondi/delimitMate'
-" Plug 'tpope/vim-endwise'
-"Plug 'ervandew/supertab'
+Plug 'tpope/vim-vinegar'
+" Plug 'majutsushi/tagbar'
+" Plug 'airblade/vim-gitgutter'
+" Completion, fuzzy search, syntax
+Plug 'Raimondi/delimitMate'
+Plug 'tpope/vim-endwise'
 Plug 'neomake/neomake'
 Plug 'ctrlpvim/ctrlp.vim'
-"Plug 'garbas/vim-snipmate'
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
-Plug 'tpope/vim-vinegar'
-" Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-commentary'
 Plug 'sheerun/vim-polyglot'
-Plug 'vim-ruby/vim-ruby', {'for':['ruby']}
+" Plug 'vim-ruby/vim-ruby', {'for':['ruby']}
 Plug 'tpope/vim-rails', {'for':['ruby', 'haml']}
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-" Plug 'fishbullet/deoplete-ruby'
-" Plug 'hail2u/vim-css3-syntax', {'for':['scss']}
-" Plug 'kchmck/vim-coffee-script', {'for':['coffee']}
-" Plug 'pangloss/vim-javascript', {'for':['javascript']}
-"Plug 'othree/javascript-libraries-syntax.vim', {'for':['javascript', 'coffee']}
 " Plug 'tpope/vim-haml', {'for':['haml','scss','sass']}
-
+"
+" Colorschemes
+Plug 'morhetz/gruvbox'
 
 call plug#end()                   " required
 
@@ -43,13 +39,13 @@ set timeoutlen=1000 ttimeoutlen=0 " eliminating esc delays
 set shortmess+=I                  " no welcome message
 set lazyredraw
 set laststatus=2
-set background=dark
 set fillchars+=stl:\ ,stlnc:\
 let g:rehash256 = 1
 set mouse=a
 set clipboard=unnamed
-"set relativenumber
-"
+set nu
+" set relativenumber
+
 " Whitespace stuff
 set nowrap
 set tabstop=2
@@ -89,7 +85,35 @@ set splitbelow
 set splitright
 
 " Set tags directory  
-set tags=./tags; 
+set tags=./tags
+
+" " tagbar cofig
+" let g:tagbar_usearrows = 1
+" nnoremap <leader>l :TagbarToggle<CR>
+" " CoffeeTags
+" let g:CoffeeAutoTagDisabled=1  
+" let g:CoffeeAutoTagIncludeVars=1
+
+" let g:tagbar_type_ruby = {
+"     \ 'kinds' : [
+"         \ 'm:modules',
+"         \ 'c:classes',
+"         \ 'd:describes',
+"         \ 'C:contexts',
+"         \ 'f:methods',
+"         \ 'F:singleton methods'
+"     \ ]
+" \ }
+" let g:tagbar_type_coffee = {
+"     \ 'ctagstype' : 'coffee',
+"     \ 'kinds'     : [
+"         \ 'c:classes',
+"         \ 'm:methods',
+"         \ 'f:functions',
+"         \ 'v:variables',
+"         \ 'f:fields',
+"     \ ]
+" \ }
 
 " Removes highlight of your last search
 nmap <C-c> :nohl<CR>
@@ -103,6 +127,11 @@ nmap <C-x> :close<CR>
 inoremap <c-s> <Esc>:wa!<CR>
 vnoremap <c-s> v:wa!<CR>
 noremap <c-s> :wa!<CR>
+
+" tabs
+map <c-t> :tabnew<CR>
+noremap <tab> :tabnext<CR>
+noremap <s-tab> :tabprevious<CR>
 
 " fix double quotes
 noremap <leader>' :%s/"/'/<CR>:nohl<CR>
@@ -125,22 +154,24 @@ autocmd BufWritePre *.js :%s/\s\+$//e
 autocmd BufWritePre *.coffee :%s/\s\+$//e
 autocmd BufWritePre *.haml :%s/\s\+$//e
 autocmd BufWritePre *.scss :%s/\s\+$//e
+autocmd BufWritePre *.yml :%s/\s\+$//e
 
 " Disable syntax highlight for files larger than 50 MB
 autocmd BufWinEnter * if line2byte(line("$") + 1) > 50000000 | syntax clear | endif
+"
 " Enable python
 let g:python_host_prog = '/usr/local/bin/python'
 let g:python3_host_prog = '/usr/local/bin/python3'
 
 " Airline
-" let g:airline#extensions#tabline#enabled = 1
-" let g:airline#extensions#tabline#show_buffers = 1
-" let g:airline#extensions#tabline#buffer_min_count = 2
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#show_buffers = 0
+let g:airline#extensions#tabline#buffer_min_count = 2
 let g:airline#extensions#branch#enabled = 1
 let g:airline#extensions#hunks#enabled = 1
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#fnamemod = ':t'
-let g:airline_theme='powerlineish'
+let g:airline_theme='gruvbox'
 
 " DelimitMate
 let g:delimitMate_expand_space = 1
@@ -149,25 +180,46 @@ let g:delimitMate_expand_inside_quotes = 1
 let delimitMate_jump_expansion = 1
 
 " Netrw
-" let g:netrw_list_hide = '\(^\|\s\s\)\zs\.\S\+'
-" let g:netrw_fastbrowse = 2
+let g:netrw_list_hide = '\(^\|\s\s\)\zs\.\S\+'
+let g:netrw_fastbrowse = 2
 
 " Deoplete
 let g:deoplete#enable_at_startup = 1
-" use tab to forward cycle
-"inoremap <silent><expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
-" use shift-tab to reverse cycle
-"inoremap <silent><expr><s-tab> pumvisible() ? "\<c-p>" : "\<s-tab>"
-" set omnifunc=syntaxcomplete#Complete
-" autocmd FileType ruby,eruby let g:rubycomplete_buffer_loading = 1
-" autocmd FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
-" autocmd FileType ruby,eruby let g:rubycomplete_rails = 1
+let g:deoplete#enable_at_startup=1
+let g:deoplete#auto_completion_start_length=2
+let deoplete#tag#cache_limit_size = 50000000
+
+let g:deoplete#sources={}
+let g:deoplete#sources._    = ['buffer', 'file', 'tag', 'omni']
+let g:deoplete#sources.ruby = ['buffer', 'member', 'file', 'ultisnips', 'tag']
+let g:deoplete#sources.vim  = ['buffer', 'file', 'ultisnips']
+let g:deoplete#sources.css  = ['buffer', 'file', 'omni', 'ultisnips', 'tag']
+let g:deoplete#sources.scss = ['buffer', 'file', 'omni', 'ultisnips', 'tag']
+let g:deoplete#sources.javascript = ['buffer', 'member', 'file', 'ultisnips', 'tag']
+let g:deoplete#sources.coffee = ['buffer', 'member', 'file', 'omni', 'ultisnips', 'tag']
+let g:deoplete#sources.haml = ['buffer', 'member', 'file', 'omni', 'ultisnips', 'tag']
+let g:deoplete#sources.html = ['buffer', 'member', 'file', 'omni', 'ultisnips', 'tag']
+
+" inoremap <expr><C-h> deolete#mappings#smart_close_popup()."\<C-h>"
+" inoremap <expr><BS> deoplete#mappings#smart_close_popup()."\<C-h>"
+" inoremap <silent><expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
+" inoremap <silent><expr><s-tab> pumvisible() ? "\<c-p>" : "\<s-tab>"
+
+autocmd FileType ruby,eruby let g:rubycomplete_buffer_loading = 1
+autocmd FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
+autocmd FileType ruby,eruby let g:rubycomplete_rails = 1
+autocmd FileType css,scss,sass,html,haml setlocal iskeyword+=-
 
 " UltiSnips config
-" inoremap <silent><expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<tab>"
 let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+" Disable built-in cx-ck to be able to go backward
+" inoremap <C-x><C-k> <NOP>
+" let g:UltiSnipsExpandTrigger='<C-j>'
+" let g:UltiSnipsListSnippets='<C-s>'
+" let g:UltiSnipsJumpForwardTrigger='<C-j>'
+" let g:UltiSnipsJumpBackwardTrigger='<C-k>'
 
 " CtrlP
 let g:ctrlp_custom_ignore = 'DS_Store\|git\|tmp\|^log\|bundle\|.git\|uploads\|vendor\|public\|.un~'
@@ -181,12 +233,17 @@ let g:ctrlp_cmd = 'CtrlPMRU'
 " NeoMake
 autocmd! BufWritePost * Neomake
 let g:neomake_javascript_enabled_makers = ['eslint']
-let g:neomake_coffeescript_coffeelint_maker = {
-    \ 'args': ['--file ~/.coffelintrc'],
-    \ }
+let g:neomake_coffeescript_coffeelint_maker = { 'args': ['--file ~/.coffelintrc'] }
 let g:neomake_coffeescript_enabled_makers = ['coffeelint']
 let g:neomake_css_enabled_makers = ['csslint']
 let g:neomake_scss_enabled_makers = ['scsslint']
 let g:neomake_open_list = 0
 
-:silent! colorscheme atom-dark-256
+:silent! colorscheme gruvbox
+set background=dark
+
+" UI tweaks
+" get rid of window split separator char
+set fillchars+=vert:\ ,stlnc:\ 
+" hide tildes on blank lines
+highlight EndOfBuffer ctermfg=bg ctermbg=bg
