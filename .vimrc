@@ -5,9 +5,6 @@ Plug 'tpope/vim-fugitive'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'tpope/vim-vinegar'
-" Plug 'majutsushi/tagbar'
-" Plug 'airblade/vim-gitgutter'
-" Completion, fuzzy search, syntax
 Plug 'Raimondi/delimitMate'
 Plug 'tpope/vim-endwise'
 Plug 'neomake/neomake'
@@ -17,10 +14,8 @@ Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'tpope/vim-commentary'
 Plug 'sheerun/vim-polyglot'
-" Plug 'vim-ruby/vim-ruby', {'for':['ruby']}
 Plug 'tpope/vim-rails', {'for':['ruby', 'haml']}
-" Plug 'tpope/vim-haml', {'for':['haml','scss','sass']}
-"
+
 " Colorschemes
 Plug 'morhetz/gruvbox'
 
@@ -37,13 +32,12 @@ set showcmd                       " shows what you're typing as a command
 set wildmenu
 set timeoutlen=1000 ttimeoutlen=0 " eliminating esc delays
 set shortmess+=I                  " no welcome message
-set lazyredraw
+set nolazyredraw
 set laststatus=2
 set fillchars+=stl:\ ,stlnc:\
 let g:rehash256 = 1
 set mouse=a
-set clipboard=unnamed
-set nu
+"set clipboard=unnamed
 " set relativenumber
 
 " Whitespace stuff
@@ -86,34 +80,6 @@ set splitright
 
 " Set tags directory  
 set tags=./tags
-
-" " tagbar cofig
-" let g:tagbar_usearrows = 1
-" nnoremap <leader>l :TagbarToggle<CR>
-" " CoffeeTags
-" let g:CoffeeAutoTagDisabled=1  
-" let g:CoffeeAutoTagIncludeVars=1
-
-" let g:tagbar_type_ruby = {
-"     \ 'kinds' : [
-"         \ 'm:modules',
-"         \ 'c:classes',
-"         \ 'd:describes',
-"         \ 'C:contexts',
-"         \ 'f:methods',
-"         \ 'F:singleton methods'
-"     \ ]
-" \ }
-" let g:tagbar_type_coffee = {
-"     \ 'ctagstype' : 'coffee',
-"     \ 'kinds'     : [
-"         \ 'c:classes',
-"         \ 'm:methods',
-"         \ 'f:functions',
-"         \ 'v:variables',
-"         \ 'f:fields',
-"     \ ]
-" \ }
 
 " Removes highlight of your last search
 nmap <C-c> :nohl<CR>
@@ -188,6 +154,8 @@ let g:deoplete#enable_at_startup = 1
 let g:deoplete#enable_at_startup=1
 let g:deoplete#auto_completion_start_length=2
 let deoplete#tag#cache_limit_size = 50000000
+" let g:deoplete#omni#input_patterns.ruby =
+		\ ['[^. *\t]\.\w*', '[a-zA-Z_]\w*::']
 
 let g:deoplete#sources={}
 let g:deoplete#sources._    = ['buffer', 'file', 'tag', 'omni']
@@ -200,20 +168,28 @@ let g:deoplete#sources.coffee = ['buffer', 'member', 'file', 'omni', 'ultisnips'
 let g:deoplete#sources.haml = ['buffer', 'member', 'file', 'omni', 'ultisnips', 'tag']
 let g:deoplete#sources.html = ['buffer', 'member', 'file', 'omni', 'ultisnips', 'tag']
 
+" inoremap <silent><expr> <TAB>
+"     \ pumvisible() ? "\<C-n>" :
+"     \ <SID>check_back_space() ? "\<TAB>" :
+"     \ deoplete#mappings#manual_complete()
+" function! s:check_back_space() abort "{{{
+"     let col = col('.') - 1
+"     return !col || getline('.')[col - 1]  =~ '\s'
+" endfunction"}}}
 " inoremap <expr><C-h> deolete#mappings#smart_close_popup()."\<C-h>"
 " inoremap <expr><BS> deoplete#mappings#smart_close_popup()."\<C-h>"
 " inoremap <silent><expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
 " inoremap <silent><expr><s-tab> pumvisible() ? "\<c-p>" : "\<s-tab>"
 
-autocmd FileType ruby,eruby let g:rubycomplete_buffer_loading = 1
-autocmd FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
-autocmd FileType ruby,eruby let g:rubycomplete_rails = 1
-autocmd FileType css,scss,sass,html,haml setlocal iskeyword+=-
+" autocmd FileType ruby,eruby let g:rubycomplete_buffer_loading = 1
+" autocmd FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
+" autocmd FileType ruby,eruby let g:rubycomplete_rails = 1
+" autocmd FileType css,scss,sass,html,haml setlocal iskeyword+=-
 
 " UltiSnips config
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<tab>"
-let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+" let g:UltiSnipsExpandTrigger="<tab>"
+" let g:UltiSnipsJumpForwardTrigger="<tab>"
+" let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 " Disable built-in cx-ck to be able to go backward
 " inoremap <C-x><C-k> <NOP>
 " let g:UltiSnipsExpandTrigger='<C-j>'
