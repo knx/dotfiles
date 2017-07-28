@@ -1,20 +1,24 @@
 call plug#begin('~/.vim/plugged')
 
 " UI
-Plug 'tpope/vim-fugitive'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
+"Plug 'airblade/vim-gitgutter'
+"Plug 'vim-airline/vim-airline'
+"Plug 'vim-airline/vim-airline-themes'
+Plug 'itchyny/vim-gitbranch'
+Plug 'itchyny/lightline.vim'
 Plug 'tpope/vim-vinegar'
 Plug 'Raimondi/delimitMate'
 Plug 'tpope/vim-endwise'
-Plug 'neomake/neomake'
+ Plug 'w0rp/ale'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'tpope/vim-commentary'
 Plug 'sheerun/vim-polyglot'
-Plug 'tpope/vim-rails', {'for':['ruby', 'haml']}
+Plug 'tpope/vim-rails', {'for':['ruby', 'haml', 'yaml']}
+Plug 'hail2u/vim-css3-syntax', {'for':['css', 'scss']}
+Plug 'groenewege/vim-less', {'for':['less']}
 
 " Colorschemes
 Plug 'morhetz/gruvbox'
@@ -33,13 +37,16 @@ set wildmenu
 set timeoutlen=1000 ttimeoutlen=0 " eliminating esc delays
 set shortmess+=I                  " no welcome message
 set nolazyredraw
+set noshowmode
 set laststatus=2
-set fillchars+=stl:\ ,stlnc:\
-let g:rehash256 = 1
+"let g:rehash256 = 1
 set mouse=a
-"set clipboard=unnamed
+set clipboard=unnamed
 " set relativenumber
-
+" get rid of window split separator char
+"set fillchars+=stl:\ ,stlnc:\
+set fillchars+=vert:\ ,stlnc:\ 
+"
 " Whitespace stuff
 set nowrap
 set tabstop=2
@@ -78,7 +85,7 @@ set backspace=indent,eol,start
 set splitbelow
 set splitright
 
-" Set tags directory  
+" Set tags file  
 set tags=./tags
 
 " Removes highlight of your last search
@@ -129,15 +136,71 @@ autocmd BufWinEnter * if line2byte(line("$") + 1) > 50000000 | syntax clear | en
 let g:python_host_prog = '/usr/local/bin/python'
 let g:python3_host_prog = '/usr/local/bin/python3'
 
+" Deoplete
+let g:deoplete#enable_at_startup = 1
+let g:deoplete#auto_completion_start_length = 2
+let deoplete#tag#cache_limit_size = 50000000
+" let g:deoplete#omni#input_patterns.ruby =
+		\ ['[^. *\t]\.\w*', '[a-zA-Z_]\w*::']
+
+let g:deoplete#sources={}
+let g:deoplete#sources._    = ['buffer', 'file', 'tag', 'omni']
+let g:deoplete#sources.ruby = ['tag', 'buffer', 'member', 'file', 'ultisnips']
+let g:deoplete#sources.vim  = ['buffer', 'file', 'ultisnips']
+let g:deoplete#sources.css  = ['buffer', 'file', 'omni', 'ultisnips', 'tag']
+let g:deoplete#sources.scss = ['buffer', 'file', 'omni', 'ultisnips', 'tag']
+let g:deoplete#sources.javascript = ['buffer', 'member', 'file', 'ultisnips', 'tag']
+let g:deoplete#sources.coffee = ['buffer', 'member', 'file', 'omni', 'ultisnips', 'tag']
+let g:deoplete#sources.haml = ['buffer', 'member', 'file', 'omni', 'ultisnips', 'tag']
+let g:deoplete#sources.html = ['buffer', 'member', 'file', 'omni', 'ultisnips', 'tag']
+
+inoremap <silent><expr> <TAB>
+    \ pumvisible() ? "\<C-n>" :
+    \ <SID>check_back_space() ? "\<TAB>" :
+    \ deoplete#mappings#manual_complete()
+function! s:check_back_space() abort "{{{
+    let col = col('.') - 1
+    return !col || getline('.')[col - 1]  =~ '\s'
+endfunction"}}}
+inoremap <expr><C-h> deolete#mappings#smart_close_popup()."\<C-h>"
+inoremap <expr><BS> deoplete#mappings#smart_close_popup()."\<C-h>"
+inoremap <silent><expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
+inoremap <silent><expr><s-tab> pumvisible() ? "\<c-p>" : "\<s-tab>"
+
+autocmd FileType ruby,eruby let g:rubycomplete_buffer_loading = 1
+autocmd FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
+autocmd FileType ruby,eruby let g:rubycomplete_rails = 1
+autocmd FileType css,scss,sass,html,haml setlocal iskeyword+=-
+
+" Ale
+let g:ale_echo_msg_error_str = 'E'
+let g:ale_echo_msg_warning_str = 'W'
+let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
+let g:ale_lint_delay = 2000
+" let g:ale_open_list = 1
+nmap <silent> <C-k> <Plug>(ale_previous_wrap)
+nmap <silent> <C-j> <Plug>(ale_next_wrap)
+
 " Airline
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#show_buffers = 0
-let g:airline#extensions#tabline#buffer_min_count = 2
-let g:airline#extensions#branch#enabled = 1
-let g:airline#extensions#hunks#enabled = 1
-let g:airline_powerline_fonts = 1
-let g:airline#extensions#tabline#fnamemod = ':t'
-let g:airline_theme='gruvbox'
+" let g:airline#extensions#tabline#enabled = 1
+" let g:airline#extensions#tabline#show_buffers = 0
+" let g:airline#extensions#tabline#buffer_min_count = 2
+" let g:airline#extensions#branch#enabled = 1
+" let g:airline#extensions#hunks#enabled = 1
+" let g:airline_powerline_fonts = 1
+" let g:airline#extensions#tabline#fnamemod = ':t'
+" let g:airline_theme='gruvbox'
+
+let g:lightline = {
+      \ 'colorscheme': 'default',
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ],
+      \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
+      \ },
+      \ 'component_function': {
+      \   'gitbranch': 'gitbranch#name'
+      \ },
+      \ }
 
 " DelimitMate
 let g:delimitMate_expand_space = 1
@@ -147,55 +210,7 @@ let delimitMate_jump_expansion = 1
 
 " Netrw
 let g:netrw_list_hide = '\(^\|\s\s\)\zs\.\S\+'
-let g:netrw_fastbrowse = 2
-
-" Deoplete
-let g:deoplete#enable_at_startup = 1
-let g:deoplete#enable_at_startup=1
-let g:deoplete#auto_completion_start_length=2
-let deoplete#tag#cache_limit_size = 50000000
-" let g:deoplete#omni#input_patterns.ruby =
-		\ ['[^. *\t]\.\w*', '[a-zA-Z_]\w*::']
-
-let g:deoplete#sources={}
-let g:deoplete#sources._    = ['buffer', 'file', 'tag', 'omni']
-let g:deoplete#sources.ruby = ['buffer', 'member', 'file', 'ultisnips', 'tag']
-let g:deoplete#sources.vim  = ['buffer', 'file', 'ultisnips']
-let g:deoplete#sources.css  = ['buffer', 'file', 'omni', 'ultisnips', 'tag']
-let g:deoplete#sources.scss = ['buffer', 'file', 'omni', 'ultisnips', 'tag']
-let g:deoplete#sources.javascript = ['buffer', 'member', 'file', 'ultisnips', 'tag']
-let g:deoplete#sources.coffee = ['buffer', 'member', 'file', 'omni', 'ultisnips', 'tag']
-let g:deoplete#sources.haml = ['buffer', 'member', 'file', 'omni', 'ultisnips', 'tag']
-let g:deoplete#sources.html = ['buffer', 'member', 'file', 'omni', 'ultisnips', 'tag']
-
-" inoremap <silent><expr> <TAB>
-"     \ pumvisible() ? "\<C-n>" :
-"     \ <SID>check_back_space() ? "\<TAB>" :
-"     \ deoplete#mappings#manual_complete()
-" function! s:check_back_space() abort "{{{
-"     let col = col('.') - 1
-"     return !col || getline('.')[col - 1]  =~ '\s'
-" endfunction"}}}
-" inoremap <expr><C-h> deolete#mappings#smart_close_popup()."\<C-h>"
-" inoremap <expr><BS> deoplete#mappings#smart_close_popup()."\<C-h>"
-" inoremap <silent><expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
-" inoremap <silent><expr><s-tab> pumvisible() ? "\<c-p>" : "\<s-tab>"
-
-" autocmd FileType ruby,eruby let g:rubycomplete_buffer_loading = 1
-" autocmd FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
-" autocmd FileType ruby,eruby let g:rubycomplete_rails = 1
-" autocmd FileType css,scss,sass,html,haml setlocal iskeyword+=-
-
-" UltiSnips config
-" let g:UltiSnipsExpandTrigger="<tab>"
-" let g:UltiSnipsJumpForwardTrigger="<tab>"
-" let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
-" Disable built-in cx-ck to be able to go backward
-" inoremap <C-x><C-k> <NOP>
-" let g:UltiSnipsExpandTrigger='<C-j>'
-" let g:UltiSnipsListSnippets='<C-s>'
-" let g:UltiSnipsJumpForwardTrigger='<C-j>'
-" let g:UltiSnipsJumpBackwardTrigger='<C-k>'
+"let g:netrw_fastbrowse = 2
 
 " CtrlP
 let g:ctrlp_custom_ignore = 'DS_Store\|git\|tmp\|^log\|bundle\|.git\|uploads\|vendor\|public\|.un~'
@@ -206,20 +221,8 @@ let g:ctrlp_mruf_max = 50
 let g:ctrlp_mruf_default_order = 1
 let g:ctrlp_cmd = 'CtrlPMRU'
 
-" NeoMake
-autocmd! BufWritePost * Neomake
-let g:neomake_javascript_enabled_makers = ['eslint']
-let g:neomake_coffeescript_coffeelint_maker = { 'args': ['--file ~/.coffelintrc'] }
-let g:neomake_coffeescript_enabled_makers = ['coffeelint']
-let g:neomake_css_enabled_makers = ['csslint']
-let g:neomake_scss_enabled_makers = ['scsslint']
-let g:neomake_open_list = 0
-
 :silent! colorscheme gruvbox
 set background=dark
-
-" UI tweaks
-" get rid of window split separator char
-set fillchars+=vert:\ ,stlnc:\ 
 " hide tildes on blank lines
 highlight EndOfBuffer ctermfg=bg ctermbg=bg
+"set eventignore=CursorMoved

@@ -84,3 +84,6 @@ function google() {
 #         command ssh "$@"
 #     fi
 # }
+
+alias cow="fortune | cowsay -f $(ls /usr/local/share/cows/ | shuf -n1)"
+alias w='curl wttr.in/~"warsaw"'

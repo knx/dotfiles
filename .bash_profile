@@ -68,3 +68,8 @@ source $BASH_IT/bash_it.sh
 
 # # make title setting work hack
 # preexec_xterm_title_install
+
+#test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
+#eval $(thefuck --alias)
+
+cow
