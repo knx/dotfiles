@@ -29,10 +29,10 @@ ZSH_THEME="norm"
 # DISABLE_AUTO_TITLE="true"
 
 # Uncomment the following line to enable command auto-correction.
-# ENABLE_CORRECTION="true"
+ENABLE_CORRECTION="true"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
-# COMPLETION_WAITING_DOTS="true"
+COMPLETION_WAITING_DOTS="true"
 
 # Uncomment the following line if you want to disable marking untracked files
 # under VCS as dirty. This makes repository status check for large repositories
@@ -64,7 +64,7 @@ source $ZSH/oh-my-zsh.sh
 
 # Preferred editor for local and remote sessions
 # if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
+export EDITOR='nvim'
 # else
 #   export EDITOR='mvim'
 # fi
@@ -87,3 +87,9 @@ alias v="nvim"
 alias vi="nvim"
 alias vim="nvim"
 alias j="zz"
+alias gs="git status"
+alias push="git push"
+alias pull="git pull"
+
+
+source "/Users/knx/.oh-my-zsh/custom/themes/spaceship.zsh-theme"
