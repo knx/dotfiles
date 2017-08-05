@@ -1,6 +1,6 @@
 [user]
 	email = knx@digitalheads.pl
-  name = Krzysztof Niksiński
+	name = knx
 [filter "media"]
 	required = true
 	clean = git media clean %f

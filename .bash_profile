@@ -56,6 +56,8 @@ unset MAILCHECK
 # Set this to false to turn off version control status checking within the prompt for all themes
 export SCM_CHECK=true
 
+export TODO=task
+
 # Load Bash It
 source $BASH_IT/bash_it.sh
 
