@@ -4,12 +4,14 @@ call plug#begin('~/.vim/plugged')
 "Plug 'airblade/vim-gitgutter'
 "Plug 'vim-airline/vim-airline'
 "Plug 'vim-airline/vim-airline-themes'
+Plug 'mhinz/vim-startify'
 Plug 'itchyny/vim-gitbranch'
 Plug 'itchyny/lightline.vim'
 Plug 'tpope/vim-vinegar'
 Plug 'Raimondi/delimitMate'
 Plug 'tpope/vim-endwise'
- Plug 'w0rp/ale'
+Plug 'w0rp/ale'
+Plug 'ryanoasis/vim-devicons'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'SirVer/ultisnips'
@@ -45,7 +47,7 @@ set clipboard=unnamed
 " set relativenumber
 " get rid of window split separator char
 "set fillchars+=stl:\ ,stlnc:\
-set fillchars+=vert:\ ,stlnc:\ 
+"set fillchars+=vert:\ ,stlnc:\ 
 "
 " Whitespace stuff
 set nowrap
@@ -177,30 +179,45 @@ let g:ale_echo_msg_error_str = 'E'
 let g:ale_echo_msg_warning_str = 'W'
 let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
 let g:ale_lint_delay = 2000
+let g:ale_sign_warning = ''
+let g:ale_sign_error = ''
+let g_ale_sign_info = ''
 " let g:ale_open_list = 1
 nmap <silent> <C-k> <Plug>(ale_previous_wrap)
 nmap <silent> <C-j> <Plug>(ale_next_wrap)
 
-" Airline
-" let g:airline#extensions#tabline#enabled = 1
-" let g:airline#extensions#tabline#show_buffers = 0
-" let g:airline#extensions#tabline#buffer_min_count = 2
-" let g:airline#extensions#branch#enabled = 1
-" let g:airline#extensions#hunks#enabled = 1
-" let g:airline_powerline_fonts = 1
-" let g:airline#extensions#tabline#fnamemod = ':t'
-" let g:airline_theme='gruvbox'
+" Devicons
+let g:WebDevIconsOS = 'Darwin'
+
+
 
 let g:lightline = {
-      \ 'colorscheme': 'default',
+      \ 'colorscheme': 'powerline',
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
       \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
       \ },
-      \ 'component_function': {
-      \   'gitbranch': 'gitbranch#name'
+      \ 'component': {
+      \   'vim-symbol': ''
       \ },
+      \ 'component_function': {
+      \   'gitbranch': 'MyGitString',
+      \   'filetype': 'MyFiletype',
+      \   'fileformat': 'MyFileformat',
       \ }
+      \ }
+
+function! MyGitString()
+  return strlen(gitbranch#name()) > 0 ? ' ' . gitbranch#name() : ''
+endfunction
+
+function! MyFiletype()
+  return winwidth(0) > 70 ? (strlen(&filetype) ? &filetype . ' ' . WebDevIconsGetFileTypeSymbol() : 'no ft') : ''
+endfunction
+
+function! MyFileformat()
+  return winwidth(0) > 70 ? (&fileformat . ' ' . WebDevIconsGetFileFormatSymbol()) : ''
+endfunction
 
 " DelimitMate
 let g:delimitMate_expand_space = 1
