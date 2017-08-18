@@ -1,0 +1,96 @@
+{
+	"use_non_breaking_spaces": false,
+	"dividers": {
+		"left": {
+			"hard": " ",
+			"soft": "| "
+		},
+		"right": {
+			"hard": " ",
+			"soft": " |"
+		}
+	},
+	"spaces": 1,
+  "outer_padding": 0,
+	"segments": {
+		"right": [
+      {
+        "function": "powerline.segments.common.players.spotify",
+        "name": "player",
+        "priority": 200,
+        "interval": 10,
+        "before": " ",
+        "after": " |",
+        "args": {
+          "state_symbols": {
+            "play": "",
+            "pause": "",
+            "stop": "",
+            "fallback": ""
+          },
+          "format": "{state_symbol} {artist} - {title} {elapsed}"
+        }
+      },
+      {
+        "function":"powerline.segments.common.net.network_load",
+        "name": "network_load",
+        "interval": 10,
+        "priority": 210,
+        "args": {
+          "si_prefix": true,
+          "recv_format": " {value:>8}",
+          "sent_format": "  {value:>8}"
+        }
+      },
+      {
+        "function": "powerline.segments.common.net.internal_ip",
+        "interval": 10,
+				"priority": 100,
+        "before": " "
+      },
+      {
+        "function": "powerline.segments.common.net.external_ip",
+        "interval": 10,
+				"priority": 100,
+        "before": " "
+      },
+			{
+				"function": "powerline.segments.common.sys.cpu_load_percent",
+        "before": "",
+        "interval": 5,
+				"priority": 50,
+        "args" : {
+          "format": "{:6.1f}"
+        }
+			},
+      {
+        "function":"powerline.segments.common.bat.battery",
+        "interval": 10,
+        "args": {
+          "online": " ",
+          "offline": " "
+        }
+      },
+			{
+				"function": "powerline.segments.common.time.date",
+				"name": "time",
+				"args": {
+					"format": "%H:%M",
+					"istime": true
+				}
+			},
+      {
+        "function":"powerline.segments.common.env.user",
+        "interval": 10,
+        "priority": 200,
+        "before": " "
+      },
+			{
+				"function": "powerline.segments.common.net.hostname",
+        "before": " ",
+        "interval": 10,
+        "priority": 200
+			}
+		]
+	}
+}
