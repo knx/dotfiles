@@ -1,5 +1,5 @@
 # If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
+export PATH=/usr/local/sbin:$PATH
 
 # Path to your oh-my-zsh installation.
 export ZSH=/Users/knx/.oh-my-zsh
@@ -29,10 +29,10 @@ ZSH_THEME="mine"
 # DISABLE_AUTO_TITLE="true"
 
 # Uncomment the following line to enable command auto-correction.
-ENABLE_CORRECTION="true"
+# ENABLE_CORRECTION="true"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
-#COMPLETION_WAITING_DOTS="true"
+COMPLETION_WAITING_DOTS="true"
 
 # Uncomment the following line if you want to disable marking untracked files
 # under VCS as dirty. This makes repository status check for large repositories
@@ -51,15 +51,43 @@ ENABLE_CORRECTION="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git extract history history-substring-search taskwarrior tmux fasd bundler gem postgres rails ruby rvm brew osx themes common-aliases)
+plugins=(
+  bgnotify
+  brew 
+  bundler 
+  catimg 
+  capistrano
+  colorize 
+  colored-man-pages
+  command-not-found 
+  common-aliases
+  extract 
+  fasd 
+  gem 
+  git 
+  history 
+  history-substring-search 
+  iterm2
+  # last-working-dir
+  osx 
+  postgres 
+  rails 
+  rake-fast
+  ruby 
+  rvm 
+  # taskwarrior 
+  # you-should-use
+  # tmux
+  themes 
+)
 
 
 # User configuration
 #
 # TMUX
-ZSH_TMUX_AUTOSTART=true
-ZSH_TMUX_AUTOCONNECT=false
-#ZSH_TMUX_ITERM2=true
+# ZSH_TMUX_AUTOSTART=false
+# ZSH_TMUX_AUTOCONNECT=true
+# ZSH_TMUX_ITERM2=false
 
 
 # export MANPATH="/usr/local/man:$MANPATH"
@@ -94,7 +122,7 @@ alias pull="git pull"
 
 alias vm='vi `ls db/migrate/*.rb | tail -n 1`'
 alias tags="ctags --recurse --languages=Ruby,HTML,JavaScript --exclude=.git --exclude=log --exclude=lib/tracker/node_modules --exclude=lib/storage/node_modules --exclude=vendor/assets/bower_components \`bundle show --paths\` ."
-alias rspec="bin/rspec 2>/dev/null"
+# alias rspec="bin/rspec 2>/dev/null"
 
 fpath=(/usr/local/share/zsh-completions $fpath)
 #source "/Users/knx/.oh-my-zsh/custom/themes/spaceship.zsh-theme"
@@ -102,3 +130,5 @@ source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 source $ZSH/oh-my-zsh.sh
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
