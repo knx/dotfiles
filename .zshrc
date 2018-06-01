@@ -65,6 +65,7 @@ plugins=(
   fasd 
   gem 
   git 
+  globalias
   history 
   history-substring-search 
   iterm2
