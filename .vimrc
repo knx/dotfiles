@@ -19,9 +19,7 @@ Plug 'tpope/vim-commentary'
 Plug 'sheerun/vim-polyglot'
 Plug 'tpope/vim-rails', {'for':['ruby', 'haml', 'yaml']}
 Plug 'fishbullet/deoplete-ruby', { 'for': 'ruby' }
-" Plug 'benekastah/neomake'
-" Plug 'hail2u/vim-css3-syntax', {'for':['css', 'scss']}
-" Plug 'groenewege/vim-less', {'for':['less']}
+" Plug 'posva/vim-vue'
 
 " Colorschemes
 Plug 'morhetz/gruvbox'
@@ -140,8 +138,6 @@ autocmd BufWritePre *.yml :%s/\s\+$//e
 " Disable syntax highlight for files larger than 50 MB
 autocmd BufWinEnter * if line2byte(line("$") + 1) > 50000000 | syntax clear | endif 
 
-" Rubocop fix current file
-
 " Enable python
 let g:python_host_prog = '/usr/local/bin/python'
 let g:python3_host_prog = '/usr/local/bin/python3'
@@ -152,21 +148,23 @@ let g:deoplete#auto_completion_start_length = 2
 let deoplete#tag#cache_limit_size = 50000000
 " let g:deoplete#omni#input_patterns = {"ruby": ['[^. *\t]\.\w*', '[a-zA-Z_]\w*::']}
 "    \  '[^. *\t]\.\w*\|\h\w*::'
-" let g:deoplete#sources={}
-" let g:deoplete#sources._    = ['buffer', 'file', 'tag', 'omni']
-" let g:deoplete#sources.ruby = ['tag', 'buffer', 'member', 'file', 'ultisnips']
-" let g:deoplete#sources.vim  = ['buffer', 'file', 'ultisnips']
-" let g:deoplete#sources.css  = ['buffer', 'file', 'omni', 'ultisnips', 'tag']
-" let g:deoplete#sources.scss = ['buffer', 'file', 'omni', 'ultisnips', 'tag']
-" let g:deoplete#sources.javascript = ['buffer', 'member', 'file', 'ultisnips', 'tag']
-" let g:deoplete#sources.coffee = ['buffer', 'member', 'file', 'omni', 'ultisnips', 'tag']
-" let g:deoplete#sources.haml = ['buffer', 'member', 'file', 'omni', 'ultisnips', 'tag']
-" let g:deoplete#sources.html = ['buffer', 'member', 'file', 'omni', 'ultisnips', 'tag']
-" let g:monster#completion#rcodetools#backend = "async_rct_complete"
+let g:deoplete#sources={}
+let g:deoplete#sources._    = ['buffer', 'file', 'tag', 'omni']
+let g:deoplete#sources.ruby = ['tag', 'buffer', 'member', 'file', 'ultisnips', 'omni']
+let g:deoplete#sources.vim  = ['buffer', 'file', 'ultisnips']
+let g:deoplete#sources.css  = ['buffer', 'file', 'omni', 'ultisnips', 'tag']
+let g:deoplete#sources.scss = ['buffer', 'file', 'omni', 'ultisnips', 'tag']
+let g:deoplete#sources.javascript = ['buffer', 'member', 'file', 'ultisnips', 'tag']
+let g:deoplete#sources.coffee = ['buffer', 'member', 'file', 'omni', 'ultisnips', 'tag']
+let g:deoplete#sources.haml = ['buffer', 'member', 'file', 'omni', 'ultisnips', 'tag']
+let g:deoplete#sources.html = ['buffer', 'member', 'file', 'omni', 'ultisnips', 'tag']
 let g:deoplete#sources#omni#input_patterns = {
 \   "ruby" : ['[^. *\t]\.\w*\|\h\w*::', '[a-zA-Z_]\w*::']
 \}
 call deoplete#custom#source('buffer', 'rank', 501)
+
+" vue 
+" autocmd BufRead,BufNewFile *.vue setlocal filetype=vue.html.javascript.css
 
 " use tab
 imap <silent><expr> <TAB>
@@ -178,14 +176,6 @@ function! s:check_back_space() abort "{{{
   return !col || getline('.')[col - 1]  =~ '\s'
 endfunction"}}}
 
-" inoremap <silent><expr> <TAB>
-"     \ pumvisible() ? "\<C-n>" :
-"     \ <SID>check_back_space() ? "\<TAB>" :
-"     \ deoplete#mappings#manual_complete()
-" function! s:check_back_space() abort "{{{
-"     let col = col('.') - 1
-"     return !col || getline('.')[col - 1]  =~ '\s'
-" endfunction"}}}
 " inoremap <expr><C-h> deolete#mappings#smart_close_popup()."\<C-h>"
 " inoremap <expr><BS> deoplete#mappings#smart_close_popup()."\<C-h>"
 " inoremap <silent><expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
@@ -206,6 +196,9 @@ autocmd FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
 autocmd FileType ruby,eruby let g:rubycomplete_rails = 1
 set omnifunc=syntaxcomplete#Complete
 
+" Fix syntax in vue files
+autocmd FileType vue syntax sync fromstart
+
 " Ale
 let g:ale_echo_msg_error_str = 'E'
 let g:ale_echo_msg_warning_str = 'W'
@@ -225,6 +218,8 @@ nmap <silent> <C-j> <Plug>(ale_next_wrap)
 
 " Devicons
 let g:WebDevIconsOS = 'Darwin'
+let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols = {} " needed
+let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['vue'] = ''
 
 let g:lightline = {
       \ 'colorscheme': 'powerline',
@@ -269,7 +264,7 @@ let g:netrw_list_hide = '\(^\|\s\s\)\zs\.\S\+'
 " let g:fzf_layout = { 'window': 'enew' }
 " let g:fzf_layout = { 'window': '-tabnew' }
 " let g:fzf_layout = { 'window': '10split enew' }
-"let g:fzf_nvim_statusline = 0
+let g:fzf_nvim_statusline = 0
 
 noremap <c-f> :Files `git rev-parse --show-toplevel`<CR>
 noremap <c-d> :Files<CR>

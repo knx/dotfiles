@@ -56,56 +56,51 @@ plugins=(
   brew 
   bundler 
   catimg 
-  capistrano
   colorize 
   colored-man-pages
-  command-not-found 
   common-aliases
   extract 
   fasd 
   gem 
   git 
-  globalias
-  history 
+  # globalias
   history-substring-search 
-  iterm2
+  # iterm2
   # last-working-dir
   osx 
+  nmap
   postgres 
   rails 
   rake-fast
-  ruby 
+  # ruby 
   rvm 
+  safe-paste
   # taskwarrior 
   # you-should-use
+  # thefuck
   # tmux
-  themes 
+  # themes 
 )
 
 
 # User configuration
-#
 # TMUX
 # ZSH_TMUX_AUTOSTART=false
 # ZSH_TMUX_AUTOCONNECT=true
 # ZSH_TMUX_ITERM2=false
 
-
-# export MANPATH="/usr/local/man:$MANPATH"
-
 # You may need to manually set your language environment
-# export LANG=en_US.UTF-8
 export LANG="en_US.UTF-8"                                                                                                                                                                                                                                                  
 export LANGUAGE="en_US"                                                                                                                                                                                                                                                    
 export LC_CTYPE="en_US.UTF-8"                                                                                                                                                                                                                                                
 export LC_ALL="en_US.UTF-8"                                                                                                                                                                                                                                                  
 
 # Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-export EDITOR='nvim'
-# else
-#   export EDITOR='mvim'
-# fi
+if [[ -n $SSH_CONNECTION ]]; then
+  export EDITOR='vi'
+else
+  export EDITOR='nvim'
+fi
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
@@ -126,10 +121,8 @@ alias tags="ctags --recurse --languages=Ruby,HTML,JavaScript --exclude=.git --ex
 # alias rspec="bin/rspec 2>/dev/null"
 
 fpath=(/usr/local/share/zsh-completions $fpath)
-#source "/Users/knx/.oh-my-zsh/custom/themes/spaceship.zsh-theme"
 source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-
+source ~/.iterm2_shell_integration.zsh
 source $ZSH/oh-my-zsh.sh
-
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
