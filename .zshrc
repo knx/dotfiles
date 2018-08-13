@@ -123,6 +123,6 @@ alias tags="ctags --recurse --languages=Ruby,HTML,JavaScript --exclude=.git --ex
 fpath=(/usr/local/share/zsh-completions $fpath)
 source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source ~/.iterm2_shell_integration.zsh
-source $ZSH/oh-my-zsh.sh
+# source ~/.iterm2_shell_integration.zsh
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+source $ZSH/oh-my-zsh.sh
