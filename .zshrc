@@ -108,18 +108,6 @@ fi
 # ssh
 # export SSH_KEY_PATH="~/.ssh/rsa_id"
 
-alias v="nvim"
-alias vi="nvim"
-alias vim="nvim"
-alias j="zz"
-alias gs="git status"
-alias push="git push"
-alias pull="git pull"
-
-alias vm='vi `ls db/migrate/*.rb | tail -n 1`'
-alias tags="ctags --recurse --languages=Ruby,HTML,JavaScript --exclude=.git --exclude=log --exclude=lib/tracker/node_modules --exclude=lib/storage/node_modules --exclude=vendor/assets/bower_components \`bundle show --paths\` ."
-# alias rspec="bin/rspec 2>/dev/null"
-
 fpath=(/usr/local/share/zsh-completions $fpath)
 source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh

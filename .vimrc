@@ -12,13 +12,14 @@ Plug 'w0rp/ale'
 Plug 'ryanoasis/vim-devicons'
 Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+" Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'tpope/vim-commentary'
+" Plug 'prurigro/vim-polyglot-darkcloud'
 Plug 'sheerun/vim-polyglot'
 Plug 'tpope/vim-rails', {'for':['ruby', 'haml', 'yaml']}
-Plug 'fishbullet/deoplete-ruby', { 'for': 'ruby' }
+" Plug 'fishbullet/deoplete-ruby', { 'for': 'ruby' }
 " Plug 'posva/vim-vue'
 
 " Colorschemes
@@ -143,38 +144,38 @@ let g:python_host_prog = '/usr/local/bin/python'
 let g:python3_host_prog = '/usr/local/bin/python3'
 
 " Deoplete
-let g:deoplete#enable_at_startup = 1
-let g:deoplete#auto_completion_start_length = 2
-let deoplete#tag#cache_limit_size = 50000000
-" let g:deoplete#omni#input_patterns = {"ruby": ['[^. *\t]\.\w*', '[a-zA-Z_]\w*::']}
-"    \  '[^. *\t]\.\w*\|\h\w*::'
-let g:deoplete#sources={}
-let g:deoplete#sources._    = ['buffer', 'file', 'tag', 'omni']
-let g:deoplete#sources.ruby = ['tag', 'buffer', 'member', 'file', 'ultisnips', 'omni']
-let g:deoplete#sources.vim  = ['buffer', 'file', 'ultisnips']
-let g:deoplete#sources.css  = ['buffer', 'file', 'omni', 'ultisnips', 'tag']
-let g:deoplete#sources.scss = ['buffer', 'file', 'omni', 'ultisnips', 'tag']
-let g:deoplete#sources.javascript = ['buffer', 'member', 'file', 'ultisnips', 'tag']
-let g:deoplete#sources.coffee = ['buffer', 'member', 'file', 'omni', 'ultisnips', 'tag']
-let g:deoplete#sources.haml = ['buffer', 'member', 'file', 'omni', 'ultisnips', 'tag']
-let g:deoplete#sources.html = ['buffer', 'member', 'file', 'omni', 'ultisnips', 'tag']
-let g:deoplete#sources#omni#input_patterns = {
-\   "ruby" : ['[^. *\t]\.\w*\|\h\w*::', '[a-zA-Z_]\w*::']
-\}
-call deoplete#custom#source('buffer', 'rank', 501)
+" let g:deoplete#enable_at_startup = 1
+" let g:deoplete#auto_completion_start_length = 2
+" let deoplete#tag#cache_limit_size = 50000000
+" " let g:deoplete#omni#input_patterns = {"ruby": ['[^. *\t]\.\w*', '[a-zA-Z_]\w*::']}
+" "    \  '[^. *\t]\.\w*\|\h\w*::'
+" let g:deoplete#sources={}
+" let g:deoplete#sources._    = ['buffer', 'file', 'tag', 'omni']
+" let g:deoplete#sources.ruby = ['tag', 'buffer', 'member', 'file', 'ultisnips', 'omni']
+" let g:deoplete#sources.vim  = ['buffer', 'file', 'ultisnips']
+" let g:deoplete#sources.css  = ['buffer', 'file', 'omni', 'ultisnips', 'tag']
+" let g:deoplete#sources.scss = ['buffer', 'file', 'omni', 'ultisnips', 'tag']
+" let g:deoplete#sources.javascript = ['buffer', 'member', 'file', 'ultisnips', 'tag']
+" let g:deoplete#sources.coffee = ['buffer', 'member', 'file', 'omni', 'ultisnips', 'tag']
+" let g:deoplete#sources.haml = ['buffer', 'member', 'file', 'omni', 'ultisnips', 'tag']
+" let g:deoplete#sources.html = ['buffer', 'member', 'file', 'omni', 'ultisnips', 'tag']
+" let g:deoplete#sources#omni#input_patterns = {
+" \   "ruby" : ['[^. *\t]\.\w*\|\h\w*::', '[a-zA-Z_]\w*::']
+" \}
+" call deoplete#custom#source('buffer', 'rank', 501)
 
 " vue 
-" autocmd BufRead,BufNewFile *.vue setlocal filetype=vue.html.javascript.css
+autocmd BufRead,BufNewFile *.vue setlocal filetype=vue.html.javascript.css
 
-" use tab
-imap <silent><expr> <TAB>
-  \ pumvisible() ? "\<C-n>" :
-  \ <SID>check_back_space() ? "\<TAB>" :
-  \ deoplete#mappings#manual_complete()
-function! s:check_back_space() abort "{{{
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~ '\s'
-endfunction"}}}
+" " use tab
+" imap <silent><expr> <TAB>
+"   \ pumvisible() ? "\<C-n>" :
+"   \ <SID>check_back_space() ? "\<TAB>" :
+"   \ deoplete#mappings#manual_complete()
+" function! s:check_back_space() abort "{{{
+"   let col = col('.') - 1
+"   return !col || getline('.')[col - 1]  =~ '\s'
+" endfunction"}}}
 
 " inoremap <expr><C-h> deolete#mappings#smart_close_popup()."\<C-h>"
 " inoremap <expr><BS> deoplete#mappings#smart_close_popup()."\<C-h>"
@@ -182,19 +183,19 @@ endfunction"}}}
 " inoremap <silent><expr><s-tab> pumvisible() ? "\<c-p>" : "\<s-tab>"
 
 " filetypes
-autocmd FileType ruby,eruby,yaml,haml setlocal iskeyword+=?
-autocmd FileType ruby,eruby,yaml,haml setlocal iskeyword+=!
-autocmd FileType css,scss,sass,html,haml setlocal iskeyword+=-
-autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete
-autocmd FileType ruby,eruby let g:rubycomplete_buffer_loading = 1
-autocmd FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
-autocmd FileType ruby,eruby let g:rubycomplete_rails = 1
-set omnifunc=syntaxcomplete#Complete
+" autocmd FileType ruby,eruby,yaml,haml setlocal iskeyword+=?
+" autocmd FileType ruby,eruby,yaml,haml setlocal iskeyword+=!
+" autocmd FileType css,scss,sass,html,haml setlocal iskeyword+=-
+" autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+" autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+" autocmd FileType javascript,vue setlocal omnifunc=javascriptcomplete#CompleteJS
+" autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+" autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+" autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete
+" autocmd FileType ruby,eruby let g:rubycomplete_buffer_loading = 1
+" autocmd FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
+" autocmd FileType ruby,eruby let g:rubycomplete_rails = 1
+" set omnifunc=syntaxcomplete#Complete
 
 " Fix syntax in vue files
 autocmd FileType vue syntax sync fromstart
@@ -209,7 +210,8 @@ let g:ale_sign_error = ''
 let g_ale_sign_info = ''
 " let g:ale_open_list = 1
 let g:ale_fixers = {
-\   'ruby': ['rubocop'],
+\   '*': ['remove_trailing_lines', 'trim_whitespace'],
+\   'ruby': ['rubocop']
 \}
 
 nmap <leader>rc :ALEFix<CR>
@@ -266,10 +268,11 @@ let g:netrw_list_hide = '\(^\|\s\s\)\zs\.\S\+'
 " let g:fzf_layout = { 'window': '10split enew' }
 let g:fzf_nvim_statusline = 0
 
-noremap <c-f> :Files `git rev-parse --show-toplevel`<CR>
+" noremap <c-f> :Files `git rev-parse --show-toplevel`<CR>
+noremap <c-f> :GitFiles<CR>
 noremap <c-d> :Files<CR>
 noremap <c-h> :History<CR>
-noremap <c-g> :GitFiles<CR>
+" noremap <c-g> :GitFiles<CR>
 
 :silent! colorscheme gruvbox
 set background=dark
