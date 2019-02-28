@@ -52,12 +52,12 @@ COMPLETION_WAITING_DOTS="true"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
-  bgnotify
+  #bgnotify
   brew 
   bundler 
-  catimg 
-  colorize 
-  colored-man-pages
+  #catimg 
+  #colorize 
+  #colored-man-pages
   common-aliases
   extract 
   fasd 
@@ -68,18 +68,22 @@ plugins=(
   # iterm2
   # last-working-dir
   osx 
-  nmap
+  # nmap
   postgres 
+  pyenv
+  pipenv
   rails 
   rake-fast
   # ruby 
   # rvm 
-  safe-paste
+  # safe-paste
   # taskwarrior 
   # you-should-use
   # thefuck
   # tmux
   # themes 
+  # vagrant-prompt
+  # vagrant
 )
 
 
@@ -110,7 +114,10 @@ fi
 
 fpath=(/usr/local/share/zsh-completions $fpath)
 source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+# source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 # source ~/.iterm2_shell_integration.zsh
 source $ZSH/oh-my-zsh.sh
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+export PATH="$PATH:$HOME/.rvm/bin"

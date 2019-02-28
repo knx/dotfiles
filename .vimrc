@@ -6,18 +6,20 @@ call plug#begin('~/.vim/plugged')
 Plug 'itchyny/vim-gitbranch'
 Plug 'itchyny/lightline.vim'
 Plug 'tpope/vim-vinegar'
-Plug 'Raimondi/delimitMate'
+" Plug 'Raimondi/delimitMate'
 Plug 'tpope/vim-endwise'
 Plug 'w0rp/ale'
 Plug 'ryanoasis/vim-devicons'
 Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
 " Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+" Plug 'neoclide/coc.nvim', {'tag': '*', 'do': { -> coc#util#install()}}
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'tpope/vim-commentary'
 " Plug 'prurigro/vim-polyglot-darkcloud'
 Plug 'sheerun/vim-polyglot'
+Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rails', {'for':['ruby', 'haml', 'yaml']}
 " Plug 'fishbullet/deoplete-ruby', { 'for': 'ruby' }
 " Plug 'posva/vim-vue'
@@ -43,14 +45,24 @@ set noshowcmd
 set laststatus=2
 "let g:rehash256 = 1
 set mouse=a
-set clipboard=unnamed
-"set clipboard+=unnamedplus
 " set relativenumber
-" get rid of window split separator char
-"set fillchars+=stl:\ ,stlnc:\
-"set fillchars+=vert:\ ,stlnc:\ 
 set noruler
-"
+
+" Clipboard
+let g:clipboard = {
+  \ 'name': 'pbcopy',
+  \ 'copy': {
+  \    '+': 'pbcopy',
+  \    '*': 'pbcopy',
+  \  },
+  \ 'paste': {
+  \    '+': 'pbpaste',
+  \    '*': 'pbpaste',
+  \ },
+  \ 'cache_enabled': 0,
+  \ }
+set clipboard=unnamed
+
 " Whitespace stuff
 set nowrap
 set tabstop=2
@@ -147,8 +159,8 @@ let g:python3_host_prog = '/usr/local/bin/python3'
 " let g:deoplete#enable_at_startup = 1
 " let g:deoplete#auto_completion_start_length = 2
 " let deoplete#tag#cache_limit_size = 50000000
-" " let g:deoplete#omni#input_patterns = {"ruby": ['[^. *\t]\.\w*', '[a-zA-Z_]\w*::']}
-" "    \  '[^. *\t]\.\w*\|\h\w*::'
+" "" let g:deoplete#omni#input_patterns = {"ruby": ['[^. *\t]\.\w*', '[a-zA-Z_]\w*::']}
+" " "    \  '[^. *\t]\.\w*\|\h\w*::'
 " let g:deoplete#sources={}
 " let g:deoplete#sources._    = ['buffer', 'file', 'tag', 'omni']
 " let g:deoplete#sources.ruby = ['tag', 'buffer', 'member', 'file', 'ultisnips', 'omni']
@@ -165,7 +177,7 @@ let g:python3_host_prog = '/usr/local/bin/python3'
 " call deoplete#custom#source('buffer', 'rank', 501)
 
 " vue 
-autocmd BufRead,BufNewFile *.vue setlocal filetype=vue.html.javascript.css
+" autocmd BufRead,BufNewFile *.vue setlocal filetype=vue.html.javascript.css
 
 " " use tab
 " imap <silent><expr> <TAB>
@@ -204,15 +216,22 @@ autocmd FileType vue syntax sync fromstart
 let g:ale_echo_msg_error_str = 'E'
 let g:ale_echo_msg_warning_str = 'W'
 let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
-let g:ale_lint_delay = 2000
-let g:ale_sign_warning = ''
-let g:ale_sign_error = ''
-let g_ale_sign_info = ''
+" let g:ale_lint_delay = 2000
+let g:ale_sign_warning = ''
+let g:ale_sign_error = ''
+let g:ale_sign_info = ''
+let g:ale_lint_on_text_changed = 'normal'
+let g:ale_lint_on_insert_leave = 1
+let g:ale_lint_delay = 0
 " let g:ale_open_list = 1
-let g:ale_fixers = {
-\   '*': ['remove_trailing_lines', 'trim_whitespace'],
-\   'ruby': ['rubocop']
-\}
+" let g:ale_linters = {'coffee': ['coffeelint'] }
+" " let b:ale_linters = {'javascript': ['eslint']}
+" let g:ale_fixers = {
+" \   '*': ['remove_trailing_lines', 'trim_whitespace'],
+" \   'ruby': ['rubocop']
+" \}
+" let g:ale_open_list = 1
+" let g:ale_keep_list_window_open = 1
 
 nmap <leader>rc :ALEFix<CR>
 nmap <silent> <C-k> <Plug>(ale_previous_wrap)
@@ -272,7 +291,6 @@ let g:fzf_nvim_statusline = 0
 noremap <c-f> :GitFiles<CR>
 noremap <c-d> :Files<CR>
 noremap <c-h> :History<CR>
-" noremap <c-g> :GitFiles<CR>
 
 :silent! colorscheme gruvbox
 set background=dark

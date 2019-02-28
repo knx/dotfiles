@@ -13,3 +13,5 @@
 	required = true
 [push]
 	default = simple
+[alias]
+    fix = "!f() { nvim -p `git diff --name-only`; }; f"
