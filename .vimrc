@@ -1,31 +1,34 @@
 call plug#begin('~/.vim/plugged')
 
 " UI
-"Plug 'airblade/vim-gitgutter'
-"Plug 'mhinz/vim-startify'
+" Plug 'airblade/vim-gitgutter'
+" Plug 'mhinz/vim-startify'
+" Plug 'Raimondi/delimitMate'
+" Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+" Plug 'neoclide/coc.nvim', {'tag': '*', 'do': { -> coc#util#install()}}
+" Plug 'prurigro/vim-polyglot-darkcloud'
+" Plug 'fishbullet/deoplete-ruby', { 'for': 'ruby' }
+" Plug 'posva/vim-vue'
+
 Plug 'itchyny/vim-gitbranch'
 Plug 'itchyny/lightline.vim'
 Plug 'tpope/vim-vinegar'
-" Plug 'Raimondi/delimitMate'
 Plug 'tpope/vim-endwise'
+Plug 'rstacruz/vim-closer'
 Plug 'w0rp/ale'
 Plug 'ryanoasis/vim-devicons'
 Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
-" Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-" Plug 'neoclide/coc.nvim', {'tag': '*', 'do': { -> coc#util#install()}}
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'tpope/vim-commentary'
-" Plug 'prurigro/vim-polyglot-darkcloud'
 Plug 'sheerun/vim-polyglot'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rails', {'for':['ruby', 'haml', 'yaml']}
-" Plug 'fishbullet/deoplete-ruby', { 'for': 'ruby' }
-" Plug 'posva/vim-vue'
 
 " Colorschemes
 Plug 'morhetz/gruvbox'
+" Plug 'bluz71/vim-moonfly-colors'
 
 call plug#end()                   " required
 
