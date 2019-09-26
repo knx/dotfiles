@@ -1,10 +1,10 @@
 call plug#begin('~/.vim/plugged')
 
 " UI
-" Plug 'airblade/vim-gitgutter'
+"Plug 'airblade/vim-gitgutter'
 " Plug 'mhinz/vim-startify'
-" Plug 'Raimondi/delimitMate'
-" Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'Raimondi/delimitMate'
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 " Plug 'neoclide/coc.nvim', {'tag': '*', 'do': { -> coc#util#install()}}
 " Plug 'prurigro/vim-polyglot-darkcloud'
 " Plug 'fishbullet/deoplete-ruby', { 'for': 'ruby' }
@@ -25,6 +25,7 @@ Plug 'tpope/vim-commentary'
 Plug 'sheerun/vim-polyglot'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rails', {'for':['ruby', 'haml', 'yaml']}
+Plug 'ruby-formatter/rufo-vim', {'for':['ruby']}
 
 " Colorschemes
 Plug 'morhetz/gruvbox'
@@ -155,28 +156,27 @@ autocmd BufWritePre *.yml :%s/\s\+$//e
 autocmd BufWinEnter * if line2byte(line("$") + 1) > 50000000 | syntax clear | endif 
 
 " Enable python
-let g:python_host_prog = '/usr/local/bin/python'
-let g:python3_host_prog = '/usr/local/bin/python3'
+" let g:python_host_prog = '/usr/local/bin/python'
+let g:python3_host_prog = '/Users/knx/.pyenv/shims/python'
 
 " Deoplete
-" let g:deoplete#enable_at_startup = 1
-" let g:deoplete#auto_completion_start_length = 2
-" let deoplete#tag#cache_limit_size = 50000000
-" "" let g:deoplete#omni#input_patterns = {"ruby": ['[^. *\t]\.\w*', '[a-zA-Z_]\w*::']}
-" " "    \  '[^. *\t]\.\w*\|\h\w*::'
-" let g:deoplete#sources={}
-" let g:deoplete#sources._    = ['buffer', 'file', 'tag', 'omni']
-" let g:deoplete#sources.ruby = ['tag', 'buffer', 'member', 'file', 'ultisnips', 'omni']
-" let g:deoplete#sources.vim  = ['buffer', 'file', 'ultisnips']
-" let g:deoplete#sources.css  = ['buffer', 'file', 'omni', 'ultisnips', 'tag']
-" let g:deoplete#sources.scss = ['buffer', 'file', 'omni', 'ultisnips', 'tag']
-" let g:deoplete#sources.javascript = ['buffer', 'member', 'file', 'ultisnips', 'tag']
-" let g:deoplete#sources.coffee = ['buffer', 'member', 'file', 'omni', 'ultisnips', 'tag']
-" let g:deoplete#sources.haml = ['buffer', 'member', 'file', 'omni', 'ultisnips', 'tag']
-" let g:deoplete#sources.html = ['buffer', 'member', 'file', 'omni', 'ultisnips', 'tag']
-" let g:deoplete#sources#omni#input_patterns = {
-" \   "ruby" : ['[^. *\t]\.\w*\|\h\w*::', '[a-zA-Z_]\w*::']
-" \}
+let g:deoplete#enable_at_startup = 1
+let g:deoplete#auto_completion_start_length = 2
+let g:deoplete#auto_complete_delay = 1000
+let deoplete#tag#cache_limit_size = 50000000
+let g:deoplete#sources={}
+let g:deoplete#sources._    = ['buffer', 'file', 'tag', 'omni']
+let g:deoplete#sources.ruby = ['tag', 'buffer', 'member', 'file', 'ultisnips', 'omni']
+let g:deoplete#sources.vim  = ['buffer', 'file', 'ultisnips']
+let g:deoplete#sources.css  = ['buffer', 'file', 'omni', 'ultisnips', 'tag']
+let g:deoplete#sources.scss = ['buffer', 'file', 'omni', 'ultisnips', 'tag']
+let g:deoplete#sources.javascript = ['buffer', 'member', 'file', 'ultisnips', 'tag']
+let g:deoplete#sources.coffee = ['buffer', 'member', 'file', 'omni', 'ultisnips', 'tag']
+let g:deoplete#sources.haml = ['buffer', 'member', 'file', 'omni', 'ultisnips', 'tag']
+let g:deoplete#sources.html = ['buffer', 'member', 'file', 'omni', 'ultisnips', 'tag']
+let g:deoplete#sources#omni#input_patterns = {
+\   "ruby" : ['[^. *\t]\.\w*\|\h\w*::', '[a-zA-Z_]\w*::']
+\}
 " call deoplete#custom#source('buffer', 'rank', 501)
 
 " vue 
@@ -210,7 +210,7 @@ autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete
 autocmd FileType ruby,eruby let g:rubycomplete_buffer_loading = 1
 autocmd FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
 autocmd FileType ruby,eruby let g:rubycomplete_rails = 1
-" set omnifunc=syntaxcomplete#Complete
+set omnifunc=syntaxcomplete#Complete
 
 " Fix syntax in vue files
 autocmd FileType vue syntax sync fromstart
@@ -219,7 +219,7 @@ autocmd FileType vue syntax sync fromstart
 let g:ale_echo_msg_error_str = 'E'
 let g:ale_echo_msg_warning_str = 'W'
 let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
-" let g:ale_lint_delay = 2000
+let g:ale_lint_delay = 2000
 let g:ale_sign_warning = ''
 let g:ale_sign_error = ''
 let g:ale_sign_info = ''
@@ -296,6 +296,9 @@ noremap <c-d> :Files<CR>
 noremap <c-h> :History<CR>
 
 :silent! colorscheme gruvbox
+:hi TabLineFill ctermfg=LightGreen ctermbg=DarkGreen
+:hi TabLine ctermfg=Blue ctermbg=Yellow
+:hi TabLineSel ctermfg=Red ctermbg=Yellow
 set background=dark
 " hide tildes on blank lines
 highlight EndOfBuffer ctermfg=bg ctermbg=bg

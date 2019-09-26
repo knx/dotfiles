@@ -83,7 +83,7 @@ plugins=(
   # tmux
   # themes 
   # vagrant-prompt
-  # vagrant
+  vagrant
 )
 
 
@@ -122,6 +122,12 @@ source $ZSH/oh-my-zsh.sh
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$HOME/.rvm/bin"
 
-if brew command command-not-found-init > /dev/null; then
-  eval "$(brew command-not-found-init)";
-fi
+# if brew command command-not-found-init > /dev/null; then
+#   eval "$(brew command-not-found-init)";
+# fi
+eval "$(pyenv init -)"
+# eval $(thefuck --alias)
+
+export PATH="$HOME/.cargo/bin:$PATH"
+PATH=$PATH:/opt/metasploit-framework/bin
+export PATH=$PATH:/opt/metasploit-framework/bin
