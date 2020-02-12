@@ -4,17 +4,15 @@ call plug#begin('~/.vim/plugged')
 "Plug 'airblade/vim-gitgutter'
 " Plug 'mhinz/vim-startify'
 Plug 'Raimondi/delimitMate'
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+" Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 " Plug 'neoclide/coc.nvim', {'tag': '*', 'do': { -> coc#util#install()}}
 " Plug 'prurigro/vim-polyglot-darkcloud'
 " Plug 'fishbullet/deoplete-ruby', { 'for': 'ruby' }
-" Plug 'posva/vim-vue'
-
+Plug 'posva/vim-vue'
 Plug 'itchyny/vim-gitbranch'
 Plug 'itchyny/lightline.vim'
 Plug 'tpope/vim-vinegar'
 Plug 'tpope/vim-endwise'
-Plug 'rstacruz/vim-closer'
 Plug 'w0rp/ale'
 Plug 'ryanoasis/vim-devicons'
 Plug '/usr/local/opt/fzf'
@@ -29,7 +27,7 @@ Plug 'ruby-formatter/rufo-vim', {'for':['ruby']}
 
 " Colorschemes
 Plug 'morhetz/gruvbox'
-" Plug 'bluz71/vim-moonfly-colors'
+" Plug 'arcticicestudio/nord-vim'
 
 call plug#end()                   " required
 
@@ -160,23 +158,23 @@ autocmd BufWinEnter * if line2byte(line("$") + 1) > 50000000 | syntax clear | en
 let g:python3_host_prog = '/Users/knx/.pyenv/shims/python'
 
 " Deoplete
-let g:deoplete#enable_at_startup = 1
-let g:deoplete#auto_completion_start_length = 2
-let g:deoplete#auto_complete_delay = 1000
-let deoplete#tag#cache_limit_size = 50000000
-let g:deoplete#sources={}
-let g:deoplete#sources._    = ['buffer', 'file', 'tag', 'omni']
-let g:deoplete#sources.ruby = ['tag', 'buffer', 'member', 'file', 'ultisnips', 'omni']
-let g:deoplete#sources.vim  = ['buffer', 'file', 'ultisnips']
-let g:deoplete#sources.css  = ['buffer', 'file', 'omni', 'ultisnips', 'tag']
-let g:deoplete#sources.scss = ['buffer', 'file', 'omni', 'ultisnips', 'tag']
-let g:deoplete#sources.javascript = ['buffer', 'member', 'file', 'ultisnips', 'tag']
-let g:deoplete#sources.coffee = ['buffer', 'member', 'file', 'omni', 'ultisnips', 'tag']
-let g:deoplete#sources.haml = ['buffer', 'member', 'file', 'omni', 'ultisnips', 'tag']
-let g:deoplete#sources.html = ['buffer', 'member', 'file', 'omni', 'ultisnips', 'tag']
-let g:deoplete#sources#omni#input_patterns = {
-\   "ruby" : ['[^. *\t]\.\w*\|\h\w*::', '[a-zA-Z_]\w*::']
-\}
+" let g:deoplete#enable_at_startup = 1
+" let g:deoplete#auto_completion_start_length = 2
+" let g:deoplete#auto_complete_delay = 1000
+" let deoplete#tag#cache_limit_size = 50000000
+" let g:deoplete#sources={}
+" let g:deoplete#sources._    = ['buffer', 'file', 'tag', 'omni']
+" let g:deoplete#sources.ruby = ['tag', 'buffer', 'member', 'file', 'ultisnips', 'omni']
+" let g:deoplete#sources.vim  = ['buffer', 'file', 'ultisnips']
+" let g:deoplete#sources.css  = ['buffer', 'file', 'omni', 'ultisnips', 'tag']
+" let g:deoplete#sources.scss = ['buffer', 'file', 'omni', 'ultisnips', 'tag']
+" let g:deoplete#sources.javascript = ['buffer', 'member', 'file', 'ultisnips', 'tag']
+" let g:deoplete#sources.coffee = ['buffer', 'member', 'file', 'omni', 'ultisnips', 'tag']
+" let g:deoplete#sources.haml = ['buffer', 'member', 'file', 'omni', 'ultisnips', 'tag']
+" let g:deoplete#sources.html = ['buffer', 'member', 'file', 'omni', 'ultisnips', 'tag']
+" let g:deoplete#sources#omni#input_patterns = {
+" \   "ruby" : ['[^. *\t]\.\w*\|\h\w*::', '[a-zA-Z_]\w*::']
+" \}
 " call deoplete#custom#source('buffer', 'rank', 501)
 
 " vue 
@@ -246,7 +244,7 @@ let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols = {} " needed
 let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['vue'] = ''
 
 let g:lightline = {
-      \ 'colorscheme': 'powerline',
+      \ 'colorscheme': 'powerlineish',
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
       \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
@@ -296,10 +294,10 @@ noremap <c-d> :Files<CR>
 noremap <c-h> :History<CR>
 
 :silent! colorscheme gruvbox
-:hi TabLineFill ctermfg=LightGreen ctermbg=DarkGreen
-:hi TabLine ctermfg=Blue ctermbg=Yellow
-:hi TabLineSel ctermfg=Red ctermbg=Yellow
-set background=dark
+" :hi TabLineFill ctermfg=LightGreen ctermbg=DarkGreen
+" :hi TabLine ctermfg=Blue ctermbg=Yellow
+" :hi TabLineSel ctermfg=Red ctermbg=Yellow
+" set background=dark
 " hide tildes on blank lines
 highlight EndOfBuffer ctermfg=bg ctermbg=bg
 "set eventignore=CursorMoved

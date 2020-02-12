@@ -52,7 +52,7 @@ COMPLETION_WAITING_DOTS="true"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
-  #bgnotify
+  bgnotify
   brew 
   bundler 
   #catimg 
@@ -76,7 +76,7 @@ plugins=(
   rake-fast
   # ruby 
   # rvm 
-  # safe-paste
+  safe-paste
   # taskwarrior 
   # you-should-use
   # thefuck
