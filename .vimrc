@@ -1,13 +1,13 @@
 call plug#begin('~/.vim/plugged')
 
 " UI
-"Plug 'airblade/vim-gitgutter'
+Plug 'airblade/vim-gitgutter'
 " Plug 'mhinz/vim-startify'
 Plug 'Raimondi/delimitMate'
-" Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-" Plug 'neoclide/coc.nvim', {'tag': '*', 'do': { -> coc#util#install()}}
-" Plug 'prurigro/vim-polyglot-darkcloud'
-" Plug 'fishbullet/deoplete-ruby', { 'for': 'ruby' }
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'neoclide/coc.nvim', {'tag': '*', 'do': { -> coc#util#install()}}
+Plug 'prurigro/vim-polyglot-darkcloud'
+Plug 'fishbullet/deoplete-ruby', { 'for': 'ruby' }
 Plug 'posva/vim-vue'
 Plug 'itchyny/vim-gitbranch'
 Plug 'itchyny/lightline.vim'

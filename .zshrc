@@ -20,7 +20,7 @@ ZSH_THEME="mine"
 # DISABLE_AUTO_UPDATE="true"
 
 # Uncomment the following line to change how often to auto-update (in days).
-# export UPDATE_ZSH_DAYS=13
+export UPDATE_ZSH_DAYS=13
 
 # Uncomment the following line to disable colors in ls.
 # DISABLE_LS_COLORS="true"
@@ -32,7 +32,7 @@ ZSH_THEME="mine"
 # ENABLE_CORRECTION="true"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
-COMPLETION_WAITING_DOTS="true"
+COMPLETION_WAITING_DOTS="false"
 
 # Uncomment the following line if you want to disable marking untracked files
 # under VCS as dirty. This makes repository status check for large repositories
@@ -56,11 +56,14 @@ plugins=(
   brew 
   bundler 
   #catimg 
-  #colorize 
-  #colored-man-pages
+  colorize 
+  colored-man-pages
   common-aliases
+  docker
+  docker-compose
   extract 
-  fasd 
+  fasd
+  fzf
   gem 
   git 
   # globalias
@@ -68,22 +71,24 @@ plugins=(
   # iterm2
   # last-working-dir
   osx 
-  # nmap
+  nmap
   postgres 
   pyenv
   pipenv
   rails 
   rake-fast
   # ruby 
-  # rvm 
-  safe-paste
+  rvm 
+  # safe-paste
   # taskwarrior 
   # you-should-use
+  yarn
   # thefuck
   # tmux
   # themes 
   # vagrant-prompt
-  vagrant
+  # vagrant
+  # zoxide
 )
 
 
@@ -98,6 +103,7 @@ export LANG="en_US.UTF-8"
 export LANGUAGE="en_US"                                                                                                                                                                                                                                                    
 export LC_CTYPE="en_US.UTF-8"                                                                                                                                                                                                                                                
 export LC_ALL="en_US.UTF-8"                                                                                                                                                                                                                                                  
+export GPG_TTY=$(tty)
 
 # Preferred editor for local and remote sessions
 if [[ -n $SSH_CONNECTION ]]; then
@@ -119,15 +125,14 @@ source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 source $ZSH/oh-my-zsh.sh
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-export PATH="$PATH:$HOME/.rvm/bin"
-
 # if brew command command-not-found-init > /dev/null; then
 #   eval "$(brew command-not-found-init)";
 # fi
 eval "$(pyenv init -)"
 # eval $(thefuck --alias)
 
-export PATH="$HOME/.cargo/bin:$PATH"
 PATH=$PATH:/opt/metasploit-framework/bin
 export PATH=$PATH:/opt/metasploit-framework/bin
+
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+export PATH="$PATH:$HOME/.rvm/bin"

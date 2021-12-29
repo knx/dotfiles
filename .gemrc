@@ -5,6 +5,6 @@
 - https://rubygems.org/
 :update_sources: true
 :verbose: true
-gem: "--no-ri --no-rdoc"
+gem: "--no-document"
 search: "--remote"
 benchmark: false
