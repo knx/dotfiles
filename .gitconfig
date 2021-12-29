@@ -1,6 +1,7 @@
 [user]
 	email = knx@digitalheads.pl
 	name = knx
+	signingkey = D4C03988A02BA8AF
 [filter "media"]
 	required = true
 	clean = git media clean %f
@@ -15,3 +16,11 @@
 	default = simple
 [alias]
     fix = "!f() { nvim -p `git diff --name-only`; }; f"
+[commit]
+	gpgsign = true
+[gpg]
+	program = gpg
+[color]
+	ui = true
+[pull]
+	rebase = false

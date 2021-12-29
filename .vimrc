@@ -1,13 +1,13 @@
 call plug#begin('~/.vim/plugged')
 
 " UI
-"Plug 'airblade/vim-gitgutter'
+Plug 'airblade/vim-gitgutter'
 " Plug 'mhinz/vim-startify'
 Plug 'Raimondi/delimitMate'
-" Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-" Plug 'neoclide/coc.nvim', {'tag': '*', 'do': { -> coc#util#install()}}
-" Plug 'prurigro/vim-polyglot-darkcloud'
-" Plug 'fishbullet/deoplete-ruby', { 'for': 'ruby' }
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'neoclide/coc.nvim', {'tag': '*', 'do': { -> coc#util#install()}}
+Plug 'prurigro/vim-polyglot-darkcloud'
+Plug 'fishbullet/deoplete-ruby', { 'for': 'ruby' }
 Plug 'posva/vim-vue'
 Plug 'itchyny/vim-gitbranch'
 Plug 'itchyny/lightline.vim'
@@ -224,7 +224,8 @@ let g:ale_sign_info = ''
 let g:ale_lint_on_text_changed = 'normal'
 let g:ale_lint_on_insert_leave = 1
 let g:ale_lint_delay = 0
-" let g:ale_open_list = 1
+let g:ale_completion_enabled = 1
+let g:ale_floating_window_border = ['│', '─', '╭', '╮', '╯', '╰']
 " let g:ale_linters = {'coffee': ['coffeelint'] }
 " " let b:ale_linters = {'javascript': ['eslint']}
 " let g:ale_fixers = {
