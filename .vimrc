@@ -5,7 +5,8 @@ Plug 'airblade/vim-gitgutter'
 " Plug 'mhinz/vim-startify'
 Plug 'Raimondi/delimitMate'
 " Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'neoclide/coc.nvim', {'tag': '*', 'do': { -> coc#util#install()}}
+" Plug 'neoclide/coc.nvim', {'tag': '*', 'do': { -> coc#util#install()}}
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " Plug 'prurigro/vim-polyglot-darkcloud'
 " Plug 'fishbullet/deoplete-ruby', { 'for': 'ruby' }
 " Plug 'posva/vim-vue'
@@ -27,6 +28,7 @@ Plug 'tpope/vim-rails', {'for':['ruby', 'haml', 'yaml']}
 
 " Colorschemes
 Plug 'morhetz/gruvbox'
+Plug 'NLKNguyen/papercolor-theme'
 " Plug 'arcticicestudio/nord-vim'
 
 call plug#end()                   " required
@@ -157,44 +159,6 @@ autocmd BufWinEnter * if line2byte(line("$") + 1) > 50000000 | syntax clear | en
 " let g:python_host_prog = '/usr/local/bin/python'
 let g:python3_host_prog = '/Users/knx/.pyenv/shims/python'
 
-" Deoplete
-" let g:deoplete#enable_at_startup = 1
-" let g:deoplete#auto_completion_start_length = 2
-" let g:deoplete#auto_complete_delay = 1000
-" let deoplete#tag#cache_limit_size = 50000000
-" let g:deoplete#sources={}
-" let g:deoplete#sources._    = ['buffer', 'file', 'tag', 'omni']
-" let g:deoplete#sources.ruby = ['tag', 'buffer', 'member', 'file', 'ultisnips', 'omni']
-" let g:deoplete#sources.vim  = ['buffer', 'file', 'ultisnips']
-" let g:deoplete#sources.css  = ['buffer', 'file', 'omni', 'ultisnips', 'tag']
-" let g:deoplete#sources.scss = ['buffer', 'file', 'omni', 'ultisnips', 'tag']
-" let g:deoplete#sources.javascript = ['buffer', 'member', 'file', 'ultisnips', 'tag']
-" let g:deoplete#sources.coffee = ['buffer', 'member', 'file', 'omni', 'ultisnips', 'tag']
-" let g:deoplete#sources.haml = ['buffer', 'member', 'file', 'omni', 'ultisnips', 'tag']
-" let g:deoplete#sources.html = ['buffer', 'member', 'file', 'omni', 'ultisnips', 'tag']
-" let g:deoplete#sources#omni#input_patterns = {
-" \   "ruby" : ['[^. *\t]\.\w*\|\h\w*::', '[a-zA-Z_]\w*::']
-" \}
-" call deoplete#custom#source('buffer', 'rank', 501)
-
-" vue 
-" autocmd BufRead,BufNewFile *.vue setlocal filetype=vue.html.javascript.css
-
-" " use tab
-" imap <silent><expr> <TAB>
-"   \ pumvisible() ? "\<C-n>" :
-"   \ <SID>check_back_space() ? "\<TAB>" :
-"   \ deoplete#mappings#manual_complete()
-" function! s:check_back_space() abort "{{{
-"   let col = col('.') - 1
-"   return !col || getline('.')[col - 1]  =~ '\s'
-" endfunction"}}}
-
-" inoremap <expr><C-h> deolete#mappings#smart_close_popup()."\<C-h>"
-" inoremap <expr><BS> deoplete#mappings#smart_close_popup()."\<C-h>"
-" inoremap <silent><expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
-" inoremap <silent><expr><s-tab> pumvisible() ? "\<c-p>" : "\<s-tab>"
-
 " filetypes
 autocmd FileType ruby,eruby,yaml,haml setlocal iskeyword+=?
 autocmd FileType ruby,eruby,yaml,haml setlocal iskeyword+=!
@@ -212,6 +176,7 @@ set omnifunc=syntaxcomplete#Complete
 
 " Fix syntax in vue files
 autocmd FileType vue syntax sync fromstart
+autocmd BufNewFile,BufRead *.yaml set filetype yaml.ansible
 
 " Ale
 let g:ale_echo_msg_error_str = 'E'
@@ -226,14 +191,8 @@ let g:ale_lint_on_insert_leave = 1
 let g:ale_lint_delay = 0
 let g:ale_completion_enabled = 1
 let g:ale_floating_window_border = ['│', '─', '╭', '╮', '╯', '╰']
-" let g:ale_linters = {'coffee': ['coffeelint'] }
-" " let b:ale_linters = {'javascript': ['eslint']}
-" let g:ale_fixers = {
-" \   '*': ['remove_trailing_lines', 'trim_whitespace'],
-" \   'ruby': ['rubocop']
-" \}
-" let g:ale_open_list = 1
-" let g:ale_keep_list_window_open = 1
+let g:ale_linters = {'ansible': ['ansible-lint'] }
+let g:ale_keep_list_window_open = 1
 
 nmap <leader>rc :ALEFix<CR>
 nmap <silent> <C-k> <Plug>(ale_previous_wrap)
@@ -444,11 +403,14 @@ noremap <c-f> :GitFiles<CR>
 noremap <c-d> :Files<CR>
 noremap <c-h> :History<CR>
 
-:silent! colorscheme gruvbox
+
+" set background=dark
+  set background=dark
+  :silent! colorscheme gruvbox
+" :silent! colorscheme PaperColor
 " :hi TabLineFill ctermfg=LightGreen ctermbg=DarkGreen
 " :hi TabLine ctermfg=Blue ctermbg=Yellow
 " :hi TabLineSel ctermfg=Red ctermbg=Yellow
-" set background=dark
 " hide tildes on blank lines
 highlight EndOfBuffer ctermfg=bg ctermbg=bg
 "set eventignore=CursorMoved

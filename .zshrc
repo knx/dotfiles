@@ -1,5 +1,5 @@
 # If you come from bash you might have to change your $PATH.
-export PATH=/usr/local/sbin:$PATH
+#export PATH=/usr/local/sbin:$PATH
 
 # Path to your oh-my-zsh installation.
 export ZSH=/Users/knx/.oh-my-zsh
@@ -17,7 +17,7 @@ ZSH_THEME="mine"
 # HYPHEN_INSENSITIVE="true"
 
 # Uncomment the following line to disable bi-weekly auto-update checks.
-# DISABLE_AUTO_UPDATE="true"
+DISABLE_AUTO_UPDATE="true"
 
 # Uncomment the following line to change how often to auto-update (in days).
 export UPDATE_ZSH_DAYS=13
@@ -37,7 +37,7 @@ COMPLETION_WAITING_DOTS="false"
 # Uncomment the following line if you want to disable marking untracked files
 # under VCS as dirty. This makes repository status check for large repositories
 # much, much faster.
-# DISABLE_UNTRACKED_FILES_DIRTY="true"
+DISABLE_UNTRACKED_FILES_DIRTY="true"
 
 # Uncomment the following line if you want to change the command execution time
 # stamp shown in the history command output.
@@ -54,47 +54,47 @@ COMPLETION_WAITING_DOTS="false"
 plugins=(
   bgnotify
   brew 
-  bundler 
+  # bundler 
   #catimg 
   colorize 
   colored-man-pages
   common-aliases
-  docker
-  docker-compose
-  extract 
+  # docker
+  # docker-compose
+  # extract 
   fasd
   fzf
-  gem 
+  # gem 
   git 
   # globalias
   history-substring-search 
   # iterm2
   # last-working-dir
   macos 
-  nmap
+  # nmap
   nvm
-  postgres 
-  pyenv
+  # postgres 
+  # pyenv
   # pipenv
   rails 
-  rake-fast
+  # rake-fast
   # ruby 
   rvm 
   # safe-paste
   # taskwarrior 
   # you-should-use
-  yarn
+  # yarn
   # thefuck
   # tmux
   # themes 
-  terraform
+  # terraform
   # vagrant-prompt
   # vagrant
   # zoxide
 )
 
-zstyle ':completion:*:*:docker:*' option-stacking yes
-zstyle ':completion:*:*:docker-*:*' option-stacking yes
+# zstyle ':completion:*:*:docker:*' option-stacking yes
+# zstyle ':completion:*:*:docker-*:*' option-stacking yes
 
 # User configuration
 # TMUX
@@ -125,24 +125,24 @@ fi
 fpath=(/usr/local/share/zsh-completions $fpath)
 source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 # source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-# source ~/.iterm2_shell_integration.zsh
 source $ZSH/oh-my-zsh.sh
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+#[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # if brew command command-not-found-init > /dev/null; then
 #   eval "$(brew command-not-found-init)";
 # fi
-export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init --path)"
+# export PYENV_ROOT="$HOME/.pyenv"
+# export PATH="$PYENV_ROOT/bin:$PATH"
+# eval "$(pyenv init --path)"
 # eval $(thefuck --alias)
 
-PATH=$PATH:/opt/metasploit-framework/bin
-export PATH=$PATH:/opt/metasploit-framework/bin
+# PATH=$PATH:/opt/metasploit-framework/bin
+# export PATH=$PATH:/opt/metasploit-framework/bin
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-export PATH="$PATH:$HOME/.rvm/bin"
+# export PATH="$PATH:$HOME/.rvm/bin"
 
 # export NVM_DIR="$HOME/.nvm"
 # [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 # [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+# autoload -U compinit; compinit

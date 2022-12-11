@@ -276,3 +276,4 @@ set -g @1password-enabled-url-filter 'off'
 set -g @1password-items-jq-filter '.[] | [select(.overview.tags | map(select(. == "server")) | length == 1)?] | map([ .overview.title, .uuid ] | join(",")) | .[]'
 
 set-option -sa terminal-overrides ',xterm-256color:RGB'
+set-option -s escape-time 10
