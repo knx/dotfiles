@@ -24,3 +24,5 @@
 	ui = true
 [pull]
 	rebase = false
+[url "ssh://git@"]
+	insteadOf = https://

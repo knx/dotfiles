@@ -42,7 +42,7 @@ tmux_conf_new_session_prompt=false
 # RGB 24-bit colour support (tmux >= 2.2), possible values are:
 #  - true
 #  - false (default)
-tmux_conf_theme_24b_colour=false
+# tmux_conf_theme_24b_colour=true
 
 # window style
 tmux_conf_theme_window_fg='default'
@@ -164,12 +164,12 @@ tmux_conf_theme_status_right='#{wan_status} , #{lan_status} ,#{?battery_status, 
 # status left style
 tmux_conf_theme_status_left_fg='#000000,#e4e4e4,#e4e4e4'  # black, white , white
 tmux_conf_theme_status_left_bg='#ffff00,#ff00af,#00afff'  # yellow, pink, white blue
-tmux_conf_theme_status_left_attr='bold,none,none'
+tmux_conf_theme_status_left_attr='none,none,none'
 
 # status right style
 tmux_conf_theme_status_right_fg='#8a8a8a,#e4e4e4,#000000' # light gray, white, black
 tmux_conf_theme_status_right_bg='#080808,#00afff,#e4e4e4' # dark gray, red, white
-tmux_conf_theme_status_right_attr='none,bold,bold'
+tmux_conf_theme_status_right_attr='none,none,none'
 
 # pairing indicator
 tmux_conf_theme_pairing='👓 '          # U+1F453
@@ -272,8 +272,8 @@ set -g mouse on
 
 # move status line to top
 # set -g status-position top
-set -g @1password-enabled-url-filter 'off'
-set -g @1password-items-jq-filter '.[] | [select(.overview.tags | map(select(. == "server")) | length == 1)?] | map([ .overview.title, .uuid ] | join(",")) | .[]'
+# set -g @1password-enabled-url-filter 'off'
+# set -g @1password-items-jq-filter '.[] | [select(.overview.tags | map(select(. == "server")) | length == 1)?] | map([ .overview.title, .uuid ] | join(",")) | .[]'
 
-set-option -sa terminal-overrides ',xterm-256color:RGB'
+# set-option -sa terminal-overrides ',xterm-256color:RGB'
 set-option -s escape-time 10

@@ -1,3 +1,4 @@
+#zmodload zsh/zprof
 # If you come from bash you might have to change your $PATH.
 #export PATH=/usr/local/sbin:$PATH
 
@@ -37,7 +38,7 @@ COMPLETION_WAITING_DOTS="false"
 # Uncomment the following line if you want to disable marking untracked files
 # under VCS as dirty. This makes repository status check for large repositories
 # much, much faster.
-DISABLE_UNTRACKED_FILES_DIRTY="true"
+DISABLE_UNTRACKED_FILES_DIRTY="false"
 
 # Uncomment the following line if you want to change the command execution time
 # stamp shown in the history command output.
@@ -52,6 +53,7 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
+  aws
   bgnotify
   brew 
   # bundler 
@@ -72,7 +74,7 @@ plugins=(
   # last-working-dir
   macos 
   # nmap
-  nvm
+  # nvm
   # postgres 
   # pyenv
   # pipenv
@@ -119,14 +121,13 @@ fi
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
 
-# ssh
-# export SSH_KEY_PATH="~/.ssh/rsa_id"
+# Load RVM into a shell session *as a function*
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" 
 
 fpath=(/usr/local/share/zsh-completions $fpath)
 source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 # source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source $ZSH/oh-my-zsh.sh
-#[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # if brew command command-not-found-init > /dev/null; then
 #   eval "$(brew command-not-found-init)";
@@ -135,14 +136,4 @@ source $ZSH/oh-my-zsh.sh
 # export PATH="$PYENV_ROOT/bin:$PATH"
 # eval "$(pyenv init --path)"
 # eval $(thefuck --alias)
-
-# PATH=$PATH:/opt/metasploit-framework/bin
-# export PATH=$PATH:/opt/metasploit-framework/bin
-
-# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-# export PATH="$PATH:$HOME/.rvm/bin"
-
-# export NVM_DIR="$HOME/.nvm"
-# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-# [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-# autoload -U compinit; compinit
+#zprof

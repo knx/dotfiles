@@ -1,6 +1,6 @@
 call plug#begin('~/.vim/plugged')
-
 " UI
+
 Plug 'airblade/vim-gitgutter'
 " Plug 'mhinz/vim-startify'
 Plug 'Raimondi/delimitMate'
@@ -14,21 +14,22 @@ Plug 'itchyny/vim-gitbranch'
 Plug 'itchyny/lightline.vim'
 Plug 'tpope/vim-vinegar'
 Plug 'tpope/vim-endwise'
-Plug 'w0rp/ale'
+Plug 'dense-analysis/ale'
 Plug 'ryanoasis/vim-devicons'
 Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
-Plug 'SirVer/ultisnips'
-Plug 'honza/vim-snippets'
+" Plug 'SirVer/ultisnips'
+" Plug 'honza/vim-snippets'
 Plug 'tpope/vim-commentary'
 Plug 'sheerun/vim-polyglot'
 Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-rails', {'for':['ruby', 'haml', 'yaml']}
+Plug 'ludovicchabant/vim-gutentags'
+" Plug 'tpope/vim-rails', {'for':['ruby', 'haml', 'yaml']}
 " Plug 'ruby-formatter/rufo-vim', {'for':['ruby']}
 
 " Colorschemes
 Plug 'morhetz/gruvbox'
-Plug 'NLKNguyen/papercolor-theme'
+" Plug 'NLKNguyen/papercolor-theme'
 " Plug 'arcticicestudio/nord-vim'
 
 call plug#end()                   " required
@@ -43,7 +44,7 @@ set showmatch                     " show matching brackets.
 set wildmenu
 set timeoutlen=1000 ttimeoutlen=0 " eliminating esc delays
 set shortmess+=I                  " no welcome message
-set nolazyredraw
+set lazyredraw
 set noshowmode
 set noshowcmd                     
 set laststatus=2
@@ -65,7 +66,7 @@ let g:clipboard = {
   \ },
   \ 'cache_enabled': 0,
   \ }
-set clipboard=unnamed
+" set clipboard=unnamed
 
 " Whitespace stuff
 set nowrap
@@ -151,6 +152,7 @@ autocmd BufWritePre *.coffee :%s/\s\+$//e
 autocmd BufWritePre *.haml :%s/\s\+$//e
 autocmd BufWritePre *.scss :%s/\s\+$//e
 autocmd BufWritePre *.yml :%s/\s\+$//e
+autocmd BufWritePre *.yaml :%s/\s\+$//e
 
 " Disable syntax highlight for files larger than 50 MB
 autocmd BufWinEnter * if line2byte(line("$") + 1) > 50000000 | syntax clear | endif 
@@ -175,8 +177,8 @@ autocmd FileType ruby,eruby let g:rubycomplete_rails = 1
 set omnifunc=syntaxcomplete#Complete
 
 " Fix syntax in vue files
-autocmd FileType vue syntax sync fromstart
-autocmd BufNewFile,BufRead *.yaml set filetype yaml.ansible
+" autocmd FileType vue syntax sync fromstart
+" autocmd BufNewFile,BufRead *.yaml set filetype yaml.ansible
 
 " Ale
 let g:ale_echo_msg_error_str = 'E'
@@ -191,7 +193,7 @@ let g:ale_lint_on_insert_leave = 1
 let g:ale_lint_delay = 0
 let g:ale_completion_enabled = 1
 let g:ale_floating_window_border = ['│', '─', '╭', '╮', '╯', '╰']
-let g:ale_linters = {'ansible': ['ansible-lint'] }
+let g:ale_linters = {'yaml': ['ansible-lint'] }
 let g:ale_keep_list_window_open = 1
 
 nmap <leader>rc :ALEFix<CR>
@@ -247,16 +249,23 @@ else
   set signcolumn=yes
 endif
 
-" Use tab for trigger completion with characters ahead and navigate.
+" Use tab for trigger completion with characters ahead and navigate
+" NOTE: There's always complete item selected by default, you may want to enable
+" no select by `"suggest.noselect": true` in your configuration file
 " NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
-" other plugin before putting this into your config.
+" other plugin before putting this into your config
 inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#pum#visible() ? coc#pum#next(1) :
+      \ CheckBackspace() ? "\<Tab>" :
       \ coc#refresh()
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
 
-function! s:check_back_space() abort
+" Make <CR> to accept selected completion item or notify coc.nvim to format
+" <C-g>u breaks current undo, please make your own choice
+inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
+                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+
+function! CheckBackspace() abort
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
@@ -279,16 +288,14 @@ nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 
-" Use K to show documentation in preview window.
-nnoremap <silent> K :call <SID>show_documentation()<CR>
+" Use K to show documentation in preview window
+nnoremap <silent> K :call ShowDocumentation()<CR>
 
-function! s:show_documentation()
-  if (index(['vim','help'], &filetype) >= 0)
-    execute 'h '.expand('<cword>')
-  elseif (coc#rpc#ready())
+function! ShowDocumentation()
+  if CocAction('hasProvider', 'hover')
     call CocActionAsync('doHover')
   else
-    execute '!' . &keywordprg . " " . expand('<cword>')
+    call feedkeys('K', 'in')
   endif
 endfunction
 
@@ -396,21 +403,11 @@ let g:netrw_list_hide = '\(^\|\s\s\)\zs\.\S\+'
 " let g:fzf_layout = { 'window': 'enew' }
 " let g:fzf_layout = { 'window': '-tabnew' }
 " let g:fzf_layout = { 'window': '10split enew' }
-let g:fzf_nvim_statusline = 0
+" let g:fzf_nvim_statusline = 0
 
 " noremap <c-f> :Files `git rev-parse --show-toplevel`<CR>
 noremap <c-f> :GitFiles<CR>
 noremap <c-d> :Files<CR>
 noremap <c-h> :History<CR>
 
-
-" set background=dark
-  set background=dark
-  :silent! colorscheme gruvbox
-" :silent! colorscheme PaperColor
-" :hi TabLineFill ctermfg=LightGreen ctermbg=DarkGreen
-" :hi TabLine ctermfg=Blue ctermbg=Yellow
-" :hi TabLineSel ctermfg=Red ctermbg=Yellow
-" hide tildes on blank lines
-highlight EndOfBuffer ctermfg=bg ctermbg=bg
-"set eventignore=CursorMoved
+:silent! colorscheme gruvbox
